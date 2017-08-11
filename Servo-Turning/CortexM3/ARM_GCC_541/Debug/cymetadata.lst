@@ -1,0 +1,1895 @@
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"cymetadata.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	cy_metadata
+  20              		.global	cy_meta_flashprotect
+  21              		.global	cy_meta_wonvl
+  22              		.global	cy_meta_custnvl
+  23              		.global	cy_meta_configecc
+  24              		.section	.cyconfigecc,"a",%progbits
+  25              		.align	2
+  26              		.type	cy_meta_configecc, %object
+  27              		.size	cy_meta_configecc, 1320
+  28              	cy_meta_configecc:
+  29 0000 01       		.byte	1
+  30 0001 45       		.byte	69
+  31 0002 00       		.byte	0
+  32 0003 40       		.byte	64
+  33 0004 02       		.byte	2
+  34 0005 64       		.byte	100
+  35 0006 00       		.byte	0
+  36 0007 40       		.byte	64
+  37 0008 02       		.byte	2
+  38 0009 65       		.byte	101
+  39 000a 00       		.byte	0
+  40 000b 40       		.byte	64
+  41 000c 50       		.byte	80
+  42 000d 08       		.byte	8
+  43 000e 01       		.byte	1
+  44 000f 40       		.byte	64
+  45 0010 44       		.byte	68
+  46 0011 09       		.byte	9
+  47 0012 01       		.byte	1
+  48 0013 40       		.byte	64
+  49 0014 4F       		.byte	79
+  50 0015 0A       		.byte	10
+  51 0016 01       		.byte	1
+  52 0017 40       		.byte	64
+  53 0018 2F       		.byte	47
+  54 0019 0B       		.byte	11
+  55 001a 01       		.byte	1
+  56 001b 40       		.byte	64
+  57 001c 5A       		.byte	90
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 2
+
+
+  58 001d 18       		.byte	24
+  59 001e 01       		.byte	1
+  60 001f 40       		.byte	64
+  61 0020 3B       		.byte	59
+  62 0021 19       		.byte	25
+  63 0022 01       		.byte	1
+  64 0023 40       		.byte	64
+  65 0024 5E       		.byte	94
+  66 0025 1A       		.byte	26
+  67 0026 01       		.byte	1
+  68 0027 40       		.byte	64
+  69 0028 46       		.byte	70
+  70 0029 1B       		.byte	27
+  71 002a 01       		.byte	1
+  72 002b 40       		.byte	64
+  73 002c 02       		.byte	2
+  74 002d 4C       		.byte	76
+  75 002e 01       		.byte	1
+  76 002f 40       		.byte	64
+  77 0030 09       		.byte	9
+  78 0031 4D       		.byte	77
+  79 0032 01       		.byte	1
+  80 0033 40       		.byte	64
+  81 0034 08       		.byte	8
+  82 0035 50       		.byte	80
+  83 0036 01       		.byte	1
+  84 0037 40       		.byte	64
+  85 0038 12       		.byte	18
+  86 0039 03       		.byte	3
+  87 003a 89       		.byte	-119
+  88 003b 3C       		.byte	60
+  89 003c 8A       		.byte	-118
+  90 003d 0F       		.byte	15
+  91 003e 88       		.byte	-120
+  92 003f 0D       		.byte	13
+  93 0040 8B       		.byte	-117
+  94 0041 72       		.byte	114
+  95 0042 04       		.byte	4
+  96 0043 1A       		.byte	26
+  97 0044 05       		.byte	5
+  98 0045 04       		.byte	4
+  99 0046 06       		.byte	6
+ 100 0047 04       		.byte	4
+ 101 0048 08       		.byte	8
+ 102 0049 03       		.byte	3
+ 103 004a 0A       		.byte	10
+ 104 004b 14       		.byte	20
+ 105 004c 0B       		.byte	11
+ 106 004d 02       		.byte	2
+ 107 004e 0C       		.byte	12
+ 108 004f 03       		.byte	3
+ 109 0050 0D       		.byte	13
+ 110 0051 01       		.byte	1
+ 111 0052 0E       		.byte	14
+ 112 0053 0C       		.byte	12
+ 113 0054 12       		.byte	18
+ 114 0055 18       		.byte	24
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 3
+
+
+ 115 0056 13       		.byte	19
+ 116 0057 01       		.byte	1
+ 117 0058 16       		.byte	22
+ 118 0059 08       		.byte	8
+ 119 005a 17       		.byte	23
+ 120 005b 01       		.byte	1
+ 121 005c 19       		.byte	25
+ 122 005d 06       		.byte	6
+ 123 005e 25       		.byte	37
+ 124 005f 01       		.byte	1
+ 125 0060 26       		.byte	38
+ 126 0061 05       		.byte	5
+ 127 0062 28       		.byte	40
+ 128 0063 03       		.byte	3
+ 129 0064 29       		.byte	41
+ 130 0065 01       		.byte	1
+ 131 0066 2A       		.byte	42
+ 132 0067 04       		.byte	4
+ 133 0068 2D       		.byte	45
+ 134 0069 06       		.byte	6
+ 135 006a 33       		.byte	51
+ 136 006b 06       		.byte	6
+ 137 006c 34       		.byte	52
+ 138 006d 1F       		.byte	31
+ 139 006e 37       		.byte	55
+ 140 006f 01       		.byte	1
+ 141 0070 39       		.byte	57
+ 142 0071 08       		.byte	8
+ 143 0072 3A       		.byte	58
+ 144 0073 28       		.byte	40
+ 145 0074 3F       		.byte	63
+ 146 0075 04       		.byte	4
+ 147 0076 40       		.byte	64
+ 148 0077 02       		.byte	2
+ 149 0078 47       		.byte	71
+ 150 0079 04       		.byte	4
+ 151 007a 49       		.byte	73
+ 152 007b FF       		.byte	-1
+ 153 007c 4A       		.byte	74
+ 154 007d 07       		.byte	7
+ 155 007e 4B       		.byte	75
+ 156 007f FF       		.byte	-1
+ 157 0080 4C       		.byte	76
+ 158 0081 40       		.byte	64
+ 159 0082 4D       		.byte	77
+ 160 0083 20       		.byte	32
+ 161 0084 4E       		.byte	78
+ 162 0085 F0       		.byte	-16
+ 163 0086 4F       		.byte	79
+ 164 0087 05       		.byte	5
+ 165 0088 50       		.byte	80
+ 166 0089 08       		.byte	8
+ 167 008a 58       		.byte	88
+ 168 008b 04       		.byte	4
+ 169 008c 59       		.byte	89
+ 170 008d 04       		.byte	4
+ 171 008e 5A       		.byte	90
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 4
+
+
+ 172 008f 04       		.byte	4
+ 173 0090 5C       		.byte	92
+ 174 0091 11       		.byte	17
+ 175 0092 5D       		.byte	93
+ 176 0093 01       		.byte	1
+ 177 0094 5F       		.byte	95
+ 178 0095 01       		.byte	1
+ 179 0096 60       		.byte	96
+ 180 0097 40       		.byte	64
+ 181 0098 61       		.byte	97
+ 182 0099 A8       		.byte	-88
+ 183 009a 62       		.byte	98
+ 184 009b 40       		.byte	64
+ 185 009c 63       		.byte	99
+ 186 009d 20       		.byte	32
+ 187 009e 84       		.byte	-124
+ 188 009f 09       		.byte	9
+ 189 00a0 86       		.byte	-122
+ 190 00a1 06       		.byte	6
+ 191 00a2 88       		.byte	-120
+ 192 00a3 04       		.byte	4
+ 193 00a4 8A       		.byte	-118
+ 194 00a5 0B       		.byte	11
+ 195 00a6 8B       		.byte	-117
+ 196 00a7 01       		.byte	1
+ 197 00a8 8E       		.byte	-114
+ 198 00a9 04       		.byte	4
+ 199 00aa 90       		.byte	-112
+ 200 00ab 10       		.byte	16
+ 201 00ac 92       		.byte	-110
+ 202 00ad 03       		.byte	3
+ 203 00ae 94       		.byte	-108
+ 204 00af 20       		.byte	32
+ 205 00b0 98       		.byte	-104
+ 206 00b1 20       		.byte	32
+ 207 00b2 99       		.byte	-103
+ 208 00b3 01       		.byte	1
+ 209 00b4 9C       		.byte	-100
+ 210 00b5 09       		.byte	9
+ 211 00b6 9E       		.byte	-98
+ 212 00b7 06       		.byte	6
+ 213 00b8 A2       		.byte	-94
+ 214 00b9 20       		.byte	32
+ 215 00ba A6       		.byte	-90
+ 216 00bb 20       		.byte	32
+ 217 00bc A7       		.byte	-89
+ 218 00bd 01       		.byte	1
+ 219 00be AA       		.byte	-86
+ 220 00bf 20       		.byte	32
+ 221 00c0 AB       		.byte	-85
+ 222 00c1 01       		.byte	1
+ 223 00c2 AD       		.byte	-83
+ 224 00c3 01       		.byte	1
+ 225 00c4 AE       		.byte	-82
+ 226 00c5 20       		.byte	32
+ 227 00c6 B2       		.byte	-78
+ 228 00c7 20       		.byte	32
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 5
+
+
+ 229 00c8 B4       		.byte	-76
+ 230 00c9 07       		.byte	7
+ 231 00ca B6       		.byte	-74
+ 232 00cb 18       		.byte	24
+ 233 00cc B7       		.byte	-73
+ 234 00cd 01       		.byte	1
+ 235 00ce B8       		.byte	-72
+ 236 00cf 80       		.byte	-128
+ 237 00d0 BA       		.byte	-70
+ 238 00d1 20       		.byte	32
+ 239 00d2 BF       		.byte	-65
+ 240 00d3 40       		.byte	64
+ 241 00d4 D4       		.byte	-44
+ 242 00d5 1C       		.byte	28
+ 243 00d6 D8       		.byte	-40
+ 244 00d7 04       		.byte	4
+ 245 00d8 D9       		.byte	-39
+ 246 00d9 04       		.byte	4
+ 247 00da DB       		.byte	-37
+ 248 00db 04       		.byte	4
+ 249 00dc DC       		.byte	-36
+ 250 00dd 01       		.byte	1
+ 251 00de DD       		.byte	-35
+ 252 00df 10       		.byte	16
+ 253 00e0 DF       		.byte	-33
+ 254 00e1 01       		.byte	1
+ 255 00e2 00       		.byte	0
+ 256 00e3 08       		.byte	8
+ 257 00e4 01       		.byte	1
+ 258 00e5 20       		.byte	32
+ 259 00e6 02       		.byte	2
+ 260 00e7 01       		.byte	1
+ 261 00e8 04       		.byte	4
+ 262 00e9 08       		.byte	8
+ 263 00ea 05       		.byte	5
+ 264 00eb 90       		.byte	-112
+ 265 00ec 0A       		.byte	10
+ 266 00ed 08       		.byte	8
+ 267 00ee 0B       		.byte	11
+ 268 00ef AA       		.byte	-86
+ 269 00f0 0D       		.byte	13
+ 270 00f1 08       		.byte	8
+ 271 00f2 0F       		.byte	15
+ 272 00f3 80       		.byte	-128
+ 273 00f4 10       		.byte	16
+ 274 00f5 10       		.byte	16
+ 275 00f6 12       		.byte	18
+ 276 00f7 8A       		.byte	-118
+ 277 00f8 15       		.byte	21
+ 278 00f9 10       		.byte	16
+ 279 00fa 16       		.byte	22
+ 280 00fb 20       		.byte	32
+ 281 00fc 17       		.byte	23
+ 282 00fd 10       		.byte	16
+ 283 00fe 18       		.byte	24
+ 284 00ff 08       		.byte	8
+ 285 0100 19       		.byte	25
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 6
+
+
+ 286 0101 24       		.byte	36
+ 287 0102 1A       		.byte	26
+ 288 0103 04       		.byte	4
+ 289 0104 1B       		.byte	27
+ 290 0105 40       		.byte	64
+ 291 0106 1C       		.byte	28
+ 292 0107 08       		.byte	8
+ 293 0108 1D       		.byte	29
+ 294 0109 10       		.byte	16
+ 295 010a 1F       		.byte	31
+ 296 010b 04       		.byte	4
+ 297 010c 22       		.byte	34
+ 298 010d 40       		.byte	64
+ 299 010e 27       		.byte	39
+ 300 010f 21       		.byte	33
+ 301 0110 29       		.byte	41
+ 302 0111 A0       		.byte	-96
+ 303 0112 2B       		.byte	43
+ 304 0113 10       		.byte	16
+ 305 0114 2D       		.byte	45
+ 306 0115 80       		.byte	-128
+ 307 0116 2F       		.byte	47
+ 308 0117 15       		.byte	21
+ 309 0118 31       		.byte	49
+ 310 0119 10       		.byte	16
+ 311 011a 35       		.byte	53
+ 312 011b 10       		.byte	16
+ 313 011c 36       		.byte	54
+ 314 011d 03       		.byte	3
+ 315 011e 37       		.byte	55
+ 316 011f 04       		.byte	4
+ 317 0120 38       		.byte	56
+ 318 0121 20       		.byte	32
+ 319 0122 39       		.byte	57
+ 320 0123 10       		.byte	16
+ 321 0124 3E       		.byte	62
+ 322 0125 44       		.byte	68
+ 323 0126 3F       		.byte	63
+ 324 0127 20       		.byte	32
+ 325 0128 47       		.byte	71
+ 326 0129 20       		.byte	32
+ 327 012a 55       		.byte	85
+ 328 012b 08       		.byte	8
+ 329 012c 56       		.byte	86
+ 330 012d 24       		.byte	36
+ 331 012e 57       		.byte	87
+ 332 012f 10       		.byte	16
+ 333 0130 59       		.byte	89
+ 334 0131 04       		.byte	4
+ 335 0132 5A       		.byte	90
+ 336 0133 02       		.byte	2
+ 337 0134 61       		.byte	97
+ 338 0135 40       		.byte	64
+ 339 0136 62       		.byte	98
+ 340 0137 20       		.byte	32
+ 341 0138 8A       		.byte	-118
+ 342 0139 20       		.byte	32
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 7
+
+
+ 343 013a 8B       		.byte	-117
+ 344 013b 40       		.byte	64
+ 345 013c 90       		.byte	-112
+ 346 013d 20       		.byte	32
+ 347 013e 93       		.byte	-109
+ 348 013f 42       		.byte	66
+ 349 0140 94       		.byte	-108
+ 350 0141 08       		.byte	8
+ 351 0142 96       		.byte	-106
+ 352 0143 84       		.byte	-124
+ 353 0144 97       		.byte	-105
+ 354 0145 28       		.byte	40
+ 355 0146 9A       		.byte	-102
+ 356 0147 01       		.byte	1
+ 357 0148 9D       		.byte	-99
+ 358 0149 10       		.byte	16
+ 359 014a 9E       		.byte	-98
+ 360 014b 34       		.byte	52
+ 361 014c 9F       		.byte	-97
+ 362 014d 50       		.byte	80
+ 363 014e A2       		.byte	-94
+ 364 014f 30       		.byte	48
+ 365 0150 A6       		.byte	-90
+ 366 0151 08       		.byte	8
+ 367 0152 A7       		.byte	-89
+ 368 0153 40       		.byte	64
+ 369 0154 A8       		.byte	-88
+ 370 0155 02       		.byte	2
+ 371 0156 AB       		.byte	-85
+ 372 0157 08       		.byte	8
+ 373 0158 C0       		.byte	-64
+ 374 0159 E7       		.byte	-25
+ 375 015a C2       		.byte	-62
+ 376 015b 3F       		.byte	63
+ 377 015c C4       		.byte	-60
+ 378 015d 6F       		.byte	111
+ 379 015e CA       		.byte	-54
+ 380 015f 7E       		.byte	126
+ 381 0160 CC       		.byte	-52
+ 382 0161 E4       		.byte	-28
+ 383 0162 CE       		.byte	-50
+ 384 0163 74       		.byte	116
+ 385 0164 D0       		.byte	-48
+ 386 0165 20       		.byte	32
+ 387 0166 D6       		.byte	-42
+ 388 0167 03       		.byte	3
+ 389 0168 D8       		.byte	-40
+ 390 0169 0C       		.byte	12
+ 391 016a 02       		.byte	2
+ 392 016b 80       		.byte	-128
+ 393 016c 04       		.byte	4
+ 394 016d 71       		.byte	113
+ 395 016e 05       		.byte	5
+ 396 016f 03       		.byte	3
+ 397 0170 06       		.byte	6
+ 398 0171 08       		.byte	8
+ 399 0172 08       		.byte	8
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 8
+
+
+ 400 0173 40       		.byte	64
+ 401 0174 0A       		.byte	10
+ 402 0175 03       		.byte	3
+ 403 0176 0B       		.byte	11
+ 404 0177 08       		.byte	8
+ 405 0178 0C       		.byte	12
+ 406 0179 24       		.byte	36
+ 407 017a 0D       		.byte	13
+ 408 017b 02       		.byte	2
+ 409 017c 0E       		.byte	14
+ 410 017d 41       		.byte	65
+ 411 017e 0F       		.byte	15
+ 412 017f 01       		.byte	1
+ 413 0180 10       		.byte	16
+ 414 0181 02       		.byte	2
+ 415 0182 12       		.byte	18
+ 416 0183 01       		.byte	1
+ 417 0184 13       		.byte	19
+ 418 0185 02       		.byte	2
+ 419 0186 14       		.byte	20
+ 420 0187 80       		.byte	-128
+ 421 0188 15       		.byte	21
+ 422 0189 04       		.byte	4
+ 423 018a 18       		.byte	24
+ 424 018b 80       		.byte	-128
+ 425 018c 19       		.byte	25
+ 426 018d 01       		.byte	1
+ 427 018e 1B       		.byte	27
+ 428 018f 02       		.byte	2
+ 429 0190 1C       		.byte	28
+ 430 0191 30       		.byte	48
+ 431 0192 1D       		.byte	29
+ 432 0193 01       		.byte	1
+ 433 0194 1E       		.byte	30
+ 434 0195 47       		.byte	71
+ 435 0196 22       		.byte	34
+ 436 0197 80       		.byte	-128
+ 437 0198 23       		.byte	35
+ 438 0199 03       		.byte	3
+ 439 019a 24       		.byte	36
+ 440 019b 50       		.byte	80
+ 441 019c 28       		.byte	40
+ 442 019d 43       		.byte	67
+ 443 019e 2A       		.byte	42
+ 444 019f 30       		.byte	48
+ 445 01a0 2B       		.byte	43
+ 446 01a1 08       		.byte	8
+ 447 01a2 2C       		.byte	44
+ 448 01a3 01       		.byte	1
+ 449 01a4 2E       		.byte	46
+ 450 01a5 0E       		.byte	14
+ 451 01a6 31       		.byte	49
+ 452 01a7 03       		.byte	3
+ 453 01a8 33       		.byte	51
+ 454 01a9 04       		.byte	4
+ 455 01aa 34       		.byte	52
+ 456 01ab 80       		.byte	-128
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 9
+
+
+ 457 01ac 35       		.byte	53
+ 458 01ad 08       		.byte	8
+ 459 01ae 36       		.byte	54
+ 460 01af 7F       		.byte	127
+ 461 01b0 38       		.byte	56
+ 462 01b1 20       		.byte	32
+ 463 01b2 3B       		.byte	59
+ 464 01b3 02       		.byte	2
+ 465 01b4 3F       		.byte	63
+ 466 01b5 14       		.byte	20
+ 467 01b6 40       		.byte	64
+ 468 01b7 63       		.byte	99
+ 469 01b8 41       		.byte	65
+ 470 01b9 04       		.byte	4
+ 471 01ba 45       		.byte	69
+ 472 01bb 0B       		.byte	11
+ 473 01bc 46       		.byte	70
+ 474 01bd C0       		.byte	-64
+ 475 01be 47       		.byte	71
+ 476 01bf 0E       		.byte	14
+ 477 01c0 48       		.byte	72
+ 478 01c1 19       		.byte	25
+ 479 01c2 49       		.byte	73
+ 480 01c3 FF       		.byte	-1
+ 481 01c4 4A       		.byte	74
+ 482 01c5 FF       		.byte	-1
+ 483 01c6 4B       		.byte	75
+ 484 01c7 FF       		.byte	-1
+ 485 01c8 4E       		.byte	78
+ 486 01c9 F0       		.byte	-16
+ 487 01ca 4F       		.byte	79
+ 488 01cb 44       		.byte	68
+ 489 01cc 50       		.byte	80
+ 490 01cd 0C       		.byte	12
+ 491 01ce 54       		.byte	84
+ 492 01cf 01       		.byte	1
+ 493 01d0 58       		.byte	88
+ 494 01d1 04       		.byte	4
+ 495 01d2 59       		.byte	89
+ 496 01d3 04       		.byte	4
+ 497 01d4 5A       		.byte	90
+ 498 01d5 04       		.byte	4
+ 499 01d6 5B       		.byte	91
+ 500 01d7 04       		.byte	4
+ 501 01d8 5C       		.byte	92
+ 502 01d9 11       		.byte	17
+ 503 01da 5D       		.byte	93
+ 504 01db 11       		.byte	17
+ 505 01dc 5F       		.byte	95
+ 506 01dd 01       		.byte	1
+ 507 01de 66       		.byte	102
+ 508 01df C0       		.byte	-64
+ 509 01e0 6A       		.byte	106
+ 510 01e1 40       		.byte	64
+ 511 01e2 6B       		.byte	107
+ 512 01e3 02       		.byte	2
+ 513 01e4 86       		.byte	-122
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 10
+
+
+ 514 01e5 01       		.byte	1
+ 515 01e6 8A       		.byte	-118
+ 516 01e7 03       		.byte	3
+ 517 01e8 92       		.byte	-110
+ 518 01e9 01       		.byte	1
+ 519 01ea 95       		.byte	-107
+ 520 01eb 01       		.byte	1
+ 521 01ec 98       		.byte	-104
+ 522 01ed 02       		.byte	2
+ 523 01ee 9A       		.byte	-102
+ 524 01ef 01       		.byte	1
+ 525 01f0 9D       		.byte	-99
+ 526 01f1 01       		.byte	1
+ 527 01f2 A5       		.byte	-91
+ 528 01f3 01       		.byte	1
+ 529 01f4 A9       		.byte	-87
+ 530 01f5 01       		.byte	1
+ 531 01f6 AE       		.byte	-82
+ 532 01f7 02       		.byte	2
+ 533 01f8 B0       		.byte	-80
+ 534 01f9 03       		.byte	3
+ 535 01fa B5       		.byte	-75
+ 536 01fb 01       		.byte	1
+ 537 01fc BA       		.byte	-70
+ 538 01fd 02       		.byte	2
+ 539 01fe BF       		.byte	-65
+ 540 01ff 10       		.byte	16
+ 541 0200 D8       		.byte	-40
+ 542 0201 04       		.byte	4
+ 543 0202 D9       		.byte	-39
+ 544 0203 04       		.byte	4
+ 545 0204 DC       		.byte	-36
+ 546 0205 01       		.byte	1
+ 547 0206 DF       		.byte	-33
+ 548 0207 01       		.byte	1
+ 549 0208 00       		.byte	0
+ 550 0209 04       		.byte	4
+ 551 020a 01       		.byte	1
+ 552 020b 01       		.byte	1
+ 553 020c 02       		.byte	2
+ 554 020d 05       		.byte	5
+ 555 020e 05       		.byte	5
+ 556 020f 10       		.byte	16
+ 557 0210 06       		.byte	6
+ 558 0211 20       		.byte	32
+ 559 0212 09       		.byte	9
+ 560 0213 02       		.byte	2
+ 561 0214 0B       		.byte	11
+ 562 0215 2A       		.byte	42
+ 563 0216 0E       		.byte	14
+ 564 0217 44       		.byte	68
+ 565 0218 10       		.byte	16
+ 566 0219 6A       		.byte	106
+ 567 021a 16       		.byte	22
+ 568 021b 01       		.byte	1
+ 569 021c 19       		.byte	25
+ 570 021d 60       		.byte	96
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 11
+
+
+ 571 021e 1E       		.byte	30
+ 572 021f 40       		.byte	64
+ 573 0220 1F       		.byte	31
+ 574 0221 01       		.byte	1
+ 575 0222 21       		.byte	33
+ 576 0223 02       		.byte	2
+ 577 0224 22       		.byte	34
+ 578 0225 24       		.byte	36
+ 579 0226 26       		.byte	38
+ 580 0227 10       		.byte	16
+ 581 0228 29       		.byte	41
+ 582 0229 20       		.byte	32
+ 583 022a 2A       		.byte	42
+ 584 022b 01       		.byte	1
+ 585 022c 2B       		.byte	43
+ 586 022d 40       		.byte	64
+ 587 022e 2F       		.byte	47
+ 588 022f 14       		.byte	20
+ 589 0230 31       		.byte	49
+ 590 0231 52       		.byte	82
+ 591 0232 33       		.byte	51
+ 592 0233 08       		.byte	8
+ 593 0234 34       		.byte	52
+ 594 0235 40       		.byte	64
+ 595 0236 36       		.byte	54
+ 596 0237 08       		.byte	8
+ 597 0238 37       		.byte	55
+ 598 0239 40       		.byte	64
+ 599 023a 38       		.byte	56
+ 600 023b 0C       		.byte	12
+ 601 023c 3A       		.byte	58
+ 602 023d 90       		.byte	-112
+ 603 023e 42       		.byte	66
+ 604 023f E0       		.byte	-32
+ 605 0240 48       		.byte	72
+ 606 0241 2A       		.byte	42
+ 607 0242 49       		.byte	73
+ 608 0243 50       		.byte	80
+ 609 0244 4B       		.byte	75
+ 610 0245 40       		.byte	64
+ 611 0246 50       		.byte	80
+ 612 0247 10       		.byte	16
+ 613 0248 53       		.byte	83
+ 614 0249 08       		.byte	8
+ 615 024a 58       		.byte	88
+ 616 024b 02       		.byte	2
+ 617 024c 5A       		.byte	90
+ 618 024d 88       		.byte	-120
+ 619 024e 5B       		.byte	91
+ 620 024f 10       		.byte	16
+ 621 0250 89       		.byte	-119
+ 622 0251 01       		.byte	1
+ 623 0252 8A       		.byte	-118
+ 624 0253 08       		.byte	8
+ 625 0254 C0       		.byte	-64
+ 626 0255 6F       		.byte	111
+ 627 0256 C2       		.byte	-62
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 12
+
+
+ 628 0257 5F       		.byte	95
+ 629 0258 C4       		.byte	-60
+ 630 0259 8F       		.byte	-113
+ 631 025a CA       		.byte	-54
+ 632 025b 65       		.byte	101
+ 633 025c CC       		.byte	-52
+ 634 025d 5F       		.byte	95
+ 635 025e CE       		.byte	-50
+ 636 025f 0E       		.byte	14
+ 637 0260 D0       		.byte	-48
+ 638 0261 03       		.byte	3
+ 639 0262 D2       		.byte	-46
+ 640 0263 04       		.byte	4
+ 641 0264 D6       		.byte	-42
+ 642 0265 0F       		.byte	15
+ 643 0266 00       		.byte	0
+ 644 0267 07       		.byte	7
+ 645 0268 04       		.byte	4
+ 646 0269 06       		.byte	6
+ 647 026a 07       		.byte	7
+ 648 026b 01       		.byte	1
+ 649 026c 08       		.byte	8
+ 650 026d 02       		.byte	2
+ 651 026e 09       		.byte	9
+ 652 026f 07       		.byte	7
+ 653 0270 10       		.byte	16
+ 654 0271 06       		.byte	6
+ 655 0272 11       		.byte	17
+ 656 0273 06       		.byte	6
+ 657 0274 12       		.byte	18
+ 658 0275 01       		.byte	1
+ 659 0276 13       		.byte	19
+ 660 0277 01       		.byte	1
+ 661 0278 14       		.byte	20
+ 662 0279 07       		.byte	7
+ 663 027a 15       		.byte	21
+ 664 027b 06       		.byte	6
+ 665 027c 17       		.byte	23
+ 666 027d 01       		.byte	1
+ 667 027e 19       		.byte	25
+ 668 027f 06       		.byte	6
+ 669 0280 1A       		.byte	26
+ 670 0281 08       		.byte	8
+ 671 0282 1C       		.byte	28
+ 672 0283 01       		.byte	1
+ 673 0284 1D       		.byte	29
+ 674 0285 01       		.byte	1
+ 675 0286 1F       		.byte	31
+ 676 0287 06       		.byte	6
+ 677 0288 21       		.byte	33
+ 678 0289 04       		.byte	4
+ 679 028a 22       		.byte	34
+ 680 028b 08       		.byte	8
+ 681 028c 25       		.byte	37
+ 682 028d 02       		.byte	2
+ 683 028e 26       		.byte	38
+ 684 028f 01       		.byte	1
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 13
+
+
+ 685 0290 28       		.byte	40
+ 686 0291 01       		.byte	1
+ 687 0292 2A       		.byte	42
+ 688 0293 06       		.byte	6
+ 689 0294 2C       		.byte	44
+ 690 0295 04       		.byte	4
+ 691 0296 31       		.byte	49
+ 692 0297 07       		.byte	7
+ 693 0298 34       		.byte	52
+ 694 0299 07       		.byte	7
+ 695 029a 36       		.byte	54
+ 696 029b 08       		.byte	8
+ 697 029c 3A       		.byte	58
+ 698 029d 20       		.byte	32
+ 699 029e 3B       		.byte	59
+ 700 029f 02       		.byte	2
+ 701 02a0 3E       		.byte	62
+ 702 02a1 40       		.byte	64
+ 703 02a2 40       		.byte	64
+ 704 02a3 23       		.byte	35
+ 705 02a4 41       		.byte	65
+ 706 02a5 06       		.byte	6
+ 707 02a6 42       		.byte	66
+ 708 02a7 04       		.byte	4
+ 709 02a8 44       		.byte	68
+ 710 02a9 05       		.byte	5
+ 711 02aa 45       		.byte	69
+ 712 02ab 0C       		.byte	12
+ 713 02ac 46       		.byte	70
+ 714 02ad E0       		.byte	-32
+ 715 02ae 48       		.byte	72
+ 716 02af 09       		.byte	9
+ 717 02b0 49       		.byte	73
+ 718 02b1 FF       		.byte	-1
+ 719 02b2 4A       		.byte	74
+ 720 02b3 FF       		.byte	-1
+ 721 02b4 4B       		.byte	75
+ 722 02b5 FF       		.byte	-1
+ 723 02b6 4C       		.byte	76
+ 724 02b7 62       		.byte	98
+ 725 02b8 4D       		.byte	77
+ 726 02b9 A0       		.byte	-96
+ 727 02ba 4E       		.byte	78
+ 728 02bb F0       		.byte	-16
+ 729 02bc 4F       		.byte	79
+ 730 02bd 41       		.byte	65
+ 731 02be 50       		.byte	80
+ 732 02bf 0C       		.byte	12
+ 733 02c0 54       		.byte	84
+ 734 02c1 05       		.byte	5
+ 735 02c2 58       		.byte	88
+ 736 02c3 04       		.byte	4
+ 737 02c4 59       		.byte	89
+ 738 02c5 04       		.byte	4
+ 739 02c6 5A       		.byte	90
+ 740 02c7 04       		.byte	4
+ 741 02c8 5B       		.byte	91
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 14
+
+
+ 742 02c9 04       		.byte	4
+ 743 02ca 5C       		.byte	92
+ 744 02cb 11       		.byte	17
+ 745 02cc 5D       		.byte	93
+ 746 02cd 01       		.byte	1
+ 747 02ce 5F       		.byte	95
+ 748 02cf 01       		.byte	1
+ 749 02d0 66       		.byte	102
+ 750 02d1 40       		.byte	64
+ 751 02d2 67       		.byte	103
+ 752 02d3 02       		.byte	2
+ 753 02d4 69       		.byte	105
+ 754 02d5 10       		.byte	16
+ 755 02d6 6A       		.byte	106
+ 756 02d7 30       		.byte	48
+ 757 02d8 6B       		.byte	107
+ 758 02d9 10       		.byte	16
+ 759 02da 6D       		.byte	109
+ 760 02db 10       		.byte	16
+ 761 02dc 6E       		.byte	110
+ 762 02dd 10       		.byte	16
+ 763 02de 6F       		.byte	111
+ 764 02df 12       		.byte	18
+ 765 02e0 82       		.byte	-126
+ 766 02e1 05       		.byte	5
+ 767 02e2 85       		.byte	-123
+ 768 02e3 10       		.byte	16
+ 769 02e4 86       		.byte	-122
+ 770 02e5 01       		.byte	1
+ 771 02e6 87       		.byte	-121
+ 772 02e7 09       		.byte	9
+ 773 02e8 89       		.byte	-119
+ 774 02e9 3F       		.byte	63
+ 775 02ea 8E       		.byte	-114
+ 776 02eb 02       		.byte	2
+ 777 02ec 95       		.byte	-107
+ 778 02ed 1A       		.byte	26
+ 779 02ee 97       		.byte	-105
+ 780 02ef 25       		.byte	37
+ 781 02f0 99       		.byte	-103
+ 782 02f1 3D       		.byte	61
+ 783 02f2 9B       		.byte	-101
+ 784 02f3 02       		.byte	2
+ 785 02f4 9D       		.byte	-99
+ 786 02f5 18       		.byte	24
+ 787 02f6 9F       		.byte	-97
+ 788 02f7 04       		.byte	4
+ 789 02f8 A1       		.byte	-95
+ 790 02f9 2D       		.byte	45
+ 791 02fa A3       		.byte	-93
+ 792 02fb 12       		.byte	18
+ 793 02fc A7       		.byte	-89
+ 794 02fd 3F       		.byte	63
+ 795 02fe AD       		.byte	-83
+ 796 02ff 07       		.byte	7
+ 797 0300 AF       		.byte	-81
+ 798 0301 38       		.byte	56
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 15
+
+
+ 799 0302 B0       		.byte	-80
+ 800 0303 03       		.byte	3
+ 801 0304 B1       		.byte	-79
+ 802 0305 20       		.byte	32
+ 803 0306 B2       		.byte	-78
+ 804 0307 04       		.byte	4
+ 805 0308 B5       		.byte	-75
+ 806 0309 03       		.byte	3
+ 807 030a B6       		.byte	-74
+ 808 030b 03       		.byte	3
+ 809 030c B7       		.byte	-73
+ 810 030d 1C       		.byte	28
+ 811 030e BB       		.byte	-69
+ 812 030f A0       		.byte	-96
+ 813 0310 BE       		.byte	-66
+ 814 0311 41       		.byte	65
+ 815 0312 D8       		.byte	-40
+ 816 0313 04       		.byte	4
+ 817 0314 D9       		.byte	-39
+ 818 0315 04       		.byte	4
+ 819 0316 DC       		.byte	-36
+ 820 0317 11       		.byte	17
+ 821 0318 DF       		.byte	-33
+ 822 0319 01       		.byte	1
+ 823 031a 00       		.byte	0
+ 824 031b 8A       		.byte	-118
+ 825 031c 05       		.byte	5
+ 826 031d 20       		.byte	32
+ 827 031e 07       		.byte	7
+ 828 031f 60       		.byte	96
+ 829 0320 0E       		.byte	14
+ 830 0321 41       		.byte	65
+ 831 0322 0F       		.byte	15
+ 832 0323 14       		.byte	20
+ 833 0324 16       		.byte	22
+ 834 0325 02       		.byte	2
+ 835 0326 17       		.byte	23
+ 836 0327 15       		.byte	21
+ 837 0328 18       		.byte	24
+ 838 0329 20       		.byte	32
+ 839 032a 19       		.byte	25
+ 840 032b 01       		.byte	1
+ 841 032c 1A       		.byte	26
+ 842 032d 01       		.byte	1
+ 843 032e 1B       		.byte	27
+ 844 032f 40       		.byte	64
+ 845 0330 1D       		.byte	29
+ 846 0331 60       		.byte	96
+ 847 0332 1F       		.byte	31
+ 848 0333 10       		.byte	16
+ 849 0334 20       		.byte	32
+ 850 0335 04       		.byte	4
+ 851 0336 22       		.byte	34
+ 852 0337 81       		.byte	-127
+ 853 0338 26       		.byte	38
+ 854 0339 01       		.byte	1
+ 855 033a 27       		.byte	39
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 16
+
+
+ 856 033b 40       		.byte	64
+ 857 033c 28       		.byte	40
+ 858 033d 11       		.byte	17
+ 859 033e 29       		.byte	41
+ 860 033f 01       		.byte	1
+ 861 0340 2C       		.byte	44
+ 862 0341 A0       		.byte	-96
+ 863 0342 2E       		.byte	46
+ 864 0343 02       		.byte	2
+ 865 0344 31       		.byte	49
+ 866 0345 20       		.byte	32
+ 867 0346 32       		.byte	50
+ 868 0347 88       		.byte	-120
+ 869 0348 34       		.byte	52
+ 870 0349 81       		.byte	-127
+ 871 034a 36       		.byte	54
+ 872 034b 09       		.byte	9
+ 873 034c 37       		.byte	55
+ 874 034d 20       		.byte	32
+ 875 034e 38       		.byte	56
+ 876 034f 04       		.byte	4
+ 877 0350 3B       		.byte	59
+ 878 0351 10       		.byte	16
+ 879 0352 3D       		.byte	61
+ 880 0353 08       		.byte	8
+ 881 0354 3F       		.byte	63
+ 882 0355 10       		.byte	16
+ 883 0356 44       		.byte	68
+ 884 0357 10       		.byte	16
+ 885 0358 45       		.byte	69
+ 886 0359 24       		.byte	36
+ 887 035a 47       		.byte	71
+ 888 035b 15       		.byte	21
+ 889 035c 4E       		.byte	78
+ 890 035d 04       		.byte	4
+ 891 035e 4F       		.byte	79
+ 892 035f 94       		.byte	-108
+ 893 0360 56       		.byte	86
+ 894 0361 10       		.byte	16
+ 895 0362 5D       		.byte	93
+ 896 0363 01       		.byte	1
+ 897 0364 5E       		.byte	94
+ 898 0365 88       		.byte	-120
+ 899 0366 92       		.byte	-110
+ 900 0367 48       		.byte	72
+ 901 0368 93       		.byte	-109
+ 902 0369 40       		.byte	64
+ 903 036a 96       		.byte	-106
+ 904 036b 02       		.byte	2
+ 905 036c 97       		.byte	-105
+ 906 036d 20       		.byte	32
+ 907 036e 9B       		.byte	-101
+ 908 036f 01       		.byte	1
+ 909 0370 9C       		.byte	-100
+ 910 0371 10       		.byte	16
+ 911 0372 9D       		.byte	-99
+ 912 0373 40       		.byte	64
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 17
+
+
+ 913 0374 9E       		.byte	-98
+ 914 0375 10       		.byte	16
+ 915 0376 9F       		.byte	-97
+ 916 0377 44       		.byte	68
+ 917 0378 A2       		.byte	-94
+ 918 0379 10       		.byte	16
+ 919 037a A6       		.byte	-90
+ 920 037b 89       		.byte	-119
+ 921 037c B6       		.byte	-74
+ 922 037d 48       		.byte	72
+ 923 037e C0       		.byte	-64
+ 924 037f 7D       		.byte	125
+ 925 0380 C2       		.byte	-62
+ 926 0381 F0       		.byte	-16
+ 927 0382 C4       		.byte	-60
+ 928 0383 F0       		.byte	-16
+ 929 0384 CA       		.byte	-54
+ 930 0385 CB       		.byte	-53
+ 931 0386 CC       		.byte	-52
+ 932 0387 FE       		.byte	-2
+ 933 0388 CE       		.byte	-50
+ 934 0389 66       		.byte	102
+ 935 038a D0       		.byte	-48
+ 936 038b E0       		.byte	-32
+ 937 038c D2       		.byte	-46
+ 938 038d 30       		.byte	48
+ 939 038e D6       		.byte	-42
+ 940 038f D0       		.byte	-48
+ 941 0390 01       		.byte	1
+ 942 0391 84       		.byte	-124
+ 943 0392 03       		.byte	3
+ 944 0393 42       		.byte	66
+ 945 0394 05       		.byte	5
+ 946 0395 C7       		.byte	-57
+ 947 0396 06       		.byte	6
+ 948 0397 04       		.byte	4
+ 949 0398 0B       		.byte	11
+ 950 0399 08       		.byte	8
+ 951 039a 10       		.byte	16
+ 952 039b 02       		.byte	2
+ 953 039c 11       		.byte	17
+ 954 039d 02       		.byte	2
+ 955 039e 13       		.byte	19
+ 956 039f 05       		.byte	5
+ 957 03a0 15       		.byte	21
+ 958 03a1 38       		.byte	56
+ 959 03a2 1B       		.byte	27
+ 960 03a3 30       		.byte	48
+ 961 03a4 1D       		.byte	29
+ 962 03a5 08       		.byte	8
+ 963 03a6 1F       		.byte	31
+ 964 03a7 10       		.byte	16
+ 965 03a8 21       		.byte	33
+ 966 03a9 38       		.byte	56
+ 967 03aa 25       		.byte	37
+ 968 03ab 49       		.byte	73
+ 969 03ac 26       		.byte	38
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 18
+
+
+ 970 03ad 0C       		.byte	12
+ 971 03ae 27       		.byte	39
+ 972 03af 82       		.byte	-126
+ 973 03b0 29       		.byte	41
+ 974 03b1 C7       		.byte	-57
+ 975 03b2 2D       		.byte	45
+ 976 03b3 08       		.byte	8
+ 977 03b4 2E       		.byte	46
+ 978 03b5 01       		.byte	1
+ 979 03b6 2F       		.byte	47
+ 980 03b7 20       		.byte	32
+ 981 03b8 30       		.byte	48
+ 982 03b9 02       		.byte	2
+ 983 03ba 31       		.byte	49
+ 984 03bb 07       		.byte	7
+ 985 03bc 32       		.byte	50
+ 986 03bd 08       		.byte	8
+ 987 03be 33       		.byte	51
+ 988 03bf 38       		.byte	56
+ 989 03c0 34       		.byte	52
+ 990 03c1 01       		.byte	1
+ 991 03c2 35       		.byte	53
+ 992 03c3 C0       		.byte	-64
+ 993 03c4 36       		.byte	54
+ 994 03c5 04       		.byte	4
+ 995 03c6 3B       		.byte	59
+ 996 03c7 08       		.byte	8
+ 997 03c8 3E       		.byte	62
+ 998 03c9 01       		.byte	1
+ 999 03ca 40       		.byte	64
+ 1000 03cb 20       		.byte	32
+ 1001 03cc 41       		.byte	65
+ 1002 03cd 04       		.byte	4
+ 1003 03ce 49       		.byte	73
+ 1004 03cf FF       		.byte	-1
+ 1005 03d0 4A       		.byte	74
+ 1006 03d1 FF       		.byte	-1
+ 1007 03d2 4B       		.byte	75
+ 1008 03d3 FF       		.byte	-1
+ 1009 03d4 4D       		.byte	77
+ 1010 03d5 A0       		.byte	-96
+ 1011 03d6 4F       		.byte	79
+ 1012 03d7 04       		.byte	4
+ 1013 03d8 50       		.byte	80
+ 1014 03d9 18       		.byte	24
+ 1015 03da 52       		.byte	82
+ 1016 03db 80       		.byte	-128
+ 1017 03dc 58       		.byte	88
+ 1018 03dd 04       		.byte	4
+ 1019 03de 59       		.byte	89
+ 1020 03df 04       		.byte	4
+ 1021 03e0 5A       		.byte	90
+ 1022 03e1 04       		.byte	4
+ 1023 03e2 5B       		.byte	91
+ 1024 03e3 04       		.byte	4
+ 1025 03e4 5C       		.byte	92
+ 1026 03e5 10       		.byte	16
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 19
+
+
+ 1027 03e6 5F       		.byte	95
+ 1028 03e7 01       		.byte	1
+ 1029 03e8 60       		.byte	96
+ 1030 03e9 40       		.byte	64
+ 1031 03ea 62       		.byte	98
+ 1032 03eb C0       		.byte	-64
+ 1033 03ec 64       		.byte	100
+ 1034 03ed 40       		.byte	64
+ 1035 03ee 65       		.byte	101
+ 1036 03ef 40       		.byte	64
+ 1037 03f0 66       		.byte	102
+ 1038 03f1 C0       		.byte	-64
+ 1039 03f2 68       		.byte	104
+ 1040 03f3 C0       		.byte	-64
+ 1041 03f4 6A       		.byte	106
+ 1042 03f5 C0       		.byte	-64
+ 1043 03f6 6C       		.byte	108
+ 1044 03f7 C0       		.byte	-64
+ 1045 03f8 6E       		.byte	110
+ 1046 03f9 C0       		.byte	-64
+ 1047 03fa 84       		.byte	-124
+ 1048 03fb 01       		.byte	1
+ 1049 03fc 85       		.byte	-123
+ 1050 03fd 02       		.byte	2
+ 1051 03fe 89       		.byte	-119
+ 1052 03ff 02       		.byte	2
+ 1053 0400 8F       		.byte	-113
+ 1054 0401 01       		.byte	1
+ 1055 0402 91       		.byte	-111
+ 1056 0403 02       		.byte	2
+ 1057 0404 9A       		.byte	-102
+ 1058 0405 01       		.byte	1
+ 1059 0406 A7       		.byte	-89
+ 1060 0407 01       		.byte	1
+ 1061 0408 B0       		.byte	-80
+ 1062 0409 01       		.byte	1
+ 1063 040a B3       		.byte	-77
+ 1064 040b 01       		.byte	1
+ 1065 040c B5       		.byte	-75
+ 1066 040d 02       		.byte	2
+ 1067 040e BF       		.byte	-65
+ 1068 040f 04       		.byte	4
+ 1069 0410 C0       		.byte	-64
+ 1070 0411 60       		.byte	96
+ 1071 0412 C1       		.byte	-63
+ 1072 0413 05       		.byte	5
+ 1073 0414 C5       		.byte	-59
+ 1074 0415 D1       		.byte	-47
+ 1075 0416 C6       		.byte	-58
+ 1076 0417 02       		.byte	2
+ 1077 0418 C8       		.byte	-56
+ 1078 0419 07       		.byte	7
+ 1079 041a C9       		.byte	-55
+ 1080 041b FF       		.byte	-1
+ 1081 041c CA       		.byte	-54
+ 1082 041d FF       		.byte	-1
+ 1083 041e CB       		.byte	-53
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 20
+
+
+ 1084 041f FF       		.byte	-1
+ 1085 0420 CD       		.byte	-51
+ 1086 0421 AF       		.byte	-81
+ 1087 0422 CE       		.byte	-50
+ 1088 0423 0F       		.byte	15
+ 1089 0424 CF       		.byte	-49
+ 1090 0425 04       		.byte	4
+ 1091 0426 D0       		.byte	-48
+ 1092 0427 18       		.byte	24
+ 1093 0428 D6       		.byte	-42
+ 1094 0429 02       		.byte	2
+ 1095 042a D7       		.byte	-41
+ 1096 042b 11       		.byte	17
+ 1097 042c D8       		.byte	-40
+ 1098 042d 04       		.byte	4
+ 1099 042e D9       		.byte	-39
+ 1100 042f 04       		.byte	4
+ 1101 0430 DA       		.byte	-38
+ 1102 0431 04       		.byte	4
+ 1103 0432 DB       		.byte	-37
+ 1104 0433 04       		.byte	4
+ 1105 0434 DC       		.byte	-36
+ 1106 0435 10       		.byte	16
+ 1107 0436 DD       		.byte	-35
+ 1108 0437 10       		.byte	16
+ 1109 0438 DF       		.byte	-33
+ 1110 0439 01       		.byte	1
+ 1111 043a E0       		.byte	-32
+ 1112 043b 40       		.byte	64
+ 1113 043c E2       		.byte	-30
+ 1114 043d C0       		.byte	-64
+ 1115 043e E4       		.byte	-28
+ 1116 043f 40       		.byte	64
+ 1117 0440 E5       		.byte	-27
+ 1118 0441 40       		.byte	64
+ 1119 0442 E6       		.byte	-26
+ 1120 0443 C0       		.byte	-64
+ 1121 0444 E8       		.byte	-24
+ 1122 0445 C0       		.byte	-64
+ 1123 0446 EA       		.byte	-22
+ 1124 0447 C0       		.byte	-64
+ 1125 0448 EC       		.byte	-20
+ 1126 0449 C0       		.byte	-64
+ 1127 044a EE       		.byte	-18
+ 1128 044b C0       		.byte	-64
+ 1129 044c 00       		.byte	0
+ 1130 044d 04       		.byte	4
+ 1131 044e 05       		.byte	5
+ 1132 044f 04       		.byte	4
+ 1133 0450 0B       		.byte	11
+ 1134 0451 40       		.byte	64
+ 1135 0452 0F       		.byte	15
+ 1136 0453 04       		.byte	4
+ 1137 0454 10       		.byte	16
+ 1138 0455 02       		.byte	2
+ 1139 0456 13       		.byte	19
+ 1140 0457 04       		.byte	4
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 21
+
+
+ 1141 0458 18       		.byte	24
+ 1142 0459 04       		.byte	4
+ 1143 045a 19       		.byte	25
+ 1144 045b 04       		.byte	4
+ 1145 045c 1B       		.byte	27
+ 1146 045d B1       		.byte	-79
+ 1147 045e 1E       		.byte	30
+ 1148 045f 80       		.byte	-128
+ 1149 0460 20       		.byte	32
+ 1150 0461 88       		.byte	-120
+ 1151 0462 22       		.byte	34
+ 1152 0463 09       		.byte	9
+ 1153 0464 25       		.byte	37
+ 1154 0465 20       		.byte	32
+ 1155 0466 26       		.byte	38
+ 1156 0467 04       		.byte	4
+ 1157 0468 27       		.byte	39
+ 1158 0469 04       		.byte	4
+ 1159 046a 28       		.byte	40
+ 1160 046b A0       		.byte	-96
+ 1161 046c 2A       		.byte	42
+ 1162 046d 40       		.byte	64
+ 1163 046e 2B       		.byte	43
+ 1164 046f 08       		.byte	8
+ 1165 0470 2F       		.byte	47
+ 1166 0471 20       		.byte	32
+ 1167 0472 31       		.byte	49
+ 1168 0473 20       		.byte	32
+ 1169 0474 32       		.byte	50
+ 1170 0475 05       		.byte	5
+ 1171 0476 33       		.byte	51
+ 1172 0477 40       		.byte	64
+ 1173 0478 37       		.byte	55
+ 1174 0479 01       		.byte	1
+ 1175 047a 38       		.byte	56
+ 1176 047b 20       		.byte	32
+ 1177 047c 39       		.byte	57
+ 1178 047d 06       		.byte	6
+ 1179 047e 3D       		.byte	61
+ 1180 047f 04       		.byte	4
+ 1181 0480 3E       		.byte	62
+ 1182 0481 10       		.byte	16
+ 1183 0482 3F       		.byte	63
+ 1184 0483 80       		.byte	-128
+ 1185 0484 40       		.byte	64
+ 1186 0485 04       		.byte	4
+ 1187 0486 42       		.byte	66
+ 1188 0487 80       		.byte	-128
+ 1189 0488 4D       		.byte	77
+ 1190 0489 01       		.byte	1
+ 1191 048a 4F       		.byte	79
+ 1192 048b A4       		.byte	-92
+ 1193 048c 56       		.byte	86
+ 1194 048d 80       		.byte	-128
+ 1195 048e 57       		.byte	87
+ 1196 048f 40       		.byte	64
+ 1197 0490 5E       		.byte	94
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 22
+
+
+ 1198 0491 20       		.byte	32
+ 1199 0492 6D       		.byte	109
+ 1200 0493 04       		.byte	4
+ 1201 0494 6E       		.byte	110
+ 1202 0495 10       		.byte	16
+ 1203 0496 6F       		.byte	111
+ 1204 0497 09       		.byte	9
+ 1205 0498 70       		.byte	112
+ 1206 0499 02       		.byte	2
+ 1207 049a 74       		.byte	116
+ 1208 049b A0       		.byte	-96
+ 1209 049c 75       		.byte	117
+ 1210 049d 20       		.byte	32
+ 1211 049e 77       		.byte	119
+ 1212 049f 20       		.byte	32
+ 1213 04a0 86       		.byte	-122
+ 1214 04a1 48       		.byte	72
+ 1215 04a2 87       		.byte	-121
+ 1216 04a3 01       		.byte	1
+ 1217 04a4 88       		.byte	-120
+ 1218 04a5 25       		.byte	37
+ 1219 04a6 89       		.byte	-119
+ 1220 04a7 01       		.byte	1
+ 1221 04a8 90       		.byte	-112
+ 1222 04a9 20       		.byte	32
+ 1223 04aa 92       		.byte	-110
+ 1224 04ab 08       		.byte	8
+ 1225 04ac 93       		.byte	-109
+ 1226 04ad 40       		.byte	64
+ 1227 04ae 95       		.byte	-107
+ 1228 04af 01       		.byte	1
+ 1229 04b0 98       		.byte	-104
+ 1230 04b1 80       		.byte	-128
+ 1231 04b2 9B       		.byte	-101
+ 1232 04b3 40       		.byte	64
+ 1233 04b4 9D       		.byte	-99
+ 1234 04b5 20       		.byte	32
+ 1235 04b6 9F       		.byte	-97
+ 1236 04b7 24       		.byte	36
+ 1237 04b8 A2       		.byte	-94
+ 1238 04b9 10       		.byte	16
+ 1239 04ba A4       		.byte	-92
+ 1240 04bb E5       		.byte	-27
+ 1241 04bc A6       		.byte	-90
+ 1242 04bd 4C       		.byte	76
+ 1243 04be A7       		.byte	-89
+ 1244 04bf 80       		.byte	-128
+ 1245 04c0 B0       		.byte	-80
+ 1246 04c1 80       		.byte	-128
+ 1247 04c2 B3       		.byte	-77
+ 1248 04c3 90       		.byte	-112
+ 1249 04c4 C0       		.byte	-64
+ 1250 04c5 24       		.byte	36
+ 1251 04c6 C2       		.byte	-62
+ 1252 04c7 48       		.byte	72
+ 1253 04c8 C4       		.byte	-60
+ 1254 04c9 05       		.byte	5
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 23
+
+
+ 1255 04ca CA       		.byte	-54
+ 1256 04cb 4F       		.byte	79
+ 1257 04cc CC       		.byte	-52
+ 1258 04cd 8F       		.byte	-113
+ 1259 04ce CE       		.byte	-50
+ 1260 04cf 77       		.byte	119
+ 1261 04d0 D0       		.byte	-48
+ 1262 04d1 05       		.byte	5
+ 1263 04d2 D2       		.byte	-46
+ 1264 04d3 30       		.byte	48
+ 1265 04d4 D6       		.byte	-42
+ 1266 04d5 20       		.byte	32
+ 1267 04d6 E4       		.byte	-28
+ 1268 04d7 08       		.byte	8
+ 1269 04d8 63       		.byte	99
+ 1270 04d9 02       		.byte	2
+ 1271 04da D6       		.byte	-42
+ 1272 04db 02       		.byte	2
+ 1273 04dc 10       		.byte	16
+ 1274 04dd 40       		.byte	64
+ 1275 04de 74       		.byte	116
+ 1276 04df 01       		.byte	1
+ 1277 04e0 84       		.byte	-124
+ 1278 04e1 01       		.byte	1
+ 1279 04e2 88       		.byte	-120
+ 1280 04e3 40       		.byte	64
+ 1281 04e4 B3       		.byte	-77
+ 1282 04e5 01       		.byte	1
+ 1283 04e6 C4       		.byte	-60
+ 1284 04e7 08       		.byte	8
+ 1285 04e8 DE       		.byte	-34
+ 1286 04e9 04       		.byte	4
+ 1287 04ea E2       		.byte	-30
+ 1288 04eb 01       		.byte	1
+ 1289 04ec E8       		.byte	-24
+ 1290 04ed 01       		.byte	1
+ 1291 04ee 00       		.byte	0
+ 1292 04ef 02       		.byte	2
+ 1293 04f0 01       		.byte	1
+ 1294 04f1 01       		.byte	1
+ 1295 04f2 0C       		.byte	12
+ 1296 04f3 02       		.byte	2
+ 1297 04f4 0D       		.byte	13
+ 1298 04f5 01       		.byte	1
+ 1299 04f6 10       		.byte	16
+ 1300 04f7 03       		.byte	3
+ 1301 04f8 11       		.byte	17
+ 1302 04f9 01       		.byte	1
+ 1303 04fa 1C       		.byte	28
+ 1304 04fb 03       		.byte	3
+ 1305 04fc 1D       		.byte	29
+ 1306 04fd 01       		.byte	1
+ 1307 04fe 00       		.byte	0
+ 1308 04ff 00       		.byte	0
+ 1309 0500 80       		.byte	-128
+ 1310 0501 80       		.byte	-128
+ 1311 0502 00       		.byte	0
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 24
+
+
+ 1312 0503 00       		.byte	0
+ 1313 0504 40       		.byte	64
+ 1314 0505 00       		.byte	0
+ 1315 0506 00       		.byte	0
+ 1316 0507 00       		.byte	0
+ 1317 0508 80       		.byte	-128
+ 1318 0509 00       		.byte	0
+ 1319 050a 40       		.byte	64
+ 1320 050b 80       		.byte	-128
+ 1321 050c 80       		.byte	-128
+ 1322 050d 00       		.byte	0
+ 1323 050e 80       		.byte	-128
+ 1324 050f 00       		.byte	0
+ 1325 0510 00       		.byte	0
+ 1326 0511 00       		.byte	0
+ 1327 0512 00       		.byte	0
+ 1328 0513 00       		.byte	0
+ 1329 0514 00       		.byte	0
+ 1330 0515 4B       		.byte	75
+ 1331 0516 4B       		.byte	75
+ 1332 0517 00       		.byte	0
+ 1333 0518 40       		.byte	64
+ 1334 0519 00       		.byte	0
+ 1335 051a 00       		.byte	0
+ 1336 051b 00       		.byte	0
+ 1337 051c 04       		.byte	4
+ 1338 051d 00       		.byte	0
+ 1339 051e 00       		.byte	0
+ 1340 051f 06       		.byte	6
+ 1341 0520 02       		.byte	2
+ 1342 0521 00       		.byte	0
+ 1343 0522 00       		.byte	0
+ 1344 0523 00       		.byte	0
+ 1345 0524 00       		.byte	0
+ 1346 0525 00       		.byte	0
+ 1347 0526 00       		.byte	0
+ 1348 0527 00       		.byte	0
+ 1349              		.section	.cywolatch,"a",%progbits
+ 1350              		.align	2
+ 1351              		.type	cy_meta_wonvl, %object
+ 1352              		.size	cy_meta_wonvl, 4
+ 1353              	cy_meta_wonvl:
+ 1354 0000 BC       		.byte	-68
+ 1355 0001 90       		.byte	-112
+ 1356 0002 AC       		.byte	-84
+ 1357 0003 AF       		.byte	-81
+ 1358              		.section	.cycustnvl,"a",%progbits
+ 1359              		.align	2
+ 1360              		.type	cy_meta_custnvl, %object
+ 1361              		.size	cy_meta_custnvl, 4
+ 1362              	cy_meta_custnvl:
+ 1363 0000 00       		.byte	0
+ 1364 0001 00       		.byte	0
+ 1365 0002 40       		.byte	64
+ 1366 0003 05       		.byte	5
+ 1367              		.section	.cymeta,"a",%progbits
+ 1368              		.align	2
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 25
+
+
+ 1369              		.type	cy_metadata, %object
+ 1370              		.size	cy_metadata, 12
+ 1371              	cy_metadata:
+ 1372 0000 00       		.byte	0
+ 1373 0001 01       		.byte	1
+ 1374 0002 2E       		.byte	46
+ 1375 0003 16       		.byte	22
+ 1376 0004 10       		.byte	16
+ 1377 0005 69       		.byte	105
+ 1378 0006 00       		.byte	0
+ 1379 0007 01       		.byte	1
+ 1380 0008 00       		.byte	0
+ 1381 0009 00       		.byte	0
+ 1382 000a 00       		.byte	0
+ 1383 000b 00       		.byte	0
+ 1384              		.section	.cyflashprotect,"a",%progbits
+ 1385              		.align	2
+ 1386              		.type	cy_meta_flashprotect, %object
+ 1387              		.size	cy_meta_flashprotect, 256
+ 1388              	cy_meta_flashprotect:
+ 1389 0000 00000000 		.space	256
+ 1389      00000000 
+ 1389      00000000 
+ 1389      00000000 
+ 1389      00000000 
+ 1390              		.text
+ 1391              	.Letext0:
+ 1392              		.file 1 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1393              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 1394              		.file 3 "Generated_Source\\PSoC5\\cymetadata.c"
+ 1395              		.section	.debug_info,"",%progbits
+ 1396              	.Ldebug_info0:
+ 1397 0000 32010000 		.4byte	0x132
+ 1398 0004 0400     		.2byte	0x4
+ 1399 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1400 000a 04       		.byte	0x4
+ 1401 000b 01       		.uleb128 0x1
+ 1402 000c 24000000 		.4byte	.LASF17
+ 1403 0010 0C       		.byte	0xc
+ 1404 0011 BE010000 		.4byte	.LASF18
+ 1405 0015 D7000000 		.4byte	.LASF19
+ 1406 0019 00000000 		.4byte	.Ldebug_line0
+ 1407 001d 02       		.uleb128 0x2
+ 1408 001e 01       		.byte	0x1
+ 1409 001f 06       		.byte	0x6
+ 1410 0020 B2010000 		.4byte	.LASF0
+ 1411 0024 03       		.uleb128 0x3
+ 1412 0025 00000000 		.4byte	.LASF9
+ 1413 0029 01       		.byte	0x1
+ 1414 002a 1D       		.byte	0x1d
+ 1415 002b 2F000000 		.4byte	0x2f
+ 1416 002f 02       		.uleb128 0x2
+ 1417 0030 01       		.byte	0x1
+ 1418 0031 08       		.byte	0x8
+ 1419 0032 16000000 		.4byte	.LASF1
+ 1420 0036 02       		.uleb128 0x2
+ 1421 0037 02       		.byte	0x2
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 26
+
+
+ 1422 0038 05       		.byte	0x5
+ 1423 0039 9F010000 		.4byte	.LASF2
+ 1424 003d 02       		.uleb128 0x2
+ 1425 003e 02       		.byte	0x2
+ 1426 003f 07       		.byte	0x7
+ 1427 0040 C4000000 		.4byte	.LASF3
+ 1428 0044 02       		.uleb128 0x2
+ 1429 0045 04       		.byte	0x4
+ 1430 0046 05       		.byte	0x5
+ 1431 0047 A9010000 		.4byte	.LASF4
+ 1432 004b 02       		.uleb128 0x2
+ 1433 004c 04       		.byte	0x4
+ 1434 004d 07       		.byte	0x7
+ 1435 004e B2000000 		.4byte	.LASF5
+ 1436 0052 02       		.uleb128 0x2
+ 1437 0053 08       		.byte	0x8
+ 1438 0054 05       		.byte	0x5
+ 1439 0055 91010000 		.4byte	.LASF6
+ 1440 0059 02       		.uleb128 0x2
+ 1441 005a 08       		.byte	0x8
+ 1442 005b 07       		.byte	0x7
+ 1443 005c 46010000 		.4byte	.LASF7
+ 1444 0060 04       		.uleb128 0x4
+ 1445 0061 04       		.byte	0x4
+ 1446 0062 05       		.byte	0x5
+ 1447 0063 696E7400 		.ascii	"int\000"
+ 1448 0067 02       		.uleb128 0x2
+ 1449 0068 04       		.byte	0x4
+ 1450 0069 07       		.byte	0x7
+ 1451 006a 39010000 		.4byte	.LASF8
+ 1452 006e 03       		.uleb128 0x3
+ 1453 006f 5D010000 		.4byte	.LASF10
+ 1454 0073 02       		.byte	0x2
+ 1455 0074 18       		.byte	0x18
+ 1456 0075 24000000 		.4byte	0x24
+ 1457 0079 05       		.uleb128 0x5
+ 1458 007a 91000000 		.4byte	0x91
+ 1459 007e 8A000000 		.4byte	0x8a
+ 1460 0082 06       		.uleb128 0x6
+ 1461 0083 8A000000 		.4byte	0x8a
+ 1462 0087 2705     		.2byte	0x527
+ 1463 0089 00       		.byte	0
+ 1464 008a 02       		.uleb128 0x2
+ 1465 008b 04       		.byte	0x4
+ 1466 008c 07       		.byte	0x7
+ 1467 008d 88010000 		.4byte	.LASF11
+ 1468 0091 07       		.uleb128 0x7
+ 1469 0092 6E000000 		.4byte	0x6e
+ 1470 0096 08       		.uleb128 0x8
+ 1471 0097 27010000 		.4byte	.LASF12
+ 1472 009b 03       		.byte	0x3
+ 1473 009c 1F       		.byte	0x1f
+ 1474 009d A7000000 		.4byte	0xa7
+ 1475 00a1 05       		.uleb128 0x5
+ 1476 00a2 03       		.byte	0x3
+ 1477 00a3 00000000 		.4byte	cy_meta_configecc
+ 1478 00a7 07       		.uleb128 0x7
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 27
+
+
+ 1479 00a8 79000000 		.4byte	0x79
+ 1480 00ac 05       		.uleb128 0x5
+ 1481 00ad 91000000 		.4byte	0x91
+ 1482 00b1 BC000000 		.4byte	0xbc
+ 1483 00b5 09       		.uleb128 0x9
+ 1484 00b6 8A000000 		.4byte	0x8a
+ 1485 00ba 03       		.byte	0x3
+ 1486 00bb 00       		.byte	0
+ 1487 00bc 08       		.uleb128 0x8
+ 1488 00bd 17010000 		.4byte	.LASF13
+ 1489 00c1 03       		.byte	0x3
+ 1490 00c2 D1       		.byte	0xd1
+ 1491 00c3 CD000000 		.4byte	0xcd
+ 1492 00c7 05       		.uleb128 0x5
+ 1493 00c8 03       		.byte	0x3
+ 1494 00c9 00000000 		.4byte	cy_meta_custnvl
+ 1495 00cd 07       		.uleb128 0x7
+ 1496 00ce AC000000 		.4byte	0xac
+ 1497 00d2 08       		.uleb128 0x8
+ 1498 00d3 7A010000 		.4byte	.LASF14
+ 1499 00d7 03       		.byte	0x3
+ 1500 00d8 DF       		.byte	0xdf
+ 1501 00d9 E3000000 		.4byte	0xe3
+ 1502 00dd 05       		.uleb128 0x5
+ 1503 00de 03       		.byte	0x3
+ 1504 00df 00000000 		.4byte	cy_meta_wonvl
+ 1505 00e3 07       		.uleb128 0x7
+ 1506 00e4 AC000000 		.4byte	0xac
+ 1507 00e8 05       		.uleb128 0x5
+ 1508 00e9 91000000 		.4byte	0x91
+ 1509 00ed F8000000 		.4byte	0xf8
+ 1510 00f1 09       		.uleb128 0x9
+ 1511 00f2 8A000000 		.4byte	0x8a
+ 1512 00f6 FF       		.byte	0xff
+ 1513 00f7 00       		.byte	0
+ 1514 00f8 08       		.uleb128 0x8
+ 1515 00f9 65010000 		.4byte	.LASF15
+ 1516 00fd 03       		.byte	0x3
+ 1517 00fe ED       		.byte	0xed
+ 1518 00ff 09010000 		.4byte	0x109
+ 1519 0103 05       		.uleb128 0x5
+ 1520 0104 03       		.byte	0x3
+ 1521 0105 00000000 		.4byte	cy_meta_flashprotect
+ 1522 0109 07       		.uleb128 0x7
+ 1523 010a E8000000 		.4byte	0xe8
+ 1524 010e 05       		.uleb128 0x5
+ 1525 010f 91000000 		.4byte	0x91
+ 1526 0113 1E010000 		.4byte	0x11e
+ 1527 0117 09       		.uleb128 0x9
+ 1528 0118 8A000000 		.4byte	0x8a
+ 1529 011c 0B       		.byte	0xb
+ 1530 011d 00       		.byte	0
+ 1531 011e 0A       		.uleb128 0xa
+ 1532 011f 0A000000 		.4byte	.LASF16
+ 1533 0123 03       		.byte	0x3
+ 1534 0124 1A01     		.2byte	0x11a
+ 1535 0126 30010000 		.4byte	0x130
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 28
+
+
+ 1536 012a 05       		.uleb128 0x5
+ 1537 012b 03       		.byte	0x3
+ 1538 012c 00000000 		.4byte	cy_metadata
+ 1539 0130 07       		.uleb128 0x7
+ 1540 0131 0E010000 		.4byte	0x10e
+ 1541 0135 00       		.byte	0
+ 1542              		.section	.debug_abbrev,"",%progbits
+ 1543              	.Ldebug_abbrev0:
+ 1544 0000 01       		.uleb128 0x1
+ 1545 0001 11       		.uleb128 0x11
+ 1546 0002 01       		.byte	0x1
+ 1547 0003 25       		.uleb128 0x25
+ 1548 0004 0E       		.uleb128 0xe
+ 1549 0005 13       		.uleb128 0x13
+ 1550 0006 0B       		.uleb128 0xb
+ 1551 0007 03       		.uleb128 0x3
+ 1552 0008 0E       		.uleb128 0xe
+ 1553 0009 1B       		.uleb128 0x1b
+ 1554 000a 0E       		.uleb128 0xe
+ 1555 000b 10       		.uleb128 0x10
+ 1556 000c 17       		.uleb128 0x17
+ 1557 000d 00       		.byte	0
+ 1558 000e 00       		.byte	0
+ 1559 000f 02       		.uleb128 0x2
+ 1560 0010 24       		.uleb128 0x24
+ 1561 0011 00       		.byte	0
+ 1562 0012 0B       		.uleb128 0xb
+ 1563 0013 0B       		.uleb128 0xb
+ 1564 0014 3E       		.uleb128 0x3e
+ 1565 0015 0B       		.uleb128 0xb
+ 1566 0016 03       		.uleb128 0x3
+ 1567 0017 0E       		.uleb128 0xe
+ 1568 0018 00       		.byte	0
+ 1569 0019 00       		.byte	0
+ 1570 001a 03       		.uleb128 0x3
+ 1571 001b 16       		.uleb128 0x16
+ 1572 001c 00       		.byte	0
+ 1573 001d 03       		.uleb128 0x3
+ 1574 001e 0E       		.uleb128 0xe
+ 1575 001f 3A       		.uleb128 0x3a
+ 1576 0020 0B       		.uleb128 0xb
+ 1577 0021 3B       		.uleb128 0x3b
+ 1578 0022 0B       		.uleb128 0xb
+ 1579 0023 49       		.uleb128 0x49
+ 1580 0024 13       		.uleb128 0x13
+ 1581 0025 00       		.byte	0
+ 1582 0026 00       		.byte	0
+ 1583 0027 04       		.uleb128 0x4
+ 1584 0028 24       		.uleb128 0x24
+ 1585 0029 00       		.byte	0
+ 1586 002a 0B       		.uleb128 0xb
+ 1587 002b 0B       		.uleb128 0xb
+ 1588 002c 3E       		.uleb128 0x3e
+ 1589 002d 0B       		.uleb128 0xb
+ 1590 002e 03       		.uleb128 0x3
+ 1591 002f 08       		.uleb128 0x8
+ 1592 0030 00       		.byte	0
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 29
+
+
+ 1593 0031 00       		.byte	0
+ 1594 0032 05       		.uleb128 0x5
+ 1595 0033 01       		.uleb128 0x1
+ 1596 0034 01       		.byte	0x1
+ 1597 0035 49       		.uleb128 0x49
+ 1598 0036 13       		.uleb128 0x13
+ 1599 0037 01       		.uleb128 0x1
+ 1600 0038 13       		.uleb128 0x13
+ 1601 0039 00       		.byte	0
+ 1602 003a 00       		.byte	0
+ 1603 003b 06       		.uleb128 0x6
+ 1604 003c 21       		.uleb128 0x21
+ 1605 003d 00       		.byte	0
+ 1606 003e 49       		.uleb128 0x49
+ 1607 003f 13       		.uleb128 0x13
+ 1608 0040 2F       		.uleb128 0x2f
+ 1609 0041 05       		.uleb128 0x5
+ 1610 0042 00       		.byte	0
+ 1611 0043 00       		.byte	0
+ 1612 0044 07       		.uleb128 0x7
+ 1613 0045 26       		.uleb128 0x26
+ 1614 0046 00       		.byte	0
+ 1615 0047 49       		.uleb128 0x49
+ 1616 0048 13       		.uleb128 0x13
+ 1617 0049 00       		.byte	0
+ 1618 004a 00       		.byte	0
+ 1619 004b 08       		.uleb128 0x8
+ 1620 004c 34       		.uleb128 0x34
+ 1621 004d 00       		.byte	0
+ 1622 004e 03       		.uleb128 0x3
+ 1623 004f 0E       		.uleb128 0xe
+ 1624 0050 3A       		.uleb128 0x3a
+ 1625 0051 0B       		.uleb128 0xb
+ 1626 0052 3B       		.uleb128 0x3b
+ 1627 0053 0B       		.uleb128 0xb
+ 1628 0054 49       		.uleb128 0x49
+ 1629 0055 13       		.uleb128 0x13
+ 1630 0056 3F       		.uleb128 0x3f
+ 1631 0057 19       		.uleb128 0x19
+ 1632 0058 02       		.uleb128 0x2
+ 1633 0059 18       		.uleb128 0x18
+ 1634 005a 00       		.byte	0
+ 1635 005b 00       		.byte	0
+ 1636 005c 09       		.uleb128 0x9
+ 1637 005d 21       		.uleb128 0x21
+ 1638 005e 00       		.byte	0
+ 1639 005f 49       		.uleb128 0x49
+ 1640 0060 13       		.uleb128 0x13
+ 1641 0061 2F       		.uleb128 0x2f
+ 1642 0062 0B       		.uleb128 0xb
+ 1643 0063 00       		.byte	0
+ 1644 0064 00       		.byte	0
+ 1645 0065 0A       		.uleb128 0xa
+ 1646 0066 34       		.uleb128 0x34
+ 1647 0067 00       		.byte	0
+ 1648 0068 03       		.uleb128 0x3
+ 1649 0069 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 30
+
+
+ 1650 006a 3A       		.uleb128 0x3a
+ 1651 006b 0B       		.uleb128 0xb
+ 1652 006c 3B       		.uleb128 0x3b
+ 1653 006d 05       		.uleb128 0x5
+ 1654 006e 49       		.uleb128 0x49
+ 1655 006f 13       		.uleb128 0x13
+ 1656 0070 3F       		.uleb128 0x3f
+ 1657 0071 19       		.uleb128 0x19
+ 1658 0072 02       		.uleb128 0x2
+ 1659 0073 18       		.uleb128 0x18
+ 1660 0074 00       		.byte	0
+ 1661 0075 00       		.byte	0
+ 1662 0076 00       		.byte	0
+ 1663              		.section	.debug_aranges,"",%progbits
+ 1664 0000 14000000 		.4byte	0x14
+ 1665 0004 0200     		.2byte	0x2
+ 1666 0006 00000000 		.4byte	.Ldebug_info0
+ 1667 000a 04       		.byte	0x4
+ 1668 000b 00       		.byte	0
+ 1669 000c 0000     		.2byte	0
+ 1670 000e 0000     		.2byte	0
+ 1671 0010 00000000 		.4byte	0
+ 1672 0014 00000000 		.4byte	0
+ 1673              		.section	.debug_line,"",%progbits
+ 1674              	.Ldebug_line0:
+ 1675 0000 3D010000 		.section	.debug_str,"MS",%progbits,1
+ 1675      02003701 
+ 1675      00000201 
+ 1675      FB0E0D00 
+ 1675      01010101 
+ 1676              	.LASF9:
+ 1677 0000 5F5F7569 		.ascii	"__uint8_t\000"
+ 1677      6E74385F 
+ 1677      7400
+ 1678              	.LASF16:
+ 1679 000a 63795F6D 		.ascii	"cy_metadata\000"
+ 1679      65746164 
+ 1679      61746100 
+ 1680              	.LASF1:
+ 1681 0016 756E7369 		.ascii	"unsigned char\000"
+ 1681      676E6564 
+ 1681      20636861 
+ 1681      7200
+ 1682              	.LASF17:
+ 1683 0024 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1683      43313120 
+ 1683      352E342E 
+ 1683      31203230 
+ 1683      31363036 
+ 1684 0057 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1684      20726576 
+ 1684      6973696F 
+ 1684      6E203233 
+ 1684      37373135 
+ 1685 008a 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1685      66756E63 
+ 1685      74696F6E 
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 31
+
+
+ 1685      2D736563 
+ 1685      74696F6E 
+ 1686              	.LASF5:
+ 1687 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1687      20756E73 
+ 1687      69676E65 
+ 1687      6420696E 
+ 1687      7400
+ 1688              	.LASF3:
+ 1689 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 1689      7420756E 
+ 1689      7369676E 
+ 1689      65642069 
+ 1689      6E7400
+ 1690              	.LASF19:
+ 1691 00d7 433A5C55 		.ascii	"C:\\Users\\Angus\\Documents\\PSoC Creator\\EngDesig"
+ 1691      73657273 
+ 1691      5C416E67 
+ 1691      75735C44 
+ 1691      6F63756D 
+ 1692 0105 6E5C5053 		.ascii	"n\\PSOC_Test.cydsn\000"
+ 1692      4F435F54 
+ 1692      6573742E 
+ 1692      63796473 
+ 1692      6E00
+ 1693              	.LASF13:
+ 1694 0117 63795F6D 		.ascii	"cy_meta_custnvl\000"
+ 1694      6574615F 
+ 1694      63757374 
+ 1694      6E766C00 
+ 1695              	.LASF12:
+ 1696 0127 63795F6D 		.ascii	"cy_meta_configecc\000"
+ 1696      6574615F 
+ 1696      636F6E66 
+ 1696      69676563 
+ 1696      6300
+ 1697              	.LASF8:
+ 1698 0139 756E7369 		.ascii	"unsigned int\000"
+ 1698      676E6564 
+ 1698      20696E74 
+ 1698      00
+ 1699              	.LASF7:
+ 1700 0146 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1700      206C6F6E 
+ 1700      6720756E 
+ 1700      7369676E 
+ 1700      65642069 
+ 1701              	.LASF10:
+ 1702 015d 75696E74 		.ascii	"uint8_t\000"
+ 1702      385F7400 
+ 1703              	.LASF15:
+ 1704 0165 63795F6D 		.ascii	"cy_meta_flashprotect\000"
+ 1704      6574615F 
+ 1704      666C6173 
+ 1704      6870726F 
+ 1704      74656374 
+ 1705              	.LASF14:
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccWyFhZ7.s 			page 32
+
+
+ 1706 017a 63795F6D 		.ascii	"cy_meta_wonvl\000"
+ 1706      6574615F 
+ 1706      776F6E76 
+ 1706      6C00
+ 1707              	.LASF11:
+ 1708 0188 73697A65 		.ascii	"sizetype\000"
+ 1708      74797065 
+ 1708      00
+ 1709              	.LASF6:
+ 1710 0191 6C6F6E67 		.ascii	"long long int\000"
+ 1710      206C6F6E 
+ 1710      6720696E 
+ 1710      7400
+ 1711              	.LASF2:
+ 1712 019f 73686F72 		.ascii	"short int\000"
+ 1712      7420696E 
+ 1712      7400
+ 1713              	.LASF4:
+ 1714 01a9 6C6F6E67 		.ascii	"long int\000"
+ 1714      20696E74 
+ 1714      00
+ 1715              	.LASF0:
+ 1716 01b2 7369676E 		.ascii	"signed char\000"
+ 1716      65642063 
+ 1716      68617200 
+ 1717              	.LASF18:
+ 1718 01be 47656E65 		.ascii	"Generated_Source\\PSoC5\\cymetadata.c\000"
+ 1718      72617465 
+ 1718      645F536F 
+ 1718      75726365 
+ 1718      5C50536F 
+ 1719              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
