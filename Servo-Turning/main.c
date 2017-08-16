@@ -16,12 +16,27 @@
  * 
 */
 #include "project.h"
+#include "stdio.h"
+int compare_value;
 
 CY_ISR(SW1_Handler)
 {
     LED1_Write(~LED1_Read());
     UART_1_PutString("INTERRUPT!");
-    int compare_value = 3000;
+    char outputString[4];
+    if (compare_value == 1500)
+    {
+        compare_value = 4500;
+        sprintf(outputString, "4500");
+        UART_1_PutString(outputString);
+    }
+    else if (compare_value == 4500)
+    {
+        compare_value = 1500;
+        sprintf(outputString, "1500");
+        UART_1_PutString(outputString);
+    }
+    CyDelay(500);
     PWM_1_WriteCompare(compare_value);
     SW1_ClearInterrupt();
 }
@@ -34,25 +49,10 @@ int main(void)
     UART_1_Start();
     PWM_1_Start();
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    int compare_value = 2000;
+    compare_value = 1500;
     for(;;)
     {
-        if (compare_value == 2000)
-        {
-            compare_value = 4000;
-            UART_1_PutString("Up!");
-        }
-        else if (compare_value == 4000)
-        {
-            compare_value = 2000;
-            UART_1_PutString("Down!");
-        }
-        else
-        {
-            compare_value = 2000;
-        }
-        UART_1_PutString("TURNING");
-        PWM_1_WriteCompare(compare_value);
+
 
         CyDelay(500);
     }
