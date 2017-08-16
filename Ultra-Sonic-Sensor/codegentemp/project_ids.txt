@@ -1,0 +1,6 @@
+C:\Users\Angus\Documents\PSoC Creator\EngDesign\Ultra-Sonic Sensor.cydsn\Ultra-Sonic Sensor.cyprj|047a841a-ab11-4d5c-a8cc-337ab1194fa4
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|95247b1e-2a9e-42f7-9bc7-e5c706782d81
+C:\Users\Angus\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|5df9250f-a807-4159-8242-14293dd0f5de
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|ae82a6e6-4f9f-4af4-8c87-faa62fbccecf
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|39962b59-7420-4f04-bdbc-dfd243894254
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|9fd164e4-7268-4d49-854d-11a98c6ab795

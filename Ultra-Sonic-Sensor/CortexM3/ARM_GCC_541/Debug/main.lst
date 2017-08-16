@@ -1,0 +1,1191 @@
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_i2f
+  20              		.global	__aeabi_fcmplt
+  21              		.global	__aeabi_fcmpge
+  22              		.global	__aeabi_f2d
+  23              		.section	.text.Timer_ISR_Handler,"ax",%progbits
+  24              		.align	2
+  25              		.global	Timer_ISR_Handler
+  26              		.thumb
+  27              		.thumb_func
+  28              		.type	Timer_ISR_Handler, %function
+  29              	Timer_ISR_Handler:
+  30              	.LFB64:
+  31              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include "stdio.h"
+  14:main.c        **** uint16 count = 0;
+  15:main.c        **** float distance_measured = 0;
+  16:main.c        **** char outputString[15];
+  17:main.c        **** CY_ISR(Timer_ISR_Handler)
+  18:main.c        **** {
+  32              		.loc 1 18 0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 0
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36 0000 38B5     		push	{r3, r4, r5, lr}
+  37              		.cfi_def_cfa_offset 16
+  38              		.cfi_offset 3, -16
+  39              		.cfi_offset 4, -12
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 2
+
+
+  40              		.cfi_offset 5, -8
+  41              		.cfi_offset 14, -4
+  19:main.c        ****     UART_1_PutString("TRIGGERED\n");
+  42              		.loc 1 19 0
+  43 0002 2048     		ldr	r0, .L10
+  44 0004 FFF7FEFF 		bl	UART_1_PutString
+  45              	.LVL0:
+  20:main.c        ****     Timer_1_ReadStatusRegister();   // Clear interrupts
+  46              		.loc 1 20 0
+  47 0008 FFF7FEFF 		bl	Timer_1_ReadStatusRegister
+  48              	.LVL1:
+  21:main.c        ****     count = Timer_1_ReadCounter();  // Give me current value of count
+  49              		.loc 1 21 0
+  50 000c FFF7FEFF 		bl	Timer_1_ReadCounter
+  51              	.LVL2:
+  52 0010 0246     		mov	r2, r0
+  53 0012 1D4C     		ldr	r4, .L10+4
+  54 0014 2080     		strh	r0, [r4]	@ movhi
+  22:main.c        ****     sprintf(outputString, "Count: %d\n" , count);
+  55              		.loc 1 22 0
+  56 0016 1D4D     		ldr	r5, .L10+8
+  57 0018 1D49     		ldr	r1, .L10+12
+  58 001a 2846     		mov	r0, r5
+  59 001c FFF7FEFF 		bl	sprintf
+  60              	.LVL3:
+  23:main.c        ****     UART_1_PutString(outputString);
+  61              		.loc 1 23 0
+  62 0020 2846     		mov	r0, r5
+  63 0022 FFF7FEFF 		bl	UART_1_PutString
+  64              	.LVL4:
+  24:main.c        ****     distance_measured = (65535 - count) / 58;    // Distance measured in cm
+  65              		.loc 1 24 0
+  66 0026 2388     		ldrh	r3, [r4]
+  67 0028 C3F57F43 		rsb	r3, r3, #65280
+  68 002c FF33     		adds	r3, r3, #255
+  69 002e 1948     		ldr	r0, .L10+16
+  70 0030 80FB0320 		smull	r2, r0, r0, r3
+  71 0034 1844     		add	r0, r0, r3
+  72 0036 DB17     		asrs	r3, r3, #31
+  73 0038 C3EB6010 		rsb	r0, r3, r0, asr #5
+  74 003c FFF7FEFF 		bl	__aeabi_i2f
+  75              	.LVL5:
+  76 0040 0546     		mov	r5, r0
+  77 0042 6060     		str	r0, [r4, #4]	@ float
+  25:main.c        ****     if (distance_measured < 10)
+  78              		.loc 1 25 0
+  79 0044 1449     		ldr	r1, .L10+20
+  80 0046 FFF7FEFF 		bl	__aeabi_fcmplt
+  81              	.LVL6:
+  82 004a 18B1     		cbz	r0, .L8
+  26:main.c        ****     {
+  27:main.c        ****         LED_Write(1);
+  83              		.loc 1 27 0
+  84 004c 0120     		movs	r0, #1
+  85 004e FFF7FEFF 		bl	LED_Write
+  86              	.LVL7:
+  87 0052 07E0     		b	.L4
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 3
+
+
+  88              	.L8:
+  28:main.c        ****     }
+  29:main.c        ****     else if (distance_measured >= 10)
+  89              		.loc 1 29 0
+  90 0054 1049     		ldr	r1, .L10+20
+  91 0056 2846     		mov	r0, r5
+  92 0058 FFF7FEFF 		bl	__aeabi_fcmpge
+  93              	.LVL8:
+  94 005c 10B1     		cbz	r0, .L4
+  30:main.c        ****     {
+  31:main.c        ****         LED_Write(0);
+  95              		.loc 1 31 0
+  96 005e 0020     		movs	r0, #0
+  97 0060 FFF7FEFF 		bl	LED_Write
+  98              	.LVL9:
+  99              	.L4:
+  32:main.c        ****     }
+  33:main.c        ****     sprintf(outputString, "Distance: %f\n" ,distance_measured);
+ 100              		.loc 1 33 0
+ 101 0064 084B     		ldr	r3, .L10+4
+ 102 0066 5868     		ldr	r0, [r3, #4]	@ float
+ 103 0068 FFF7FEFF 		bl	__aeabi_f2d
+ 104              	.LVL10:
+ 105 006c 074C     		ldr	r4, .L10+8
+ 106 006e 0246     		mov	r2, r0
+ 107 0070 0B46     		mov	r3, r1
+ 108 0072 0A49     		ldr	r1, .L10+24
+ 109 0074 2046     		mov	r0, r4
+ 110 0076 FFF7FEFF 		bl	sprintf
+ 111              	.LVL11:
+  34:main.c        ****     UART_1_PutString(outputString);
+ 112              		.loc 1 34 0
+ 113 007a 2046     		mov	r0, r4
+ 114 007c FFF7FEFF 		bl	UART_1_PutString
+ 115              	.LVL12:
+ 116 0080 38BD     		pop	{r3, r4, r5, pc}
+ 117              	.L11:
+ 118 0082 00BF     		.align	2
+ 119              	.L10:
+ 120 0084 00000000 		.word	.LC0
+ 121 0088 00000000 		.word	.LANCHOR0
+ 122 008c 00000000 		.word	outputString
+ 123 0090 0C000000 		.word	.LC1
+ 124 0094 09CB3D8D 		.word	-1925330167
+ 125 0098 00002041 		.word	1092616192
+ 126 009c 18000000 		.word	.LC2
+ 127              		.cfi_endproc
+ 128              	.LFE64:
+ 129              		.size	Timer_ISR_Handler, .-Timer_ISR_Handler
+ 130              		.section	.text.main,"ax",%progbits
+ 131              		.align	2
+ 132              		.global	main
+ 133              		.thumb
+ 134              		.thumb_func
+ 135              		.type	main, %function
+ 136              	main:
+ 137              	.LFB65:
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 4
+
+
+  35:main.c        **** }
+  36:main.c        **** 
+  37:main.c        **** int main(void)
+  38:main.c        **** {
+ 138              		.loc 1 38 0
+ 139              		.cfi_startproc
+ 140              		@ Volatile: function does not return.
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143 0000 08B5     		push	{r3, lr}
+ 144              		.cfi_def_cfa_offset 8
+ 145              		.cfi_offset 3, -8
+ 146              		.cfi_offset 14, -4
+  39:main.c        ****     UART_1_Start();
+ 147              		.loc 1 39 0
+ 148 0002 FFF7FEFF 		bl	UART_1_Start
+ 149              	.LVL13:
+  40:main.c        ****     Timer_1_Start();
+ 150              		.loc 1 40 0
+ 151 0006 FFF7FEFF 		bl	Timer_1_Start
+ 152              	.LVL14:
+  41:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 153              		.loc 1 41 0
+ 154              		.syntax unified
+ 155              	@ 41 "main.c" 1
+ 156 000a 62B6     		CPSIE   i
+ 157              	@ 0 "" 2
+  42:main.c        ****     isr_1_StartEx(Timer_ISR_Handler);    // Give interrupt a handler
+ 158              		.loc 1 42 0
+ 159              		.thumb
+ 160              		.syntax unified
+ 161 000c 0B48     		ldr	r0, .L17
+ 162 000e FFF7FEFF 		bl	isr_1_StartEx
+ 163              	.LVL15:
+ 164 0012 0BE0     		b	.L13
+ 165              	.L14:
+  43:main.c        ****     for(;;)
+  44:main.c        ****     {
+  45:main.c        ****         while(Echo_Read() == 0)
+  46:main.c        ****         {
+  47:main.c        ****             UART_1_PutString("ECHO\n");
+ 166              		.loc 1 47 0
+ 167 0014 0A48     		ldr	r0, .L17+4
+ 168 0016 FFF7FEFF 		bl	UART_1_PutString
+ 169              	.LVL16:
+  48:main.c        ****             Trigger_Write(1);
+ 170              		.loc 1 48 0
+ 171 001a 0120     		movs	r0, #1
+ 172 001c FFF7FEFF 		bl	Trigger_Write
+ 173              	.LVL17:
+  49:main.c        ****             CyDelayUs(10);        // Need to keep trigger pin on for 10ms
+ 174              		.loc 1 49 0
+ 175 0020 0A20     		movs	r0, #10
+ 176 0022 FFF7FEFF 		bl	CyDelayUs
+ 177              	.LVL18:
+  50:main.c        ****             Trigger_Write(0);
+ 178              		.loc 1 50 0
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 5
+
+
+ 179 0026 0020     		movs	r0, #0
+ 180 0028 FFF7FEFF 		bl	Trigger_Write
+ 181              	.LVL19:
+ 182              	.L13:
+  45:main.c        ****         {
+ 183              		.loc 1 45 0
+ 184 002c FFF7FEFF 		bl	Echo_Read
+ 185              	.LVL20:
+ 186 0030 0028     		cmp	r0, #0
+ 187 0032 EFD0     		beq	.L14
+  51:main.c        ****         }
+  52:main.c        ****         CyDelay(100);
+ 188              		.loc 1 52 0
+ 189 0034 6420     		movs	r0, #100
+ 190 0036 FFF7FEFF 		bl	CyDelay
+ 191              	.LVL21:
+  53:main.c        ****     }
+ 192              		.loc 1 53 0
+ 193 003a F7E7     		b	.L13
+ 194              	.L18:
+ 195              		.align	2
+ 196              	.L17:
+ 197 003c 00000000 		.word	Timer_ISR_Handler
+ 198 0040 28000000 		.word	.LC3
+ 199              		.cfi_endproc
+ 200              	.LFE65:
+ 201              		.size	main, .-main
+ 202              		.comm	outputString,15,4
+ 203              		.global	distance_measured
+ 204              		.global	count
+ 205              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 206              		.align	2
+ 207              	.LC0:
+ 208 0000 54524947 		.ascii	"TRIGGERED\012\000"
+ 208      47455245 
+ 208      440A00
+ 209 000b 00       		.space	1
+ 210              	.LC1:
+ 211 000c 436F756E 		.ascii	"Count: %d\012\000"
+ 211      743A2025 
+ 211      640A00
+ 212 0017 00       		.space	1
+ 213              	.LC2:
+ 214 0018 44697374 		.ascii	"Distance: %f\012\000"
+ 214      616E6365 
+ 214      3A202566 
+ 214      0A00
+ 215 0026 0000     		.space	2
+ 216              	.LC3:
+ 217 0028 4543484F 		.ascii	"ECHO\012\000"
+ 217      0A00
+ 218              		.bss
+ 219              		.align	2
+ 220              		.set	.LANCHOR0,. + 0
+ 221              		.type	count, %object
+ 222              		.size	count, 2
+ 223              	count:
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 6
+
+
+ 224 0000 0000     		.space	2
+ 225 0002 0000     		.space	2
+ 226              		.type	distance_measured, %object
+ 227              		.size	distance_measured, 4
+ 228              	distance_measured:
+ 229 0004 00000000 		.space	4
+ 230              		.text
+ 231              	.Letext0:
+ 232              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 233              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 234              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 235              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 236              		.file 6 "Generated_Source\\PSoC5/UART_1.h"
+ 237              		.file 7 "Generated_Source\\PSoC5/Timer_1.h"
+ 238              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 239              		.file 9 "Generated_Source\\PSoC5/LED.h"
+ 240              		.file 10 "Generated_Source\\PSoC5/isr_1.h"
+ 241              		.file 11 "Generated_Source\\PSoC5/Trigger.h"
+ 242              		.file 12 "Generated_Source\\PSoC5/CyLib.h"
+ 243              		.file 13 "Generated_Source\\PSoC5/Echo.h"
+ 244              		.section	.debug_info,"",%progbits
+ 245              	.Ldebug_info0:
+ 246 0000 F4020000 		.4byte	0x2f4
+ 247 0004 0400     		.2byte	0x4
+ 248 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 249 000a 04       		.byte	0x4
+ 250 000b 01       		.uleb128 0x1
+ 251 000c 62000000 		.4byte	.LASF33
+ 252 0010 0C       		.byte	0xc
+ 253 0011 D5010000 		.4byte	.LASF34
+ 254 0015 8C010000 		.4byte	.LASF35
+ 255 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 256 001d 00000000 		.4byte	0
+ 257 0021 00000000 		.4byte	.Ldebug_line0
+ 258 0025 02       		.uleb128 0x2
+ 259 0026 01       		.byte	0x1
+ 260 0027 06       		.byte	0x6
+ 261 0028 42020000 		.4byte	.LASF0
+ 262 002c 02       		.uleb128 0x2
+ 263 002d 01       		.byte	0x1
+ 264 002e 08       		.byte	0x8
+ 265 002f 54000000 		.4byte	.LASF1
+ 266 0033 02       		.uleb128 0x2
+ 267 0034 02       		.byte	0x2
+ 268 0035 05       		.byte	0x5
+ 269 0036 03020000 		.4byte	.LASF2
+ 270 003a 02       		.uleb128 0x2
+ 271 003b 02       		.byte	0x2
+ 272 003c 07       		.byte	0x7
+ 273 003d 02010000 		.4byte	.LASF3
+ 274 0041 03       		.uleb128 0x3
+ 275 0042 44000000 		.4byte	.LASF9
+ 276 0046 02       		.byte	0x2
+ 277 0047 3F       		.byte	0x3f
+ 278 0048 4C000000 		.4byte	0x4c
+ 279 004c 02       		.uleb128 0x2
+ 280 004d 04       		.byte	0x4
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 7
+
+
+ 281 004e 05       		.byte	0x5
+ 282 004f 28020000 		.4byte	.LASF4
+ 283 0053 02       		.uleb128 0x2
+ 284 0054 04       		.byte	0x4
+ 285 0055 07       		.byte	0x7
+ 286 0056 F0000000 		.4byte	.LASF5
+ 287 005a 02       		.uleb128 0x2
+ 288 005b 08       		.byte	0x8
+ 289 005c 05       		.byte	0x5
+ 290 005d 7E010000 		.4byte	.LASF6
+ 291 0061 02       		.uleb128 0x2
+ 292 0062 08       		.byte	0x8
+ 293 0063 07       		.byte	0x7
+ 294 0064 56010000 		.4byte	.LASF7
+ 295 0068 04       		.uleb128 0x4
+ 296 0069 04       		.byte	0x4
+ 297 006a 05       		.byte	0x5
+ 298 006b 696E7400 		.ascii	"int\000"
+ 299 006f 02       		.uleb128 0x2
+ 300 0070 04       		.byte	0x4
+ 301 0071 07       		.byte	0x7
+ 302 0072 3F010000 		.4byte	.LASF8
+ 303 0076 03       		.uleb128 0x3
+ 304 0077 6D010000 		.4byte	.LASF10
+ 305 007b 03       		.byte	0x3
+ 306 007c 2C       		.byte	0x2c
+ 307 007d 41000000 		.4byte	0x41
+ 308 0081 05       		.uleb128 0x5
+ 309 0082 29010000 		.4byte	.LASF11
+ 310 0086 04       		.byte	0x4
+ 311 0087 9301     		.2byte	0x193
+ 312 0089 3A000000 		.4byte	0x3a
+ 313 008d 02       		.uleb128 0x2
+ 314 008e 04       		.byte	0x4
+ 315 008f 04       		.byte	0x4
+ 316 0090 4E000000 		.4byte	.LASF12
+ 317 0094 02       		.uleb128 0x2
+ 318 0095 08       		.byte	0x8
+ 319 0096 04       		.byte	0x4
+ 320 0097 22010000 		.4byte	.LASF13
+ 321 009b 02       		.uleb128 0x2
+ 322 009c 01       		.byte	0x1
+ 323 009d 08       		.byte	0x8
+ 324 009e 31020000 		.4byte	.LASF14
+ 325 00a2 02       		.uleb128 0x2
+ 326 00a3 08       		.byte	0x8
+ 327 00a4 04       		.byte	0x4
+ 328 00a5 36020000 		.4byte	.LASF15
+ 329 00a9 02       		.uleb128 0x2
+ 330 00aa 04       		.byte	0x4
+ 331 00ab 07       		.byte	0x7
+ 332 00ac 75010000 		.4byte	.LASF16
+ 333 00b0 06       		.uleb128 0x6
+ 334 00b1 6C020000 		.4byte	.LASF36
+ 335 00b5 01       		.byte	0x1
+ 336 00b6 11       		.byte	0x11
+ 337 00b7 00000000 		.4byte	.LFB64
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 8
+
+
+ 338 00bb A0000000 		.4byte	.LFE64-.LFB64
+ 339 00bf 01       		.uleb128 0x1
+ 340 00c0 9C       		.byte	0x9c
+ 341 00c1 73010000 		.4byte	0x173
+ 342 00c5 07       		.uleb128 0x7
+ 343 00c6 08000000 		.4byte	.LVL0
+ 344 00ca 73020000 		.4byte	0x273
+ 345 00ce DC000000 		.4byte	0xdc
+ 346 00d2 08       		.uleb128 0x8
+ 347 00d3 01       		.uleb128 0x1
+ 348 00d4 50       		.byte	0x50
+ 349 00d5 05       		.uleb128 0x5
+ 350 00d6 03       		.byte	0x3
+ 351 00d7 00000000 		.4byte	.LC0
+ 352 00db 00       		.byte	0
+ 353 00dc 09       		.uleb128 0x9
+ 354 00dd 0C000000 		.4byte	.LVL1
+ 355 00e1 7E020000 		.4byte	0x27e
+ 356 00e5 09       		.uleb128 0x9
+ 357 00e6 10000000 		.4byte	.LVL2
+ 358 00ea 89020000 		.4byte	0x289
+ 359 00ee 07       		.uleb128 0x7
+ 360 00ef 20000000 		.4byte	.LVL3
+ 361 00f3 94020000 		.4byte	0x294
+ 362 00f7 0B010000 		.4byte	0x10b
+ 363 00fb 08       		.uleb128 0x8
+ 364 00fc 01       		.uleb128 0x1
+ 365 00fd 50       		.byte	0x50
+ 366 00fe 02       		.uleb128 0x2
+ 367 00ff 75       		.byte	0x75
+ 368 0100 00       		.sleb128 0
+ 369 0101 08       		.uleb128 0x8
+ 370 0102 01       		.uleb128 0x1
+ 371 0103 51       		.byte	0x51
+ 372 0104 05       		.uleb128 0x5
+ 373 0105 03       		.byte	0x3
+ 374 0106 0C000000 		.4byte	.LC1
+ 375 010a 00       		.byte	0
+ 376 010b 07       		.uleb128 0x7
+ 377 010c 26000000 		.4byte	.LVL4
+ 378 0110 73020000 		.4byte	0x273
+ 379 0114 1F010000 		.4byte	0x11f
+ 380 0118 08       		.uleb128 0x8
+ 381 0119 01       		.uleb128 0x1
+ 382 011a 50       		.byte	0x50
+ 383 011b 02       		.uleb128 0x2
+ 384 011c 75       		.byte	0x75
+ 385 011d 00       		.sleb128 0
+ 386 011e 00       		.byte	0
+ 387 011f 07       		.uleb128 0x7
+ 388 0120 52000000 		.4byte	.LVL7
+ 389 0124 9F020000 		.4byte	0x29f
+ 390 0128 32010000 		.4byte	0x132
+ 391 012c 08       		.uleb128 0x8
+ 392 012d 01       		.uleb128 0x1
+ 393 012e 50       		.byte	0x50
+ 394 012f 01       		.uleb128 0x1
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 9
+
+
+ 395 0130 31       		.byte	0x31
+ 396 0131 00       		.byte	0
+ 397 0132 07       		.uleb128 0x7
+ 398 0133 64000000 		.4byte	.LVL9
+ 399 0137 9F020000 		.4byte	0x29f
+ 400 013b 45010000 		.4byte	0x145
+ 401 013f 08       		.uleb128 0x8
+ 402 0140 01       		.uleb128 0x1
+ 403 0141 50       		.byte	0x50
+ 404 0142 01       		.uleb128 0x1
+ 405 0143 30       		.byte	0x30
+ 406 0144 00       		.byte	0
+ 407 0145 07       		.uleb128 0x7
+ 408 0146 7A000000 		.4byte	.LVL11
+ 409 014a 94020000 		.4byte	0x294
+ 410 014e 62010000 		.4byte	0x162
+ 411 0152 08       		.uleb128 0x8
+ 412 0153 01       		.uleb128 0x1
+ 413 0154 50       		.byte	0x50
+ 414 0155 02       		.uleb128 0x2
+ 415 0156 74       		.byte	0x74
+ 416 0157 00       		.sleb128 0
+ 417 0158 08       		.uleb128 0x8
+ 418 0159 01       		.uleb128 0x1
+ 419 015a 51       		.byte	0x51
+ 420 015b 05       		.uleb128 0x5
+ 421 015c 03       		.byte	0x3
+ 422 015d 18000000 		.4byte	.LC2
+ 423 0161 00       		.byte	0
+ 424 0162 0A       		.uleb128 0xa
+ 425 0163 80000000 		.4byte	.LVL12
+ 426 0167 73020000 		.4byte	0x273
+ 427 016b 08       		.uleb128 0x8
+ 428 016c 01       		.uleb128 0x1
+ 429 016d 50       		.byte	0x50
+ 430 016e 02       		.uleb128 0x2
+ 431 016f 74       		.byte	0x74
+ 432 0170 00       		.sleb128 0
+ 433 0171 00       		.byte	0
+ 434 0172 00       		.byte	0
+ 435 0173 0B       		.uleb128 0xb
+ 436 0174 30010000 		.4byte	.LASF37
+ 437 0178 01       		.byte	0x1
+ 438 0179 25       		.byte	0x25
+ 439 017a 68000000 		.4byte	0x68
+ 440 017e 00000000 		.4byte	.LFB65
+ 441 0182 44000000 		.4byte	.LFE65-.LFB65
+ 442 0186 01       		.uleb128 0x1
+ 443 0187 9C       		.byte	0x9c
+ 444 0188 1F020000 		.4byte	0x21f
+ 445 018c 09       		.uleb128 0x9
+ 446 018d 06000000 		.4byte	.LVL13
+ 447 0191 AA020000 		.4byte	0x2aa
+ 448 0195 09       		.uleb128 0x9
+ 449 0196 0A000000 		.4byte	.LVL14
+ 450 019a B5020000 		.4byte	0x2b5
+ 451 019e 07       		.uleb128 0x7
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 10
+
+
+ 452 019f 12000000 		.4byte	.LVL15
+ 453 01a3 C0020000 		.4byte	0x2c0
+ 454 01a7 B5010000 		.4byte	0x1b5
+ 455 01ab 08       		.uleb128 0x8
+ 456 01ac 01       		.uleb128 0x1
+ 457 01ad 50       		.byte	0x50
+ 458 01ae 05       		.uleb128 0x5
+ 459 01af 03       		.byte	0x3
+ 460 01b0 00000000 		.4byte	Timer_ISR_Handler
+ 461 01b4 00       		.byte	0
+ 462 01b5 07       		.uleb128 0x7
+ 463 01b6 1A000000 		.4byte	.LVL16
+ 464 01ba 73020000 		.4byte	0x273
+ 465 01be CC010000 		.4byte	0x1cc
+ 466 01c2 08       		.uleb128 0x8
+ 467 01c3 01       		.uleb128 0x1
+ 468 01c4 50       		.byte	0x50
+ 469 01c5 05       		.uleb128 0x5
+ 470 01c6 03       		.byte	0x3
+ 471 01c7 28000000 		.4byte	.LC3
+ 472 01cb 00       		.byte	0
+ 473 01cc 07       		.uleb128 0x7
+ 474 01cd 20000000 		.4byte	.LVL17
+ 475 01d1 CB020000 		.4byte	0x2cb
+ 476 01d5 DF010000 		.4byte	0x1df
+ 477 01d9 08       		.uleb128 0x8
+ 478 01da 01       		.uleb128 0x1
+ 479 01db 50       		.byte	0x50
+ 480 01dc 01       		.uleb128 0x1
+ 481 01dd 31       		.byte	0x31
+ 482 01de 00       		.byte	0
+ 483 01df 07       		.uleb128 0x7
+ 484 01e0 26000000 		.4byte	.LVL18
+ 485 01e4 D6020000 		.4byte	0x2d6
+ 486 01e8 F2010000 		.4byte	0x1f2
+ 487 01ec 08       		.uleb128 0x8
+ 488 01ed 01       		.uleb128 0x1
+ 489 01ee 50       		.byte	0x50
+ 490 01ef 01       		.uleb128 0x1
+ 491 01f0 3A       		.byte	0x3a
+ 492 01f1 00       		.byte	0
+ 493 01f2 07       		.uleb128 0x7
+ 494 01f3 2C000000 		.4byte	.LVL19
+ 495 01f7 CB020000 		.4byte	0x2cb
+ 496 01fb 05020000 		.4byte	0x205
+ 497 01ff 08       		.uleb128 0x8
+ 498 0200 01       		.uleb128 0x1
+ 499 0201 50       		.byte	0x50
+ 500 0202 01       		.uleb128 0x1
+ 501 0203 30       		.byte	0x30
+ 502 0204 00       		.byte	0
+ 503 0205 09       		.uleb128 0x9
+ 504 0206 30000000 		.4byte	.LVL20
+ 505 020a E1020000 		.4byte	0x2e1
+ 506 020e 0A       		.uleb128 0xa
+ 507 020f 3A000000 		.4byte	.LVL21
+ 508 0213 EC020000 		.4byte	0x2ec
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 11
+
+
+ 509 0217 08       		.uleb128 0x8
+ 510 0218 01       		.uleb128 0x1
+ 511 0219 50       		.byte	0x50
+ 512 021a 02       		.uleb128 0x2
+ 513 021b 08       		.byte	0x8
+ 514 021c 64       		.byte	0x64
+ 515 021d 00       		.byte	0
+ 516 021e 00       		.byte	0
+ 517 021f 0C       		.uleb128 0xc
+ 518 0220 15010000 		.4byte	.LASF17
+ 519 0224 05       		.byte	0x5
+ 520 0225 1207     		.2byte	0x712
+ 521 0227 2B020000 		.4byte	0x22b
+ 522 022b 0D       		.uleb128 0xd
+ 523 022c 76000000 		.4byte	0x76
+ 524 0230 0E       		.uleb128 0xe
+ 525 0231 FD010000 		.4byte	.LASF18
+ 526 0235 01       		.byte	0x1
+ 527 0236 0E       		.byte	0xe
+ 528 0237 81000000 		.4byte	0x81
+ 529 023b 05       		.uleb128 0x5
+ 530 023c 03       		.byte	0x3
+ 531 023d 00000000 		.4byte	count
+ 532 0241 0E       		.uleb128 0xe
+ 533 0242 7E020000 		.4byte	.LASF19
+ 534 0246 01       		.byte	0x1
+ 535 0247 0F       		.byte	0xf
+ 536 0248 8D000000 		.4byte	0x8d
+ 537 024c 05       		.uleb128 0x5
+ 538 024d 03       		.byte	0x3
+ 539 024e 00000000 		.4byte	distance_measured
+ 540 0252 0F       		.uleb128 0xf
+ 541 0253 9B000000 		.4byte	0x9b
+ 542 0257 62020000 		.4byte	0x262
+ 543 025b 10       		.uleb128 0x10
+ 544 025c A9000000 		.4byte	0xa9
+ 545 0260 0E       		.byte	0xe
+ 546 0261 00       		.byte	0
+ 547 0262 0E       		.uleb128 0xe
+ 548 0263 DC010000 		.4byte	.LASF20
+ 549 0267 01       		.byte	0x1
+ 550 0268 10       		.byte	0x10
+ 551 0269 52020000 		.4byte	0x252
+ 552 026d 05       		.uleb128 0x5
+ 553 026e 03       		.byte	0x3
+ 554 026f 00000000 		.4byte	outputString
+ 555 0273 11       		.uleb128 0x11
+ 556 0274 25000000 		.4byte	.LASF21
+ 557 0278 25000000 		.4byte	.LASF21
+ 558 027c 06       		.byte	0x6
+ 559 027d 8B       		.byte	0x8b
+ 560 027e 11       		.uleb128 0x11
+ 561 027f 0D020000 		.4byte	.LASF22
+ 562 0283 0D020000 		.4byte	.LASF22
+ 563 0287 07       		.byte	0x7
+ 564 0288 5E       		.byte	0x5e
+ 565 0289 11       		.uleb128 0x11
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 12
+
+
+ 566 028a E9010000 		.4byte	.LASF23
+ 567 028e E9010000 		.4byte	.LASF23
+ 568 0292 07       		.byte	0x7
+ 569 0293 69       		.byte	0x69
+ 570 0294 11       		.uleb128 0x11
+ 571 0295 5C020000 		.4byte	.LASF24
+ 572 0299 5C020000 		.4byte	.LASF24
+ 573 029d 08       		.byte	0x8
+ 574 029e E7       		.byte	0xe7
+ 575 029f 11       		.uleb128 0x11
+ 576 02a0 1B000000 		.4byte	.LASF25
+ 577 02a4 1B000000 		.4byte	.LASF25
+ 578 02a8 09       		.byte	0x9
+ 579 02a9 26       		.byte	0x26
+ 580 02aa 11       		.uleb128 0x11
+ 581 02ab 00000000 		.4byte	.LASF26
+ 582 02af 00000000 		.4byte	.LASF26
+ 583 02b3 06       		.byte	0x6
+ 584 02b4 54       		.byte	0x54
+ 585 02b5 11       		.uleb128 0x11
+ 586 02b6 0D000000 		.4byte	.LASF27
+ 587 02ba 0D000000 		.4byte	.LASF27
+ 588 02be 07       		.byte	0x7
+ 589 02bf 5A       		.byte	0x5a
+ 590 02c0 11       		.uleb128 0x11
+ 591 02c1 4E020000 		.4byte	.LASF28
+ 592 02c5 4E020000 		.4byte	.LASF28
+ 593 02c9 0A       		.byte	0xa
+ 594 02ca 18       		.byte	0x18
+ 595 02cb 11       		.uleb128 0x11
+ 596 02cc 36000000 		.4byte	.LASF29
+ 597 02d0 36000000 		.4byte	.LASF29
+ 598 02d4 0B       		.byte	0xb
+ 599 02d5 26       		.byte	0x26
+ 600 02d6 11       		.uleb128 0x11
+ 601 02d7 35010000 		.4byte	.LASF30
+ 602 02db 35010000 		.4byte	.LASF30
+ 603 02df 0C       		.byte	0xc
+ 604 02e0 77       		.byte	0x77
+ 605 02e1 11       		.uleb128 0x11
+ 606 02e2 4C010000 		.4byte	.LASF31
+ 607 02e6 4C010000 		.4byte	.LASF31
+ 608 02ea 0D       		.byte	0xd
+ 609 02eb 29       		.byte	0x29
+ 610 02ec 11       		.uleb128 0x11
+ 611 02ed 64020000 		.4byte	.LASF32
+ 612 02f1 64020000 		.4byte	.LASF32
+ 613 02f5 0C       		.byte	0xc
+ 614 02f6 76       		.byte	0x76
+ 615 02f7 00       		.byte	0
+ 616              		.section	.debug_abbrev,"",%progbits
+ 617              	.Ldebug_abbrev0:
+ 618 0000 01       		.uleb128 0x1
+ 619 0001 11       		.uleb128 0x11
+ 620 0002 01       		.byte	0x1
+ 621 0003 25       		.uleb128 0x25
+ 622 0004 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 13
+
+
+ 623 0005 13       		.uleb128 0x13
+ 624 0006 0B       		.uleb128 0xb
+ 625 0007 03       		.uleb128 0x3
+ 626 0008 0E       		.uleb128 0xe
+ 627 0009 1B       		.uleb128 0x1b
+ 628 000a 0E       		.uleb128 0xe
+ 629 000b 55       		.uleb128 0x55
+ 630 000c 17       		.uleb128 0x17
+ 631 000d 11       		.uleb128 0x11
+ 632 000e 01       		.uleb128 0x1
+ 633 000f 10       		.uleb128 0x10
+ 634 0010 17       		.uleb128 0x17
+ 635 0011 00       		.byte	0
+ 636 0012 00       		.byte	0
+ 637 0013 02       		.uleb128 0x2
+ 638 0014 24       		.uleb128 0x24
+ 639 0015 00       		.byte	0
+ 640 0016 0B       		.uleb128 0xb
+ 641 0017 0B       		.uleb128 0xb
+ 642 0018 3E       		.uleb128 0x3e
+ 643 0019 0B       		.uleb128 0xb
+ 644 001a 03       		.uleb128 0x3
+ 645 001b 0E       		.uleb128 0xe
+ 646 001c 00       		.byte	0
+ 647 001d 00       		.byte	0
+ 648 001e 03       		.uleb128 0x3
+ 649 001f 16       		.uleb128 0x16
+ 650 0020 00       		.byte	0
+ 651 0021 03       		.uleb128 0x3
+ 652 0022 0E       		.uleb128 0xe
+ 653 0023 3A       		.uleb128 0x3a
+ 654 0024 0B       		.uleb128 0xb
+ 655 0025 3B       		.uleb128 0x3b
+ 656 0026 0B       		.uleb128 0xb
+ 657 0027 49       		.uleb128 0x49
+ 658 0028 13       		.uleb128 0x13
+ 659 0029 00       		.byte	0
+ 660 002a 00       		.byte	0
+ 661 002b 04       		.uleb128 0x4
+ 662 002c 24       		.uleb128 0x24
+ 663 002d 00       		.byte	0
+ 664 002e 0B       		.uleb128 0xb
+ 665 002f 0B       		.uleb128 0xb
+ 666 0030 3E       		.uleb128 0x3e
+ 667 0031 0B       		.uleb128 0xb
+ 668 0032 03       		.uleb128 0x3
+ 669 0033 08       		.uleb128 0x8
+ 670 0034 00       		.byte	0
+ 671 0035 00       		.byte	0
+ 672 0036 05       		.uleb128 0x5
+ 673 0037 16       		.uleb128 0x16
+ 674 0038 00       		.byte	0
+ 675 0039 03       		.uleb128 0x3
+ 676 003a 0E       		.uleb128 0xe
+ 677 003b 3A       		.uleb128 0x3a
+ 678 003c 0B       		.uleb128 0xb
+ 679 003d 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 14
+
+
+ 680 003e 05       		.uleb128 0x5
+ 681 003f 49       		.uleb128 0x49
+ 682 0040 13       		.uleb128 0x13
+ 683 0041 00       		.byte	0
+ 684 0042 00       		.byte	0
+ 685 0043 06       		.uleb128 0x6
+ 686 0044 2E       		.uleb128 0x2e
+ 687 0045 01       		.byte	0x1
+ 688 0046 3F       		.uleb128 0x3f
+ 689 0047 19       		.uleb128 0x19
+ 690 0048 03       		.uleb128 0x3
+ 691 0049 0E       		.uleb128 0xe
+ 692 004a 3A       		.uleb128 0x3a
+ 693 004b 0B       		.uleb128 0xb
+ 694 004c 3B       		.uleb128 0x3b
+ 695 004d 0B       		.uleb128 0xb
+ 696 004e 27       		.uleb128 0x27
+ 697 004f 19       		.uleb128 0x19
+ 698 0050 11       		.uleb128 0x11
+ 699 0051 01       		.uleb128 0x1
+ 700 0052 12       		.uleb128 0x12
+ 701 0053 06       		.uleb128 0x6
+ 702 0054 40       		.uleb128 0x40
+ 703 0055 18       		.uleb128 0x18
+ 704 0056 9642     		.uleb128 0x2116
+ 705 0058 19       		.uleb128 0x19
+ 706 0059 01       		.uleb128 0x1
+ 707 005a 13       		.uleb128 0x13
+ 708 005b 00       		.byte	0
+ 709 005c 00       		.byte	0
+ 710 005d 07       		.uleb128 0x7
+ 711 005e 898201   		.uleb128 0x4109
+ 712 0061 01       		.byte	0x1
+ 713 0062 11       		.uleb128 0x11
+ 714 0063 01       		.uleb128 0x1
+ 715 0064 31       		.uleb128 0x31
+ 716 0065 13       		.uleb128 0x13
+ 717 0066 01       		.uleb128 0x1
+ 718 0067 13       		.uleb128 0x13
+ 719 0068 00       		.byte	0
+ 720 0069 00       		.byte	0
+ 721 006a 08       		.uleb128 0x8
+ 722 006b 8A8201   		.uleb128 0x410a
+ 723 006e 00       		.byte	0
+ 724 006f 02       		.uleb128 0x2
+ 725 0070 18       		.uleb128 0x18
+ 726 0071 9142     		.uleb128 0x2111
+ 727 0073 18       		.uleb128 0x18
+ 728 0074 00       		.byte	0
+ 729 0075 00       		.byte	0
+ 730 0076 09       		.uleb128 0x9
+ 731 0077 898201   		.uleb128 0x4109
+ 732 007a 00       		.byte	0
+ 733 007b 11       		.uleb128 0x11
+ 734 007c 01       		.uleb128 0x1
+ 735 007d 31       		.uleb128 0x31
+ 736 007e 13       		.uleb128 0x13
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 15
+
+
+ 737 007f 00       		.byte	0
+ 738 0080 00       		.byte	0
+ 739 0081 0A       		.uleb128 0xa
+ 740 0082 898201   		.uleb128 0x4109
+ 741 0085 01       		.byte	0x1
+ 742 0086 11       		.uleb128 0x11
+ 743 0087 01       		.uleb128 0x1
+ 744 0088 31       		.uleb128 0x31
+ 745 0089 13       		.uleb128 0x13
+ 746 008a 00       		.byte	0
+ 747 008b 00       		.byte	0
+ 748 008c 0B       		.uleb128 0xb
+ 749 008d 2E       		.uleb128 0x2e
+ 750 008e 01       		.byte	0x1
+ 751 008f 3F       		.uleb128 0x3f
+ 752 0090 19       		.uleb128 0x19
+ 753 0091 03       		.uleb128 0x3
+ 754 0092 0E       		.uleb128 0xe
+ 755 0093 3A       		.uleb128 0x3a
+ 756 0094 0B       		.uleb128 0xb
+ 757 0095 3B       		.uleb128 0x3b
+ 758 0096 0B       		.uleb128 0xb
+ 759 0097 27       		.uleb128 0x27
+ 760 0098 19       		.uleb128 0x19
+ 761 0099 49       		.uleb128 0x49
+ 762 009a 13       		.uleb128 0x13
+ 763 009b 8701     		.uleb128 0x87
+ 764 009d 19       		.uleb128 0x19
+ 765 009e 11       		.uleb128 0x11
+ 766 009f 01       		.uleb128 0x1
+ 767 00a0 12       		.uleb128 0x12
+ 768 00a1 06       		.uleb128 0x6
+ 769 00a2 40       		.uleb128 0x40
+ 770 00a3 18       		.uleb128 0x18
+ 771 00a4 9742     		.uleb128 0x2117
+ 772 00a6 19       		.uleb128 0x19
+ 773 00a7 01       		.uleb128 0x1
+ 774 00a8 13       		.uleb128 0x13
+ 775 00a9 00       		.byte	0
+ 776 00aa 00       		.byte	0
+ 777 00ab 0C       		.uleb128 0xc
+ 778 00ac 34       		.uleb128 0x34
+ 779 00ad 00       		.byte	0
+ 780 00ae 03       		.uleb128 0x3
+ 781 00af 0E       		.uleb128 0xe
+ 782 00b0 3A       		.uleb128 0x3a
+ 783 00b1 0B       		.uleb128 0xb
+ 784 00b2 3B       		.uleb128 0x3b
+ 785 00b3 05       		.uleb128 0x5
+ 786 00b4 49       		.uleb128 0x49
+ 787 00b5 13       		.uleb128 0x13
+ 788 00b6 3F       		.uleb128 0x3f
+ 789 00b7 19       		.uleb128 0x19
+ 790 00b8 3C       		.uleb128 0x3c
+ 791 00b9 19       		.uleb128 0x19
+ 792 00ba 00       		.byte	0
+ 793 00bb 00       		.byte	0
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 16
+
+
+ 794 00bc 0D       		.uleb128 0xd
+ 795 00bd 35       		.uleb128 0x35
+ 796 00be 00       		.byte	0
+ 797 00bf 49       		.uleb128 0x49
+ 798 00c0 13       		.uleb128 0x13
+ 799 00c1 00       		.byte	0
+ 800 00c2 00       		.byte	0
+ 801 00c3 0E       		.uleb128 0xe
+ 802 00c4 34       		.uleb128 0x34
+ 803 00c5 00       		.byte	0
+ 804 00c6 03       		.uleb128 0x3
+ 805 00c7 0E       		.uleb128 0xe
+ 806 00c8 3A       		.uleb128 0x3a
+ 807 00c9 0B       		.uleb128 0xb
+ 808 00ca 3B       		.uleb128 0x3b
+ 809 00cb 0B       		.uleb128 0xb
+ 810 00cc 49       		.uleb128 0x49
+ 811 00cd 13       		.uleb128 0x13
+ 812 00ce 3F       		.uleb128 0x3f
+ 813 00cf 19       		.uleb128 0x19
+ 814 00d0 02       		.uleb128 0x2
+ 815 00d1 18       		.uleb128 0x18
+ 816 00d2 00       		.byte	0
+ 817 00d3 00       		.byte	0
+ 818 00d4 0F       		.uleb128 0xf
+ 819 00d5 01       		.uleb128 0x1
+ 820 00d6 01       		.byte	0x1
+ 821 00d7 49       		.uleb128 0x49
+ 822 00d8 13       		.uleb128 0x13
+ 823 00d9 01       		.uleb128 0x1
+ 824 00da 13       		.uleb128 0x13
+ 825 00db 00       		.byte	0
+ 826 00dc 00       		.byte	0
+ 827 00dd 10       		.uleb128 0x10
+ 828 00de 21       		.uleb128 0x21
+ 829 00df 00       		.byte	0
+ 830 00e0 49       		.uleb128 0x49
+ 831 00e1 13       		.uleb128 0x13
+ 832 00e2 2F       		.uleb128 0x2f
+ 833 00e3 0B       		.uleb128 0xb
+ 834 00e4 00       		.byte	0
+ 835 00e5 00       		.byte	0
+ 836 00e6 11       		.uleb128 0x11
+ 837 00e7 2E       		.uleb128 0x2e
+ 838 00e8 00       		.byte	0
+ 839 00e9 3F       		.uleb128 0x3f
+ 840 00ea 19       		.uleb128 0x19
+ 841 00eb 3C       		.uleb128 0x3c
+ 842 00ec 19       		.uleb128 0x19
+ 843 00ed 6E       		.uleb128 0x6e
+ 844 00ee 0E       		.uleb128 0xe
+ 845 00ef 03       		.uleb128 0x3
+ 846 00f0 0E       		.uleb128 0xe
+ 847 00f1 3A       		.uleb128 0x3a
+ 848 00f2 0B       		.uleb128 0xb
+ 849 00f3 3B       		.uleb128 0x3b
+ 850 00f4 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 17
+
+
+ 851 00f5 00       		.byte	0
+ 852 00f6 00       		.byte	0
+ 853 00f7 00       		.byte	0
+ 854              		.section	.debug_aranges,"",%progbits
+ 855 0000 24000000 		.4byte	0x24
+ 856 0004 0200     		.2byte	0x2
+ 857 0006 00000000 		.4byte	.Ldebug_info0
+ 858 000a 04       		.byte	0x4
+ 859 000b 00       		.byte	0
+ 860 000c 0000     		.2byte	0
+ 861 000e 0000     		.2byte	0
+ 862 0010 00000000 		.4byte	.LFB64
+ 863 0014 A0000000 		.4byte	.LFE64-.LFB64
+ 864 0018 00000000 		.4byte	.LFB65
+ 865 001c 44000000 		.4byte	.LFE65-.LFB65
+ 866 0020 00000000 		.4byte	0
+ 867 0024 00000000 		.4byte	0
+ 868              		.section	.debug_ranges,"",%progbits
+ 869              	.Ldebug_ranges0:
+ 870 0000 00000000 		.4byte	.LFB64
+ 871 0004 A0000000 		.4byte	.LFE64
+ 872 0008 00000000 		.4byte	.LFB65
+ 873 000c 44000000 		.4byte	.LFE65
+ 874 0010 00000000 		.4byte	0
+ 875 0014 00000000 		.4byte	0
+ 876              		.section	.debug_line,"",%progbits
+ 877              	.Ldebug_line0:
+ 878 0000 49020000 		.section	.debug_str,"MS",%progbits,1
+ 878      02000E02 
+ 878      00000201 
+ 878      FB0E0D00 
+ 878      01010101 
+ 879              	.LASF26:
+ 880 0000 55415254 		.ascii	"UART_1_Start\000"
+ 880      5F315F53 
+ 880      74617274 
+ 880      00
+ 881              	.LASF27:
+ 882 000d 54696D65 		.ascii	"Timer_1_Start\000"
+ 882      725F315F 
+ 882      53746172 
+ 882      7400
+ 883              	.LASF25:
+ 884 001b 4C45445F 		.ascii	"LED_Write\000"
+ 884      57726974 
+ 884      6500
+ 885              	.LASF21:
+ 886 0025 55415254 		.ascii	"UART_1_PutString\000"
+ 886      5F315F50 
+ 886      75745374 
+ 886      72696E67 
+ 886      00
+ 887              	.LASF29:
+ 888 0036 54726967 		.ascii	"Trigger_Write\000"
+ 888      6765725F 
+ 888      57726974 
+ 888      6500
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 18
+
+
+ 889              	.LASF9:
+ 890 0044 5F5F696E 		.ascii	"__int32_t\000"
+ 890      7433325F 
+ 890      7400
+ 891              	.LASF12:
+ 892 004e 666C6F61 		.ascii	"float\000"
+ 892      7400
+ 893              	.LASF1:
+ 894 0054 756E7369 		.ascii	"unsigned char\000"
+ 894      676E6564 
+ 894      20636861 
+ 894      7200
+ 895              	.LASF33:
+ 896 0062 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 896      43313120 
+ 896      352E342E 
+ 896      31203230 
+ 896      31363036 
+ 897 0095 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 897      20726576 
+ 897      6973696F 
+ 897      6E203233 
+ 897      37373135 
+ 898 00c8 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 898      66756E63 
+ 898      74696F6E 
+ 898      2D736563 
+ 898      74696F6E 
+ 899              	.LASF5:
+ 900 00f0 6C6F6E67 		.ascii	"long unsigned int\000"
+ 900      20756E73 
+ 900      69676E65 
+ 900      6420696E 
+ 900      7400
+ 901              	.LASF3:
+ 902 0102 73686F72 		.ascii	"short unsigned int\000"
+ 902      7420756E 
+ 902      7369676E 
+ 902      65642069 
+ 902      6E7400
+ 903              	.LASF17:
+ 904 0115 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 904      52784275 
+ 904      66666572 
+ 904      00
+ 905              	.LASF13:
+ 906 0122 646F7562 		.ascii	"double\000"
+ 906      6C6500
+ 907              	.LASF11:
+ 908 0129 75696E74 		.ascii	"uint16\000"
+ 908      313600
+ 909              	.LASF37:
+ 910 0130 6D61696E 		.ascii	"main\000"
+ 910      00
+ 911              	.LASF30:
+ 912 0135 43794465 		.ascii	"CyDelayUs\000"
+ 912      6C617955 
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 19
+
+
+ 912      7300
+ 913              	.LASF8:
+ 914 013f 756E7369 		.ascii	"unsigned int\000"
+ 914      676E6564 
+ 914      20696E74 
+ 914      00
+ 915              	.LASF31:
+ 916 014c 4563686F 		.ascii	"Echo_Read\000"
+ 916      5F526561 
+ 916      6400
+ 917              	.LASF7:
+ 918 0156 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 918      206C6F6E 
+ 918      6720756E 
+ 918      7369676E 
+ 918      65642069 
+ 919              	.LASF10:
+ 920 016d 696E7433 		.ascii	"int32_t\000"
+ 920      325F7400 
+ 921              	.LASF16:
+ 922 0175 73697A65 		.ascii	"sizetype\000"
+ 922      74797065 
+ 922      00
+ 923              	.LASF6:
+ 924 017e 6C6F6E67 		.ascii	"long long int\000"
+ 924      206C6F6E 
+ 924      6720696E 
+ 924      7400
+ 925              	.LASF35:
+ 926 018c 433A5C55 		.ascii	"C:\\Users\\Angus\\Documents\\PSoC Creator\\EngDesig"
+ 926      73657273 
+ 926      5C416E67 
+ 926      75735C44 
+ 926      6F63756D 
+ 927 01ba 6E5C556C 		.ascii	"n\\Ultra-Sonic Sensor.cydsn\000"
+ 927      7472612D 
+ 927      536F6E69 
+ 927      63205365 
+ 927      6E736F72 
+ 928              	.LASF34:
+ 929 01d5 6D61696E 		.ascii	"main.c\000"
+ 929      2E6300
+ 930              	.LASF20:
+ 931 01dc 6F757470 		.ascii	"outputString\000"
+ 931      75745374 
+ 931      72696E67 
+ 931      00
+ 932              	.LASF23:
+ 933 01e9 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 933      725F315F 
+ 933      52656164 
+ 933      436F756E 
+ 933      74657200 
+ 934              	.LASF18:
+ 935 01fd 636F756E 		.ascii	"count\000"
+ 935      7400
+ 936              	.LASF2:
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccIoTZq1.s 			page 20
+
+
+ 937 0203 73686F72 		.ascii	"short int\000"
+ 937      7420696E 
+ 937      7400
+ 938              	.LASF22:
+ 939 020d 54696D65 		.ascii	"Timer_1_ReadStatusRegister\000"
+ 939      725F315F 
+ 939      52656164 
+ 939      53746174 
+ 939      75735265 
+ 940              	.LASF4:
+ 941 0228 6C6F6E67 		.ascii	"long int\000"
+ 941      20696E74 
+ 941      00
+ 942              	.LASF14:
+ 943 0231 63686172 		.ascii	"char\000"
+ 943      00
+ 944              	.LASF15:
+ 945 0236 6C6F6E67 		.ascii	"long double\000"
+ 945      20646F75 
+ 945      626C6500 
+ 946              	.LASF0:
+ 947 0242 7369676E 		.ascii	"signed char\000"
+ 947      65642063 
+ 947      68617200 
+ 948              	.LASF28:
+ 949 024e 6973725F 		.ascii	"isr_1_StartEx\000"
+ 949      315F5374 
+ 949      61727445 
+ 949      7800
+ 950              	.LASF24:
+ 951 025c 73707269 		.ascii	"sprintf\000"
+ 951      6E746600 
+ 952              	.LASF32:
+ 953 0264 43794465 		.ascii	"CyDelay\000"
+ 953      6C617900 
+ 954              	.LASF36:
+ 955 026c 54696D65 		.ascii	"Timer_ISR_Handler\000"
+ 955      725F4953 
+ 955      525F4861 
+ 955      6E646C65 
+ 955      7200
+ 956              	.LASF19:
+ 957 027e 64697374 		.ascii	"distance_measured\000"
+ 957      616E6365 
+ 957      5F6D6561 
+ 957      73757265 
+ 957      6400
+ 958              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
