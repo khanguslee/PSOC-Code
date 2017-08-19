@@ -12,26 +12,28 @@
 #include "project.h"
 #include "stdio.h"
 uint16 count = 0;
-float distance_measured = 0;
-char outputString[15];
+int distance_measured;
+char countString[16];
+char distString[16];
 CY_ISR(Timer_ISR_Handler)
 {
     UART_1_PutString("TRIGGERED\n");
     Timer_1_ReadStatusRegister();   // Clear interrupts
     count = Timer_1_ReadCounter();  // Give me current value of count
-    sprintf(outputString, "Count: %d\n" , count);
-    UART_1_PutString(outputString);
+    sprintf(countString, "Count: %d\n" , count);
+    UART_1_PutString(countString);
     distance_measured = (65535 - count) / 58;    // Distance measured in cm
-    if (distance_measured < 10)
+    sprintf(distString, "Distance: %d\n\n" ,distance_measured);
+    UART_1_PutString(distString);
+    
+    if (distance_measured < 5)
     {
         LED_Write(1);
     }
-    else if (distance_measured >= 10)
+    else if (distance_measured >= 5)
     {
         LED_Write(0);
     }
-    sprintf(outputString, "Distance: %f\n" ,distance_measured);
-    UART_1_PutString(outputString);
 }
 
 int main(void)
@@ -44,7 +46,7 @@ int main(void)
     {
         while(Echo_Read() == 0)
         {
-            UART_1_PutString("ECHO\n");
+          
             Trigger_Write(1);
             CyDelayUs(10);        // Need to keep trigger pin on for 10ms
             Trigger_Write(0);
