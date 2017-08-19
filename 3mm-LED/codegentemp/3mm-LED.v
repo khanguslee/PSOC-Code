@@ -1,6 +1,6 @@
 // ======================================================================
 // 3mm-LED.v generated from TopDesign.cysch
-// 08/19/2017 at 18:18
+// 08/19/2017 at 18:42
 // This file is auto generated. ANY EDITS YOU MAKE MAY BE LOST WHEN THIS FILE IS REGENERATED!!!
 // ======================================================================
 
@@ -122,6 +122,18 @@
 // top
 module top ;
 
+    electrical  Net_29;
+    electrical  Net_26;
+    electrical  Net_21;
+    electrical  Net_5;
+    electrical  Net_27;
+    electrical  Net_33;
+    electrical  Net_36;
+    electrical  Net_24;
+    electrical  Net_28;
+    electrical  Net_25;
+    electrical  Net_22;
+    electrical  Net_17;
 
 	wire [0:0] tmpOE__LED_RED_net;
 	wire [0:0] tmpFB_0__LED_RED_net;
@@ -175,7 +187,7 @@ module top ;
 		  .sio_vohsel(""),
 		  .slew_rate(1'b0),
 		  .spanning(0),
-		  .use_annotation(1'b0),
+		  .use_annotation(1'b1),
 		  .vtrip(2'b10),
 		  .width(1),
 		  .ovt_hyst_trim(1'b0),
@@ -189,6 +201,7 @@ module top ;
 		  .io({tmpIO_0__LED_RED_net[0:0]}),
 		  .siovref(tmpSIOVREF__LED_RED_net),
 		  .interrupt({tmpINTERRUPT_0__LED_RED_net[0:0]}),
+		  .annotation({Net_36}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -250,7 +263,7 @@ module top ;
 		  .sio_vohsel(""),
 		  .slew_rate(1'b0),
 		  .spanning(0),
-		  .use_annotation(1'b0),
+		  .use_annotation(1'b1),
 		  .vtrip(2'b10),
 		  .width(1),
 		  .ovt_hyst_trim(1'b0),
@@ -264,6 +277,7 @@ module top ;
 		  .io({tmpIO_0__LED_BLU_net[0:0]}),
 		  .siovref(tmpSIOVREF__LED_BLU_net),
 		  .interrupt({tmpINTERRUPT_0__LED_BLU_net[0:0]}),
+		  .annotation({Net_22}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -325,7 +339,7 @@ module top ;
 		  .sio_vohsel(""),
 		  .slew_rate(1'b0),
 		  .spanning(0),
-		  .use_annotation(1'b0),
+		  .use_annotation(1'b1),
 		  .vtrip(2'b10),
 		  .width(1),
 		  .ovt_hyst_trim(1'b0),
@@ -339,6 +353,7 @@ module top ;
 		  .io({tmpIO_0__LED_GRN_net[0:0]}),
 		  .siovref(tmpSIOVREF__LED_GRN_net),
 		  .interrupt({tmpINTERRUPT_0__LED_GRN_net[0:0]}),
+		  .annotation({Net_33}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -400,7 +415,7 @@ module top ;
 		  .sio_vohsel(""),
 		  .slew_rate(1'b0),
 		  .spanning(0),
-		  .use_annotation(1'b0),
+		  .use_annotation(1'b1),
 		  .vtrip(2'b10),
 		  .width(1),
 		  .ovt_hyst_trim(1'b0),
@@ -414,6 +429,7 @@ module top ;
 		  .io({tmpIO_0__LED_WHT_net[0:0]}),
 		  .siovref(tmpSIOVREF__LED_WHT_net),
 		  .interrupt({tmpINTERRUPT_0__LED_WHT_net[0:0]}),
+		  .annotation({Net_27}),
 		  .in_clock({1'b0}),
 		  .in_clock_en({1'b1}),
 		  .in_reset({1'b0}),
@@ -422,6 +438,122 @@ module top ;
 		  .out_reset({1'b0}));
 
 	assign tmpOE__LED_WHT_net = (`CYDEV_CHIP_MEMBER_USED == `CYDEV_CHIP_MEMBER_3A && `CYDEV_CHIP_REVISION_USED < `CYDEV_CHIP_REVISION_3A_ES3) ? ~{1'b1} : {1'b1};
+
+    cy_annotation_universal_v1_0 D_1 (
+        .connect({
+            Net_17,
+            Net_5
+        })
+    );
+    defparam D_1.comp_name = "LED_v1_0";
+    defparam D_1.port_names = "A, K";
+    defparam D_1.width = 2;
+
+    cy_annotation_universal_v1_0 D_2 (
+        .connect({
+            Net_24,
+            Net_21
+        })
+    );
+    defparam D_2.comp_name = "LED_v1_0";
+    defparam D_2.port_names = "A, K";
+    defparam D_2.width = 2;
+
+    cy_annotation_universal_v1_0 R_3 (
+        .connect({
+            Net_27,
+            Net_25
+        })
+    );
+    defparam R_3.comp_name = "Resistor_v1_0";
+    defparam R_3.port_names = "T1, T2";
+    defparam R_3.width = 2;
+
+    cy_annotation_universal_v1_0 D_3 (
+        .connect({
+            Net_25,
+            Net_26
+        })
+    );
+    defparam D_3.comp_name = "LED_v1_0";
+    defparam D_3.port_names = "A, K";
+    defparam D_3.width = 2;
+
+    cy_annotation_universal_v1_0 R_1 (
+        .connect({
+            Net_36,
+            Net_17
+        })
+    );
+    defparam R_1.comp_name = "Resistor_v1_0";
+    defparam R_1.port_names = "T1, T2";
+    defparam R_1.width = 2;
+
+    cy_annotation_universal_v1_0 R_2 (
+        .connect({
+            Net_22,
+            Net_24
+        })
+    );
+    defparam R_2.comp_name = "Resistor_v1_0";
+    defparam R_2.port_names = "T1, T2";
+    defparam R_2.width = 2;
+
+    cy_annotation_universal_v1_0 D_4 (
+        .connect({
+            Net_28,
+            Net_29
+        })
+    );
+    defparam D_4.comp_name = "LED_v1_0";
+    defparam D_4.port_names = "A, K";
+    defparam D_4.width = 2;
+
+    cy_annotation_universal_v1_0 R_4 (
+        .connect({
+            Net_33,
+            Net_28
+        })
+    );
+    defparam R_4.comp_name = "Resistor_v1_0";
+    defparam R_4.port_names = "T1, T2";
+    defparam R_4.width = 2;
+
+    cy_annotation_universal_v1_0 GND_1 (
+        .connect({
+            Net_29
+        })
+    );
+    defparam GND_1.comp_name = "Gnd_v1_0";
+    defparam GND_1.port_names = "T1";
+    defparam GND_1.width = 1;
+
+    cy_annotation_universal_v1_0 GND_2 (
+        .connect({
+            Net_5
+        })
+    );
+    defparam GND_2.comp_name = "Gnd_v1_0";
+    defparam GND_2.port_names = "T1";
+    defparam GND_2.width = 1;
+
+    cy_annotation_universal_v1_0 GND_3 (
+        .connect({
+            Net_21
+        })
+    );
+    defparam GND_3.comp_name = "Gnd_v1_0";
+    defparam GND_3.port_names = "T1";
+    defparam GND_3.width = 1;
+
+    cy_annotation_universal_v1_0 GND_4 (
+        .connect({
+            Net_26
+        })
+    );
+    defparam GND_4.comp_name = "Gnd_v1_0";
+    defparam GND_4.port_names = "T1";
+    defparam GND_4.width = 1;
 
 
 
