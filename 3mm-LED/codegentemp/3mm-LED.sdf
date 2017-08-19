@@ -1,0 +1,22 @@
+(DELAYFILE
+ (SDFVERSION "IEEE 1497 4.0")
+ (DATE "2017-08-19T08:18:57Z")
+ (DESIGN "3mm-LED")
+ (VENDOR "Cypress Semiconductor")
+ (PROGRAM "PSoC Creator")
+ (VERSION " 4.1 Update 1")
+ (DIVIDER .)
+ (TIMESCALE 1 ns)
+ (CELL
+  (CELLTYPE "3mm-LED")
+  (INSTANCE *)
+  (DELAY
+   (ABSOLUTE
+    (INTERCONNECT LED_RED\(0\)_PAD LED_RED\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_BLU\(0\)_PAD LED_BLU\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_GRN\(0\)_PAD LED_GRN\(0\).pad_in (0.000:0.000:0.000))
+    (INTERCONNECT LED_WHT\(0\)_PAD LED_WHT\(0\).pad_in (0.000:0.000:0.000))
+   )
+  )
+ )
+)
