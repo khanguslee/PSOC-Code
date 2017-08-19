@@ -1,0 +1,7 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|3b8e58b9-7504-4040-9776-f873b322911a
+C:\Users\Angus\Documents\PSoC Creator\4.1\Downloads ( 4.1).cylib\Downloads ( 4.1).cyprj|30ea4455-bf9e-4bda-912d-f0452d50cdf0
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|6082c27e-9f61-4966-baea-1c06e98ed81b
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|b0166bd9-9fe1-4fe9-b6ab-18afa41eb27c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|3056d0a1-8a5f-49bb-9a17-d4a23bb5fabb
+C:\Program Files (x86)\Cypress\PSoC Creator\4.1\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|f9b27f52-2aa7-457b-b091-73121451ab43
+C:\Users\Angus\Documents\PSoC Creator\EngDesign\Colour Sensing.cydsn\Colour Sensing.cyprj|6e6ed54c-5345-4e3e-869b-a0b83fe14d7e

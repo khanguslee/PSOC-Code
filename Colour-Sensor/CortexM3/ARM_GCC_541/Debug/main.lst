@@ -1,0 +1,948 @@
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.SW1_Handler,"ax",%progbits
+  20              		.align	2
+  21              		.global	SW1_Handler
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	SW1_Handler, %function
+  25              	SW1_Handler:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** 
+  15:main.c        **** CY_ISR(SW1_Handler)
+  16:main.c        **** {
+  28              		.loc 1 16 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 16
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 00B5     		push	{lr}
+  33              		.cfi_def_cfa_offset 4
+  34              		.cfi_offset 14, -4
+  35 0002 85B0     		sub	sp, sp, #20
+  36              		.cfi_def_cfa_offset 24
+  17:main.c        ****     int light_result;
+  18:main.c        ****     char display_result[10];
+  19:main.c        ****     
+  20:main.c        ****     // Turn on LED
+  21:main.c        ****     LED_RED_Write(1);
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 2
+
+
+  37              		.loc 1 21 0
+  38 0004 0120     		movs	r0, #1
+  39 0006 FFF7FEFF 		bl	LED_RED_Write
+  40              	.LVL0:
+  22:main.c        ****     
+  23:main.c        ****     // Read & print the photodiode result
+  24:main.c        ****     light_result = ADC_DelSig_1_Read32();
+  41              		.loc 1 24 0
+  42 000a FFF7FEFF 		bl	ADC_DelSig_1_Read32
+  43              	.LVL1:
+  25:main.c        ****     sprintf(display_result, "%d\n", light_result);
+  44              		.loc 1 25 0
+  45 000e 0246     		mov	r2, r0
+  46 0010 0849     		ldr	r1, .L3
+  47 0012 01A8     		add	r0, sp, #4
+  48              	.LVL2:
+  49 0014 FFF7FEFF 		bl	sprintf
+  50              	.LVL3:
+  26:main.c        ****     UART_1_PutString(display_result);
+  51              		.loc 1 26 0
+  52 0018 01A8     		add	r0, sp, #4
+  53 001a FFF7FEFF 		bl	UART_1_PutString
+  54              	.LVL4:
+  27:main.c        ****     
+  28:main.c        ****     // Turn off LED
+  29:main.c        ****     LED_RED_Write(0);
+  55              		.loc 1 29 0
+  56 001e 0020     		movs	r0, #0
+  57 0020 FFF7FEFF 		bl	LED_RED_Write
+  58              	.LVL5:
+  30:main.c        ****     
+  31:main.c        ****     SW1_ClearInterrupt();
+  59              		.loc 1 31 0
+  60 0024 FFF7FEFF 		bl	SW1_ClearInterrupt
+  61              	.LVL6:
+  32:main.c        ****     CyDelay(200);   // A very crude debouncer
+  62              		.loc 1 32 0
+  63 0028 C820     		movs	r0, #200
+  64 002a FFF7FEFF 		bl	CyDelay
+  65              	.LVL7:
+  33:main.c        **** }
+  66              		.loc 1 33 0
+  67 002e 05B0     		add	sp, sp, #20
+  68              		.cfi_def_cfa_offset 4
+  69              		@ sp needed
+  70 0030 5DF804FB 		ldr	pc, [sp], #4
+  71              	.L4:
+  72              		.align	2
+  73              	.L3:
+  74 0034 00000000 		.word	.LC0
+  75              		.cfi_endproc
+  76              	.LFE64:
+  77              		.size	SW1_Handler, .-SW1_Handler
+  78              		.section	.text.main,"ax",%progbits
+  79              		.align	2
+  80              		.global	main
+  81              		.thumb
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 3
+
+
+  82              		.thumb_func
+  83              		.type	main, %function
+  84              	main:
+  85              	.LFB65:
+  34:main.c        **** 
+  35:main.c        **** 
+  36:main.c        **** int main(void)
+  37:main.c        **** {
+  86              		.loc 1 37 0
+  87              		.cfi_startproc
+  88              		@ Volatile: function does not return.
+  89              		@ args = 0, pretend = 0, frame = 0
+  90              		@ frame_needed = 0, uses_anonymous_args = 0
+  91 0000 08B5     		push	{r3, lr}
+  92              		.cfi_def_cfa_offset 8
+  93              		.cfi_offset 3, -8
+  94              		.cfi_offset 14, -4
+  38:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+  95              		.loc 1 38 0
+  96              		.syntax unified
+  97              	@ 38 "main.c" 1
+  98 0002 62B6     		CPSIE   i
+  99              	@ 0 "" 2
+  39:main.c        ****     ADC_DelSig_1_Start();
+ 100              		.loc 1 39 0
+ 101              		.thumb
+ 102              		.syntax unified
+ 103 0004 FFF7FEFF 		bl	ADC_DelSig_1_Start
+ 104              	.LVL8:
+  40:main.c        ****     TIA_1_Start();
+ 105              		.loc 1 40 0
+ 106 0008 FFF7FEFF 		bl	TIA_1_Start
+ 107              	.LVL9:
+  41:main.c        ****     UART_1_Start();
+ 108              		.loc 1 41 0
+ 109 000c FFF7FEFF 		bl	UART_1_Start
+ 110              	.LVL10:
+  42:main.c        ****     isr_1_StartEx(SW1_Handler);
+ 111              		.loc 1 42 0
+ 112 0010 0148     		ldr	r0, .L8
+ 113 0012 FFF7FEFF 		bl	isr_1_StartEx
+ 114              	.LVL11:
+ 115              	.L6:
+ 116 0016 FEE7     		b	.L6
+ 117              	.L9:
+ 118              		.align	2
+ 119              	.L8:
+ 120 0018 00000000 		.word	SW1_Handler
+ 121              		.cfi_endproc
+ 122              	.LFE65:
+ 123              		.size	main, .-main
+ 124              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 125              		.align	2
+ 126              	.LC0:
+ 127 0000 25640A00 		.ascii	"%d\012\000"
+ 128              		.text
+ 129              	.Letext0:
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 4
+
+
+ 130              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 131              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 132              		.file 4 "Generated_Source\\PSoC5/LED_RED.h"
+ 133              		.file 5 "Generated_Source\\PSoC5/ADC_DelSig_1.h"
+ 134              		.file 6 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 135              		.file 7 "Generated_Source\\PSoC5/UART_1.h"
+ 136              		.file 8 "Generated_Source\\PSoC5/SW1.h"
+ 137              		.file 9 "Generated_Source\\PSoC5/CyLib.h"
+ 138              		.file 10 "Generated_Source\\PSoC5/TIA_1.h"
+ 139              		.file 11 "Generated_Source\\PSoC5/isr_1.h"
+ 140              		.file 12 "Generated_Source\\PSoC5/core_cm3.h"
+ 141              		.section	.debug_info,"",%progbits
+ 142              	.Ldebug_info0:
+ 143 0000 24020000 		.4byte	0x224
+ 144 0004 0400     		.2byte	0x4
+ 145 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 146 000a 04       		.byte	0x4
+ 147 000b 01       		.uleb128 0x1
+ 148 000c B6000000 		.4byte	.LASF28
+ 149 0010 0C       		.byte	0xc
+ 150 0011 FD010000 		.4byte	.LASF29
+ 151 0015 4F000000 		.4byte	.LASF30
+ 152 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 153 001d 00000000 		.4byte	0
+ 154 0021 00000000 		.4byte	.Ldebug_line0
+ 155 0025 02       		.uleb128 0x2
+ 156 0026 01       		.byte	0x1
+ 157 0027 06       		.byte	0x6
+ 158 0028 37020000 		.4byte	.LASF0
+ 159 002c 02       		.uleb128 0x2
+ 160 002d 01       		.byte	0x1
+ 161 002e 08       		.byte	0x8
+ 162 002f A8000000 		.4byte	.LASF1
+ 163 0033 02       		.uleb128 0x2
+ 164 0034 02       		.byte	0x2
+ 165 0035 05       		.byte	0x5
+ 166 0036 09020000 		.4byte	.LASF2
+ 167 003a 02       		.uleb128 0x2
+ 168 003b 02       		.byte	0x2
+ 169 003c 07       		.byte	0x7
+ 170 003d 36000000 		.4byte	.LASF3
+ 171 0041 03       		.uleb128 0x3
+ 172 0042 2C000000 		.4byte	.LASF9
+ 173 0046 02       		.byte	0x2
+ 174 0047 3F       		.byte	0x3f
+ 175 0048 4C000000 		.4byte	0x4c
+ 176 004c 02       		.uleb128 0x2
+ 177 004d 04       		.byte	0x4
+ 178 004e 05       		.byte	0x5
+ 179 004f 13020000 		.4byte	.LASF4
+ 180 0053 02       		.uleb128 0x2
+ 181 0054 04       		.byte	0x4
+ 182 0055 07       		.byte	0x7
+ 183 0056 57010000 		.4byte	.LASF5
+ 184 005a 02       		.uleb128 0x2
+ 185 005b 08       		.byte	0x8
+ 186 005c 05       		.byte	0x5
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 5
+
+
+ 187 005d EF010000 		.4byte	.LASF6
+ 188 0061 02       		.uleb128 0x2
+ 189 0062 08       		.byte	0x8
+ 190 0063 07       		.byte	0x7
+ 191 0064 C7010000 		.4byte	.LASF7
+ 192 0068 04       		.uleb128 0x4
+ 193 0069 04       		.byte	0x4
+ 194 006a 05       		.byte	0x5
+ 195 006b 696E7400 		.ascii	"int\000"
+ 196 006f 02       		.uleb128 0x2
+ 197 0070 04       		.byte	0x4
+ 198 0071 07       		.byte	0x7
+ 199 0072 BA010000 		.4byte	.LASF8
+ 200 0076 03       		.uleb128 0x3
+ 201 0077 DE010000 		.4byte	.LASF10
+ 202 007b 03       		.byte	0x3
+ 203 007c 2C       		.byte	0x2c
+ 204 007d 41000000 		.4byte	0x41
+ 205 0081 02       		.uleb128 0x2
+ 206 0082 04       		.byte	0x4
+ 207 0083 04       		.byte	0x4
+ 208 0084 49000000 		.4byte	.LASF11
+ 209 0088 02       		.uleb128 0x2
+ 210 0089 08       		.byte	0x8
+ 211 008a 04       		.byte	0x4
+ 212 008b 8F010000 		.4byte	.LASF12
+ 213 008f 02       		.uleb128 0x2
+ 214 0090 01       		.byte	0x1
+ 215 0091 08       		.byte	0x8
+ 216 0092 04020000 		.4byte	.LASF13
+ 217 0096 02       		.uleb128 0x2
+ 218 0097 08       		.byte	0x8
+ 219 0098 04       		.byte	0x4
+ 220 0099 2B020000 		.4byte	.LASF14
+ 221 009d 02       		.uleb128 0x2
+ 222 009e 04       		.byte	0x4
+ 223 009f 07       		.byte	0x7
+ 224 00a0 E6010000 		.4byte	.LASF15
+ 225 00a4 05       		.uleb128 0x5
+ 226 00a5 76010000 		.4byte	.LASF31
+ 227 00a9 01       		.byte	0x1
+ 228 00aa 0F       		.byte	0xf
+ 229 00ab 00000000 		.4byte	.LFB64
+ 230 00af 38000000 		.4byte	.LFE64-.LFB64
+ 231 00b3 01       		.uleb128 0x1
+ 232 00b4 9C       		.byte	0x9c
+ 233 00b5 50010000 		.4byte	0x150
+ 234 00b9 06       		.uleb128 0x6
+ 235 00ba 69010000 		.4byte	.LASF16
+ 236 00be 01       		.byte	0x1
+ 237 00bf 11       		.byte	0x11
+ 238 00c0 68000000 		.4byte	0x68
+ 239 00c4 00000000 		.4byte	.LLST0
+ 240 00c8 07       		.uleb128 0x7
+ 241 00c9 1C020000 		.4byte	.LASF17
+ 242 00cd 01       		.byte	0x1
+ 243 00ce 12       		.byte	0x12
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 6
+
+
+ 244 00cf 50010000 		.4byte	0x150
+ 245 00d3 02       		.uleb128 0x2
+ 246 00d4 91       		.byte	0x91
+ 247 00d5 6C       		.sleb128 -20
+ 248 00d6 08       		.uleb128 0x8
+ 249 00d7 0A000000 		.4byte	.LVL0
+ 250 00db B9010000 		.4byte	0x1b9
+ 251 00df E9000000 		.4byte	0xe9
+ 252 00e3 09       		.uleb128 0x9
+ 253 00e4 01       		.uleb128 0x1
+ 254 00e5 50       		.byte	0x50
+ 255 00e6 01       		.uleb128 0x1
+ 256 00e7 31       		.byte	0x31
+ 257 00e8 00       		.byte	0
+ 258 00e9 0A       		.uleb128 0xa
+ 259 00ea 0E000000 		.4byte	.LVL1
+ 260 00ee C4010000 		.4byte	0x1c4
+ 261 00f2 08       		.uleb128 0x8
+ 262 00f3 18000000 		.4byte	.LVL3
+ 263 00f7 CF010000 		.4byte	0x1cf
+ 264 00fb 0F010000 		.4byte	0x10f
+ 265 00ff 09       		.uleb128 0x9
+ 266 0100 01       		.uleb128 0x1
+ 267 0101 50       		.byte	0x50
+ 268 0102 02       		.uleb128 0x2
+ 269 0103 91       		.byte	0x91
+ 270 0104 6C       		.sleb128 -20
+ 271 0105 09       		.uleb128 0x9
+ 272 0106 01       		.uleb128 0x1
+ 273 0107 51       		.byte	0x51
+ 274 0108 05       		.uleb128 0x5
+ 275 0109 03       		.byte	0x3
+ 276 010a 00000000 		.4byte	.LC0
+ 277 010e 00       		.byte	0
+ 278 010f 08       		.uleb128 0x8
+ 279 0110 1E000000 		.4byte	.LVL4
+ 280 0114 DA010000 		.4byte	0x1da
+ 281 0118 23010000 		.4byte	0x123
+ 282 011c 09       		.uleb128 0x9
+ 283 011d 01       		.uleb128 0x1
+ 284 011e 50       		.byte	0x50
+ 285 011f 02       		.uleb128 0x2
+ 286 0120 91       		.byte	0x91
+ 287 0121 6C       		.sleb128 -20
+ 288 0122 00       		.byte	0
+ 289 0123 08       		.uleb128 0x8
+ 290 0124 24000000 		.4byte	.LVL5
+ 291 0128 B9010000 		.4byte	0x1b9
+ 292 012c 36010000 		.4byte	0x136
+ 293 0130 09       		.uleb128 0x9
+ 294 0131 01       		.uleb128 0x1
+ 295 0132 50       		.byte	0x50
+ 296 0133 01       		.uleb128 0x1
+ 297 0134 30       		.byte	0x30
+ 298 0135 00       		.byte	0
+ 299 0136 0A       		.uleb128 0xa
+ 300 0137 28000000 		.4byte	.LVL6
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 7
+
+
+ 301 013b E5010000 		.4byte	0x1e5
+ 302 013f 0B       		.uleb128 0xb
+ 303 0140 2E000000 		.4byte	.LVL7
+ 304 0144 F0010000 		.4byte	0x1f0
+ 305 0148 09       		.uleb128 0x9
+ 306 0149 01       		.uleb128 0x1
+ 307 014a 50       		.byte	0x50
+ 308 014b 02       		.uleb128 0x2
+ 309 014c 08       		.byte	0x8
+ 310 014d C8       		.byte	0xc8
+ 311 014e 00       		.byte	0
+ 312 014f 00       		.byte	0
+ 313 0150 0C       		.uleb128 0xc
+ 314 0151 8F000000 		.4byte	0x8f
+ 315 0155 60010000 		.4byte	0x160
+ 316 0159 0D       		.uleb128 0xd
+ 317 015a 9D000000 		.4byte	0x9d
+ 318 015e 09       		.byte	0x9
+ 319 015f 00       		.byte	0
+ 320 0160 0E       		.uleb128 0xe
+ 321 0161 96010000 		.4byte	.LASF32
+ 322 0165 01       		.byte	0x1
+ 323 0166 24       		.byte	0x24
+ 324 0167 68000000 		.4byte	0x68
+ 325 016b 00000000 		.4byte	.LFB65
+ 326 016f 1C000000 		.4byte	.LFE65-.LFB65
+ 327 0173 01       		.uleb128 0x1
+ 328 0174 9C       		.byte	0x9c
+ 329 0175 A8010000 		.4byte	0x1a8
+ 330 0179 0A       		.uleb128 0xa
+ 331 017a 08000000 		.4byte	.LVL8
+ 332 017e FB010000 		.4byte	0x1fb
+ 333 0182 0A       		.uleb128 0xa
+ 334 0183 0C000000 		.4byte	.LVL9
+ 335 0187 06020000 		.4byte	0x206
+ 336 018b 0A       		.uleb128 0xa
+ 337 018c 10000000 		.4byte	.LVL10
+ 338 0190 11020000 		.4byte	0x211
+ 339 0194 0B       		.uleb128 0xb
+ 340 0195 16000000 		.4byte	.LVL11
+ 341 0199 1C020000 		.4byte	0x21c
+ 342 019d 09       		.uleb128 0x9
+ 343 019e 01       		.uleb128 0x1
+ 344 019f 50       		.byte	0x50
+ 345 01a0 05       		.uleb128 0x5
+ 346 01a1 03       		.byte	0x3
+ 347 01a2 00000000 		.4byte	SW1_Handler
+ 348 01a6 00       		.byte	0
+ 349 01a7 00       		.byte	0
+ 350 01a8 0F       		.uleb128 0xf
+ 351 01a9 82010000 		.4byte	.LASF33
+ 352 01ad 0C       		.byte	0xc
+ 353 01ae 1207     		.2byte	0x712
+ 354 01b0 B4010000 		.4byte	0x1b4
+ 355 01b4 10       		.uleb128 0x10
+ 356 01b5 76000000 		.4byte	0x76
+ 357 01b9 11       		.uleb128 0x11
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 8
+
+
+ 358 01ba 1E000000 		.4byte	.LASF18
+ 359 01be 1E000000 		.4byte	.LASF18
+ 360 01c2 04       		.byte	0x4
+ 361 01c3 26       		.byte	0x26
+ 362 01c4 11       		.uleb128 0x11
+ 363 01c5 94000000 		.4byte	.LASF19
+ 364 01c9 94000000 		.4byte	.LASF19
+ 365 01cd 05       		.byte	0x5
+ 366 01ce 56       		.byte	0x56
+ 367 01cf 11       		.uleb128 0x11
+ 368 01d0 51020000 		.4byte	.LASF20
+ 369 01d4 51020000 		.4byte	.LASF20
+ 370 01d8 06       		.byte	0x6
+ 371 01d9 E7       		.byte	0xe7
+ 372 01da 11       		.uleb128 0x11
+ 373 01db 0D000000 		.4byte	.LASF21
+ 374 01df 0D000000 		.4byte	.LASF21
+ 375 01e3 07       		.byte	0x7
+ 376 01e4 8B       		.byte	0x8b
+ 377 01e5 11       		.uleb128 0x11
+ 378 01e6 44010000 		.4byte	.LASF22
+ 379 01ea 44010000 		.4byte	.LASF22
+ 380 01ee 08       		.byte	0x8
+ 381 01ef 2B       		.byte	0x2b
+ 382 01f0 11       		.uleb128 0x11
+ 383 01f1 59020000 		.4byte	.LASF23
+ 384 01f5 59020000 		.4byte	.LASF23
+ 385 01f9 09       		.byte	0x9
+ 386 01fa 76       		.byte	0x76
+ 387 01fb 11       		.uleb128 0x11
+ 388 01fc A7010000 		.4byte	.LASF24
+ 389 0200 A7010000 		.4byte	.LASF24
+ 390 0204 05       		.byte	0x5
+ 391 0205 3A       		.byte	0x3a
+ 392 0206 11       		.uleb128 0x11
+ 393 0207 9B010000 		.4byte	.LASF25
+ 394 020b 9B010000 		.4byte	.LASF25
+ 395 020f 0A       		.byte	0xa
+ 396 0210 3D       		.byte	0x3d
+ 397 0211 11       		.uleb128 0x11
+ 398 0212 00000000 		.4byte	.LASF26
+ 399 0216 00000000 		.4byte	.LASF26
+ 400 021a 07       		.byte	0x7
+ 401 021b 54       		.byte	0x54
+ 402 021c 11       		.uleb128 0x11
+ 403 021d 43020000 		.4byte	.LASF27
+ 404 0221 43020000 		.4byte	.LASF27
+ 405 0225 0B       		.byte	0xb
+ 406 0226 18       		.byte	0x18
+ 407 0227 00       		.byte	0
+ 408              		.section	.debug_abbrev,"",%progbits
+ 409              	.Ldebug_abbrev0:
+ 410 0000 01       		.uleb128 0x1
+ 411 0001 11       		.uleb128 0x11
+ 412 0002 01       		.byte	0x1
+ 413 0003 25       		.uleb128 0x25
+ 414 0004 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 9
+
+
+ 415 0005 13       		.uleb128 0x13
+ 416 0006 0B       		.uleb128 0xb
+ 417 0007 03       		.uleb128 0x3
+ 418 0008 0E       		.uleb128 0xe
+ 419 0009 1B       		.uleb128 0x1b
+ 420 000a 0E       		.uleb128 0xe
+ 421 000b 55       		.uleb128 0x55
+ 422 000c 17       		.uleb128 0x17
+ 423 000d 11       		.uleb128 0x11
+ 424 000e 01       		.uleb128 0x1
+ 425 000f 10       		.uleb128 0x10
+ 426 0010 17       		.uleb128 0x17
+ 427 0011 00       		.byte	0
+ 428 0012 00       		.byte	0
+ 429 0013 02       		.uleb128 0x2
+ 430 0014 24       		.uleb128 0x24
+ 431 0015 00       		.byte	0
+ 432 0016 0B       		.uleb128 0xb
+ 433 0017 0B       		.uleb128 0xb
+ 434 0018 3E       		.uleb128 0x3e
+ 435 0019 0B       		.uleb128 0xb
+ 436 001a 03       		.uleb128 0x3
+ 437 001b 0E       		.uleb128 0xe
+ 438 001c 00       		.byte	0
+ 439 001d 00       		.byte	0
+ 440 001e 03       		.uleb128 0x3
+ 441 001f 16       		.uleb128 0x16
+ 442 0020 00       		.byte	0
+ 443 0021 03       		.uleb128 0x3
+ 444 0022 0E       		.uleb128 0xe
+ 445 0023 3A       		.uleb128 0x3a
+ 446 0024 0B       		.uleb128 0xb
+ 447 0025 3B       		.uleb128 0x3b
+ 448 0026 0B       		.uleb128 0xb
+ 449 0027 49       		.uleb128 0x49
+ 450 0028 13       		.uleb128 0x13
+ 451 0029 00       		.byte	0
+ 452 002a 00       		.byte	0
+ 453 002b 04       		.uleb128 0x4
+ 454 002c 24       		.uleb128 0x24
+ 455 002d 00       		.byte	0
+ 456 002e 0B       		.uleb128 0xb
+ 457 002f 0B       		.uleb128 0xb
+ 458 0030 3E       		.uleb128 0x3e
+ 459 0031 0B       		.uleb128 0xb
+ 460 0032 03       		.uleb128 0x3
+ 461 0033 08       		.uleb128 0x8
+ 462 0034 00       		.byte	0
+ 463 0035 00       		.byte	0
+ 464 0036 05       		.uleb128 0x5
+ 465 0037 2E       		.uleb128 0x2e
+ 466 0038 01       		.byte	0x1
+ 467 0039 3F       		.uleb128 0x3f
+ 468 003a 19       		.uleb128 0x19
+ 469 003b 03       		.uleb128 0x3
+ 470 003c 0E       		.uleb128 0xe
+ 471 003d 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 10
+
+
+ 472 003e 0B       		.uleb128 0xb
+ 473 003f 3B       		.uleb128 0x3b
+ 474 0040 0B       		.uleb128 0xb
+ 475 0041 27       		.uleb128 0x27
+ 476 0042 19       		.uleb128 0x19
+ 477 0043 11       		.uleb128 0x11
+ 478 0044 01       		.uleb128 0x1
+ 479 0045 12       		.uleb128 0x12
+ 480 0046 06       		.uleb128 0x6
+ 481 0047 40       		.uleb128 0x40
+ 482 0048 18       		.uleb128 0x18
+ 483 0049 9742     		.uleb128 0x2117
+ 484 004b 19       		.uleb128 0x19
+ 485 004c 01       		.uleb128 0x1
+ 486 004d 13       		.uleb128 0x13
+ 487 004e 00       		.byte	0
+ 488 004f 00       		.byte	0
+ 489 0050 06       		.uleb128 0x6
+ 490 0051 34       		.uleb128 0x34
+ 491 0052 00       		.byte	0
+ 492 0053 03       		.uleb128 0x3
+ 493 0054 0E       		.uleb128 0xe
+ 494 0055 3A       		.uleb128 0x3a
+ 495 0056 0B       		.uleb128 0xb
+ 496 0057 3B       		.uleb128 0x3b
+ 497 0058 0B       		.uleb128 0xb
+ 498 0059 49       		.uleb128 0x49
+ 499 005a 13       		.uleb128 0x13
+ 500 005b 02       		.uleb128 0x2
+ 501 005c 17       		.uleb128 0x17
+ 502 005d 00       		.byte	0
+ 503 005e 00       		.byte	0
+ 504 005f 07       		.uleb128 0x7
+ 505 0060 34       		.uleb128 0x34
+ 506 0061 00       		.byte	0
+ 507 0062 03       		.uleb128 0x3
+ 508 0063 0E       		.uleb128 0xe
+ 509 0064 3A       		.uleb128 0x3a
+ 510 0065 0B       		.uleb128 0xb
+ 511 0066 3B       		.uleb128 0x3b
+ 512 0067 0B       		.uleb128 0xb
+ 513 0068 49       		.uleb128 0x49
+ 514 0069 13       		.uleb128 0x13
+ 515 006a 02       		.uleb128 0x2
+ 516 006b 18       		.uleb128 0x18
+ 517 006c 00       		.byte	0
+ 518 006d 00       		.byte	0
+ 519 006e 08       		.uleb128 0x8
+ 520 006f 898201   		.uleb128 0x4109
+ 521 0072 01       		.byte	0x1
+ 522 0073 11       		.uleb128 0x11
+ 523 0074 01       		.uleb128 0x1
+ 524 0075 31       		.uleb128 0x31
+ 525 0076 13       		.uleb128 0x13
+ 526 0077 01       		.uleb128 0x1
+ 527 0078 13       		.uleb128 0x13
+ 528 0079 00       		.byte	0
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 11
+
+
+ 529 007a 00       		.byte	0
+ 530 007b 09       		.uleb128 0x9
+ 531 007c 8A8201   		.uleb128 0x410a
+ 532 007f 00       		.byte	0
+ 533 0080 02       		.uleb128 0x2
+ 534 0081 18       		.uleb128 0x18
+ 535 0082 9142     		.uleb128 0x2111
+ 536 0084 18       		.uleb128 0x18
+ 537 0085 00       		.byte	0
+ 538 0086 00       		.byte	0
+ 539 0087 0A       		.uleb128 0xa
+ 540 0088 898201   		.uleb128 0x4109
+ 541 008b 00       		.byte	0
+ 542 008c 11       		.uleb128 0x11
+ 543 008d 01       		.uleb128 0x1
+ 544 008e 31       		.uleb128 0x31
+ 545 008f 13       		.uleb128 0x13
+ 546 0090 00       		.byte	0
+ 547 0091 00       		.byte	0
+ 548 0092 0B       		.uleb128 0xb
+ 549 0093 898201   		.uleb128 0x4109
+ 550 0096 01       		.byte	0x1
+ 551 0097 11       		.uleb128 0x11
+ 552 0098 01       		.uleb128 0x1
+ 553 0099 31       		.uleb128 0x31
+ 554 009a 13       		.uleb128 0x13
+ 555 009b 00       		.byte	0
+ 556 009c 00       		.byte	0
+ 557 009d 0C       		.uleb128 0xc
+ 558 009e 01       		.uleb128 0x1
+ 559 009f 01       		.byte	0x1
+ 560 00a0 49       		.uleb128 0x49
+ 561 00a1 13       		.uleb128 0x13
+ 562 00a2 01       		.uleb128 0x1
+ 563 00a3 13       		.uleb128 0x13
+ 564 00a4 00       		.byte	0
+ 565 00a5 00       		.byte	0
+ 566 00a6 0D       		.uleb128 0xd
+ 567 00a7 21       		.uleb128 0x21
+ 568 00a8 00       		.byte	0
+ 569 00a9 49       		.uleb128 0x49
+ 570 00aa 13       		.uleb128 0x13
+ 571 00ab 2F       		.uleb128 0x2f
+ 572 00ac 0B       		.uleb128 0xb
+ 573 00ad 00       		.byte	0
+ 574 00ae 00       		.byte	0
+ 575 00af 0E       		.uleb128 0xe
+ 576 00b0 2E       		.uleb128 0x2e
+ 577 00b1 01       		.byte	0x1
+ 578 00b2 3F       		.uleb128 0x3f
+ 579 00b3 19       		.uleb128 0x19
+ 580 00b4 03       		.uleb128 0x3
+ 581 00b5 0E       		.uleb128 0xe
+ 582 00b6 3A       		.uleb128 0x3a
+ 583 00b7 0B       		.uleb128 0xb
+ 584 00b8 3B       		.uleb128 0x3b
+ 585 00b9 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 12
+
+
+ 586 00ba 27       		.uleb128 0x27
+ 587 00bb 19       		.uleb128 0x19
+ 588 00bc 49       		.uleb128 0x49
+ 589 00bd 13       		.uleb128 0x13
+ 590 00be 8701     		.uleb128 0x87
+ 591 00c0 19       		.uleb128 0x19
+ 592 00c1 11       		.uleb128 0x11
+ 593 00c2 01       		.uleb128 0x1
+ 594 00c3 12       		.uleb128 0x12
+ 595 00c4 06       		.uleb128 0x6
+ 596 00c5 40       		.uleb128 0x40
+ 597 00c6 18       		.uleb128 0x18
+ 598 00c7 9742     		.uleb128 0x2117
+ 599 00c9 19       		.uleb128 0x19
+ 600 00ca 01       		.uleb128 0x1
+ 601 00cb 13       		.uleb128 0x13
+ 602 00cc 00       		.byte	0
+ 603 00cd 00       		.byte	0
+ 604 00ce 0F       		.uleb128 0xf
+ 605 00cf 34       		.uleb128 0x34
+ 606 00d0 00       		.byte	0
+ 607 00d1 03       		.uleb128 0x3
+ 608 00d2 0E       		.uleb128 0xe
+ 609 00d3 3A       		.uleb128 0x3a
+ 610 00d4 0B       		.uleb128 0xb
+ 611 00d5 3B       		.uleb128 0x3b
+ 612 00d6 05       		.uleb128 0x5
+ 613 00d7 49       		.uleb128 0x49
+ 614 00d8 13       		.uleb128 0x13
+ 615 00d9 3F       		.uleb128 0x3f
+ 616 00da 19       		.uleb128 0x19
+ 617 00db 3C       		.uleb128 0x3c
+ 618 00dc 19       		.uleb128 0x19
+ 619 00dd 00       		.byte	0
+ 620 00de 00       		.byte	0
+ 621 00df 10       		.uleb128 0x10
+ 622 00e0 35       		.uleb128 0x35
+ 623 00e1 00       		.byte	0
+ 624 00e2 49       		.uleb128 0x49
+ 625 00e3 13       		.uleb128 0x13
+ 626 00e4 00       		.byte	0
+ 627 00e5 00       		.byte	0
+ 628 00e6 11       		.uleb128 0x11
+ 629 00e7 2E       		.uleb128 0x2e
+ 630 00e8 00       		.byte	0
+ 631 00e9 3F       		.uleb128 0x3f
+ 632 00ea 19       		.uleb128 0x19
+ 633 00eb 3C       		.uleb128 0x3c
+ 634 00ec 19       		.uleb128 0x19
+ 635 00ed 6E       		.uleb128 0x6e
+ 636 00ee 0E       		.uleb128 0xe
+ 637 00ef 03       		.uleb128 0x3
+ 638 00f0 0E       		.uleb128 0xe
+ 639 00f1 3A       		.uleb128 0x3a
+ 640 00f2 0B       		.uleb128 0xb
+ 641 00f3 3B       		.uleb128 0x3b
+ 642 00f4 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 13
+
+
+ 643 00f5 00       		.byte	0
+ 644 00f6 00       		.byte	0
+ 645 00f7 00       		.byte	0
+ 646              		.section	.debug_loc,"",%progbits
+ 647              	.Ldebug_loc0:
+ 648              	.LLST0:
+ 649 0000 0E000000 		.4byte	.LVL1
+ 650 0004 14000000 		.4byte	.LVL2
+ 651 0008 0100     		.2byte	0x1
+ 652 000a 50       		.byte	0x50
+ 653 000b 14000000 		.4byte	.LVL2
+ 654 000f 17000000 		.4byte	.LVL3-1
+ 655 0013 0100     		.2byte	0x1
+ 656 0015 52       		.byte	0x52
+ 657 0016 00000000 		.4byte	0
+ 658 001a 00000000 		.4byte	0
+ 659              		.section	.debug_aranges,"",%progbits
+ 660 0000 24000000 		.4byte	0x24
+ 661 0004 0200     		.2byte	0x2
+ 662 0006 00000000 		.4byte	.Ldebug_info0
+ 663 000a 04       		.byte	0x4
+ 664 000b 00       		.byte	0
+ 665 000c 0000     		.2byte	0
+ 666 000e 0000     		.2byte	0
+ 667 0010 00000000 		.4byte	.LFB64
+ 668 0014 38000000 		.4byte	.LFE64-.LFB64
+ 669 0018 00000000 		.4byte	.LFB65
+ 670 001c 1C000000 		.4byte	.LFE65-.LFB65
+ 671 0020 00000000 		.4byte	0
+ 672 0024 00000000 		.4byte	0
+ 673              		.section	.debug_ranges,"",%progbits
+ 674              	.Ldebug_ranges0:
+ 675 0000 00000000 		.4byte	.LFB64
+ 676 0004 38000000 		.4byte	.LFE64
+ 677 0008 00000000 		.4byte	.LFB65
+ 678 000c 1C000000 		.4byte	.LFE65
+ 679 0010 00000000 		.4byte	0
+ 680 0014 00000000 		.4byte	0
+ 681              		.section	.debug_line,"",%progbits
+ 682              	.Ldebug_line0:
+ 683 0000 38020000 		.section	.debug_str,"MS",%progbits,1
+ 683      02000702 
+ 683      00000201 
+ 683      FB0E0D00 
+ 683      01010101 
+ 684              	.LASF26:
+ 685 0000 55415254 		.ascii	"UART_1_Start\000"
+ 685      5F315F53 
+ 685      74617274 
+ 685      00
+ 686              	.LASF21:
+ 687 000d 55415254 		.ascii	"UART_1_PutString\000"
+ 687      5F315F50 
+ 687      75745374 
+ 687      72696E67 
+ 687      00
+ 688              	.LASF18:
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 14
+
+
+ 689 001e 4C45445F 		.ascii	"LED_RED_Write\000"
+ 689      5245445F 
+ 689      57726974 
+ 689      6500
+ 690              	.LASF9:
+ 691 002c 5F5F696E 		.ascii	"__int32_t\000"
+ 691      7433325F 
+ 691      7400
+ 692              	.LASF3:
+ 693 0036 73686F72 		.ascii	"short unsigned int\000"
+ 693      7420756E 
+ 693      7369676E 
+ 693      65642069 
+ 693      6E7400
+ 694              	.LASF11:
+ 695 0049 666C6F61 		.ascii	"float\000"
+ 695      7400
+ 696              	.LASF30:
+ 697 004f 433A5C55 		.ascii	"C:\\Users\\Angus\\Documents\\PSoC Creator\\EngDesig"
+ 697      73657273 
+ 697      5C416E67 
+ 697      75735C44 
+ 697      6F63756D 
+ 698 007d 6E5C436F 		.ascii	"n\\Colour Sensing.cydsn\000"
+ 698      6C6F7572 
+ 698      2053656E 
+ 698      73696E67 
+ 698      2E637964 
+ 699              	.LASF19:
+ 700 0094 4144435F 		.ascii	"ADC_DelSig_1_Read32\000"
+ 700      44656C53 
+ 700      69675F31 
+ 700      5F526561 
+ 700      64333200 
+ 701              	.LASF1:
+ 702 00a8 756E7369 		.ascii	"unsigned char\000"
+ 702      676E6564 
+ 702      20636861 
+ 702      7200
+ 703              	.LASF28:
+ 704 00b6 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 704      43313120 
+ 704      352E342E 
+ 704      31203230 
+ 704      31363036 
+ 705 00e9 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 705      20726576 
+ 705      6973696F 
+ 705      6E203233 
+ 705      37373135 
+ 706 011c 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 706      66756E63 
+ 706      74696F6E 
+ 706      2D736563 
+ 706      74696F6E 
+ 707              	.LASF22:
+ 708 0144 5357315F 		.ascii	"SW1_ClearInterrupt\000"
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 15
+
+
+ 708      436C6561 
+ 708      72496E74 
+ 708      65727275 
+ 708      707400
+ 709              	.LASF5:
+ 710 0157 6C6F6E67 		.ascii	"long unsigned int\000"
+ 710      20756E73 
+ 710      69676E65 
+ 710      6420696E 
+ 710      7400
+ 711              	.LASF16:
+ 712 0169 6C696768 		.ascii	"light_result\000"
+ 712      745F7265 
+ 712      73756C74 
+ 712      00
+ 713              	.LASF31:
+ 714 0176 5357315F 		.ascii	"SW1_Handler\000"
+ 714      48616E64 
+ 714      6C657200 
+ 715              	.LASF33:
+ 716 0182 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 716      52784275 
+ 716      66666572 
+ 716      00
+ 717              	.LASF12:
+ 718 018f 646F7562 		.ascii	"double\000"
+ 718      6C6500
+ 719              	.LASF32:
+ 720 0196 6D61696E 		.ascii	"main\000"
+ 720      00
+ 721              	.LASF25:
+ 722 019b 5449415F 		.ascii	"TIA_1_Start\000"
+ 722      315F5374 
+ 722      61727400 
+ 723              	.LASF24:
+ 724 01a7 4144435F 		.ascii	"ADC_DelSig_1_Start\000"
+ 724      44656C53 
+ 724      69675F31 
+ 724      5F537461 
+ 724      727400
+ 725              	.LASF8:
+ 726 01ba 756E7369 		.ascii	"unsigned int\000"
+ 726      676E6564 
+ 726      20696E74 
+ 726      00
+ 727              	.LASF7:
+ 728 01c7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 728      206C6F6E 
+ 728      6720756E 
+ 728      7369676E 
+ 728      65642069 
+ 729              	.LASF10:
+ 730 01de 696E7433 		.ascii	"int32_t\000"
+ 730      325F7400 
+ 731              	.LASF15:
+ 732 01e6 73697A65 		.ascii	"sizetype\000"
+ 732      74797065 
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccBXX7LF.s 			page 16
+
+
+ 732      00
+ 733              	.LASF6:
+ 734 01ef 6C6F6E67 		.ascii	"long long int\000"
+ 734      206C6F6E 
+ 734      6720696E 
+ 734      7400
+ 735              	.LASF29:
+ 736 01fd 6D61696E 		.ascii	"main.c\000"
+ 736      2E6300
+ 737              	.LASF13:
+ 738 0204 63686172 		.ascii	"char\000"
+ 738      00
+ 739              	.LASF2:
+ 740 0209 73686F72 		.ascii	"short int\000"
+ 740      7420696E 
+ 740      7400
+ 741              	.LASF4:
+ 742 0213 6C6F6E67 		.ascii	"long int\000"
+ 742      20696E74 
+ 742      00
+ 743              	.LASF17:
+ 744 021c 64697370 		.ascii	"display_result\000"
+ 744      6C61795F 
+ 744      72657375 
+ 744      6C7400
+ 745              	.LASF14:
+ 746 022b 6C6F6E67 		.ascii	"long double\000"
+ 746      20646F75 
+ 746      626C6500 
+ 747              	.LASF0:
+ 748 0237 7369676E 		.ascii	"signed char\000"
+ 748      65642063 
+ 748      68617200 
+ 749              	.LASF27:
+ 750 0243 6973725F 		.ascii	"isr_1_StartEx\000"
+ 750      315F5374 
+ 750      61727445 
+ 750      7800
+ 751              	.LASF20:
+ 752 0251 73707269 		.ascii	"sprintf\000"
+ 752      6E746600 
+ 753              	.LASF23:
+ 754 0259 43794465 		.ascii	"CyDelay\000"
+ 754      6C617900 
+ 755              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
