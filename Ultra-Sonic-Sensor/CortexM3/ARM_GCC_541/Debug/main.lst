@@ -1,0 +1,1165 @@
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Timer_ISR_Handler,"ax",%progbits
+  20              		.align	2
+  21              		.global	Timer_ISR_Handler
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Timer_ISR_Handler, %function
+  25              	Timer_ISR_Handler:
+  26              	.LFB64:
+  27              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include "stdio.h"
+  14:main.c        **** uint16 count = 0;
+  15:main.c        **** int distance_measured;
+  16:main.c        **** char countString[16];
+  17:main.c        **** char distString[16];
+  18:main.c        **** CY_ISR(Timer_ISR_Handler)
+  19:main.c        **** {
+  28              		.loc 1 19 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 38B5     		push	{r3, r4, r5, lr}
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 3, -16
+  35              		.cfi_offset 4, -12
+  36              		.cfi_offset 5, -8
+  37              		.cfi_offset 14, -4
+  20:main.c        ****     UART_1_PutString("TRIGGERED\n");
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 2
+
+
+  38              		.loc 1 20 0
+  39 0002 1A48     		ldr	r0, .L5
+  40 0004 FFF7FEFF 		bl	UART_1_PutString
+  41              	.LVL0:
+  21:main.c        ****     Timer_1_ReadStatusRegister();   // Clear interrupts
+  42              		.loc 1 21 0
+  43 0008 FFF7FEFF 		bl	Timer_1_ReadStatusRegister
+  44              	.LVL1:
+  22:main.c        ****     count = Timer_1_ReadCounter();  // Give me current value of count
+  45              		.loc 1 22 0
+  46 000c FFF7FEFF 		bl	Timer_1_ReadCounter
+  47              	.LVL2:
+  48 0010 0246     		mov	r2, r0
+  49 0012 174C     		ldr	r4, .L5+4
+  50 0014 2080     		strh	r0, [r4]	@ movhi
+  23:main.c        ****     sprintf(countString, "Count: %d\n" , count);
+  51              		.loc 1 23 0
+  52 0016 174D     		ldr	r5, .L5+8
+  53 0018 1749     		ldr	r1, .L5+12
+  54 001a 2846     		mov	r0, r5
+  55 001c FFF7FEFF 		bl	sprintf
+  56              	.LVL3:
+  24:main.c        ****     UART_1_PutString(countString);
+  57              		.loc 1 24 0
+  58 0020 2846     		mov	r0, r5
+  59 0022 FFF7FEFF 		bl	UART_1_PutString
+  60              	.LVL4:
+  25:main.c        ****     distance_measured = (65535 - count) / 58;    // Distance measured in cm
+  61              		.loc 1 25 0
+  62 0026 2388     		ldrh	r3, [r4]
+  63 0028 C3F57F43 		rsb	r3, r3, #65280
+  64 002c FF33     		adds	r3, r3, #255
+  65 002e 134A     		ldr	r2, .L5+16
+  66 0030 82FB0312 		smull	r1, r2, r2, r3
+  67 0034 1A44     		add	r2, r2, r3
+  68 0036 DB17     		asrs	r3, r3, #31
+  69 0038 C3EB6212 		rsb	r2, r3, r2, asr #5
+  70 003c 104C     		ldr	r4, .L5+20
+  71 003e 2260     		str	r2, [r4]
+  26:main.c        ****     sprintf(distString, "Distance: %d\n\n" ,distance_measured);
+  72              		.loc 1 26 0
+  73 0040 104D     		ldr	r5, .L5+24
+  74 0042 1149     		ldr	r1, .L5+28
+  75 0044 2846     		mov	r0, r5
+  76 0046 FFF7FEFF 		bl	sprintf
+  77              	.LVL5:
+  27:main.c        ****     UART_1_PutString(distString);
+  78              		.loc 1 27 0
+  79 004a 2846     		mov	r0, r5
+  80 004c FFF7FEFF 		bl	UART_1_PutString
+  81              	.LVL6:
+  28:main.c        ****     
+  29:main.c        ****     if (distance_measured < 5)
+  82              		.loc 1 29 0
+  83 0050 2368     		ldr	r3, [r4]
+  84 0052 042B     		cmp	r3, #4
+  85 0054 03DC     		bgt	.L2
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 3
+
+
+  30:main.c        ****     {
+  31:main.c        ****         LED_Write(1);
+  86              		.loc 1 31 0
+  87 0056 0120     		movs	r0, #1
+  88 0058 FFF7FEFF 		bl	LED_Write
+  89              	.LVL7:
+  90 005c 38BD     		pop	{r3, r4, r5, pc}
+  91              	.L2:
+  32:main.c        ****     }
+  33:main.c        ****     else if (distance_measured >= 5)
+  92              		.loc 1 33 0
+  93 005e 042B     		cmp	r3, #4
+  94 0060 02DD     		ble	.L1
+  34:main.c        ****     {
+  35:main.c        ****         LED_Write(0);
+  95              		.loc 1 35 0
+  96 0062 0020     		movs	r0, #0
+  97 0064 FFF7FEFF 		bl	LED_Write
+  98              	.LVL8:
+  99              	.L1:
+ 100 0068 38BD     		pop	{r3, r4, r5, pc}
+ 101              	.L6:
+ 102 006a 00BF     		.align	2
+ 103              	.L5:
+ 104 006c 00000000 		.word	.LC0
+ 105 0070 00000000 		.word	.LANCHOR0
+ 106 0074 00000000 		.word	countString
+ 107 0078 0C000000 		.word	.LC1
+ 108 007c 09CB3D8D 		.word	-1925330167
+ 109 0080 00000000 		.word	distance_measured
+ 110 0084 00000000 		.word	distString
+ 111 0088 18000000 		.word	.LC2
+ 112              		.cfi_endproc
+ 113              	.LFE64:
+ 114              		.size	Timer_ISR_Handler, .-Timer_ISR_Handler
+ 115              		.section	.text.main,"ax",%progbits
+ 116              		.align	2
+ 117              		.global	main
+ 118              		.thumb
+ 119              		.thumb_func
+ 120              		.type	main, %function
+ 121              	main:
+ 122              	.LFB65:
+  36:main.c        ****     }
+  37:main.c        **** }
+  38:main.c        **** 
+  39:main.c        **** int main(void)
+  40:main.c        **** {
+ 123              		.loc 1 40 0
+ 124              		.cfi_startproc
+ 125              		@ Volatile: function does not return.
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128 0000 08B5     		push	{r3, lr}
+ 129              		.cfi_def_cfa_offset 8
+ 130              		.cfi_offset 3, -8
+ 131              		.cfi_offset 14, -4
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 4
+
+
+  41:main.c        ****     UART_1_Start();
+ 132              		.loc 1 41 0
+ 133 0002 FFF7FEFF 		bl	UART_1_Start
+ 134              	.LVL9:
+  42:main.c        ****     Timer_1_Start();
+ 135              		.loc 1 42 0
+ 136 0006 FFF7FEFF 		bl	Timer_1_Start
+ 137              	.LVL10:
+  43:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 138              		.loc 1 43 0
+ 139              		.syntax unified
+ 140              	@ 43 "main.c" 1
+ 141 000a 62B6     		CPSIE   i
+ 142              	@ 0 "" 2
+  44:main.c        ****     isr_1_StartEx(Timer_ISR_Handler);    // Give interrupt a handler
+ 143              		.loc 1 44 0
+ 144              		.thumb
+ 145              		.syntax unified
+ 146 000c 0A48     		ldr	r0, .L12
+ 147 000e FFF7FEFF 		bl	isr_1_StartEx
+ 148              	.LVL11:
+ 149 0012 08E0     		b	.L8
+ 150              	.L9:
+  45:main.c        ****     for(;;)
+  46:main.c        ****     {
+  47:main.c        ****         while(Echo_Read() == 0)
+  48:main.c        ****         {
+  49:main.c        ****           
+  50:main.c        ****             Trigger_Write(1);
+ 151              		.loc 1 50 0
+ 152 0014 0120     		movs	r0, #1
+ 153 0016 FFF7FEFF 		bl	Trigger_Write
+ 154              	.LVL12:
+  51:main.c        ****             CyDelayUs(10);        // Need to keep trigger pin on for 10ms
+ 155              		.loc 1 51 0
+ 156 001a 0A20     		movs	r0, #10
+ 157 001c FFF7FEFF 		bl	CyDelayUs
+ 158              	.LVL13:
+  52:main.c        ****             Trigger_Write(0);
+ 159              		.loc 1 52 0
+ 160 0020 0020     		movs	r0, #0
+ 161 0022 FFF7FEFF 		bl	Trigger_Write
+ 162              	.LVL14:
+ 163              	.L8:
+  47:main.c        ****         {
+ 164              		.loc 1 47 0
+ 165 0026 FFF7FEFF 		bl	Echo_Read
+ 166              	.LVL15:
+ 167 002a 0028     		cmp	r0, #0
+ 168 002c F2D0     		beq	.L9
+  53:main.c        ****         }
+  54:main.c        ****         CyDelay(100);
+ 169              		.loc 1 54 0
+ 170 002e 6420     		movs	r0, #100
+ 171 0030 FFF7FEFF 		bl	CyDelay
+ 172              	.LVL16:
+  55:main.c        ****     }
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 5
+
+
+ 173              		.loc 1 55 0
+ 174 0034 F7E7     		b	.L8
+ 175              	.L13:
+ 176 0036 00BF     		.align	2
+ 177              	.L12:
+ 178 0038 00000000 		.word	Timer_ISR_Handler
+ 179              		.cfi_endproc
+ 180              	.LFE65:
+ 181              		.size	main, .-main
+ 182              		.comm	distString,16,4
+ 183              		.comm	countString,16,4
+ 184              		.comm	distance_measured,4,4
+ 185              		.global	count
+ 186              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 187              		.align	2
+ 188              	.LC0:
+ 189 0000 54524947 		.ascii	"TRIGGERED\012\000"
+ 189      47455245 
+ 189      440A00
+ 190 000b 00       		.space	1
+ 191              	.LC1:
+ 192 000c 436F756E 		.ascii	"Count: %d\012\000"
+ 192      743A2025 
+ 192      640A00
+ 193 0017 00       		.space	1
+ 194              	.LC2:
+ 195 0018 44697374 		.ascii	"Distance: %d\012\012\000"
+ 195      616E6365 
+ 195      3A202564 
+ 195      0A0A00
+ 196              		.bss
+ 197              		.align	1
+ 198              		.set	.LANCHOR0,. + 0
+ 199              		.type	count, %object
+ 200              		.size	count, 2
+ 201              	count:
+ 202 0000 0000     		.space	2
+ 203              		.text
+ 204              	.Letext0:
+ 205              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 206              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 207              		.file 4 "Generated_Source\\PSoC5/cytypes.h"
+ 208              		.file 5 "Generated_Source\\PSoC5/core_cm3.h"
+ 209              		.file 6 "Generated_Source\\PSoC5/UART_1.h"
+ 210              		.file 7 "Generated_Source\\PSoC5/Timer_1.h"
+ 211              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\4.1\\psoc creator\\import\\gnu\\arm\\5.4.
+ 212              		.file 9 "Generated_Source\\PSoC5/LED.h"
+ 213              		.file 10 "Generated_Source\\PSoC5/isr_1.h"
+ 214              		.file 11 "Generated_Source\\PSoC5/Trigger.h"
+ 215              		.file 12 "Generated_Source\\PSoC5/CyLib.h"
+ 216              		.file 13 "Generated_Source\\PSoC5/Echo.h"
+ 217              		.section	.debug_info,"",%progbits
+ 218              	.Ldebug_info0:
+ 219 0000 EE020000 		.4byte	0x2ee
+ 220 0004 0400     		.2byte	0x4
+ 221 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 222 000a 04       		.byte	0x4
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 6
+
+
+ 223 000b 01       		.uleb128 0x1
+ 224 000c 76000000 		.4byte	.LASF34
+ 225 0010 0C       		.byte	0xc
+ 226 0011 EC010000 		.4byte	.LASF35
+ 227 0015 A3010000 		.4byte	.LASF36
+ 228 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 229 001d 00000000 		.4byte	0
+ 230 0021 00000000 		.4byte	.Ldebug_line0
+ 231 0025 02       		.uleb128 0x2
+ 232 0026 01       		.byte	0x1
+ 233 0027 06       		.byte	0x6
+ 234 0028 4C020000 		.4byte	.LASF0
+ 235 002c 02       		.uleb128 0x2
+ 236 002d 01       		.byte	0x1
+ 237 002e 08       		.byte	0x8
+ 238 002f 68000000 		.4byte	.LASF1
+ 239 0033 02       		.uleb128 0x2
+ 240 0034 02       		.byte	0x2
+ 241 0035 05       		.byte	0x5
+ 242 0036 12020000 		.4byte	.LASF2
+ 243 003a 02       		.uleb128 0x2
+ 244 003b 02       		.byte	0x2
+ 245 003c 07       		.byte	0x7
+ 246 003d 16010000 		.4byte	.LASF3
+ 247 0041 03       		.uleb128 0x3
+ 248 0042 42000000 		.4byte	.LASF9
+ 249 0046 02       		.byte	0x2
+ 250 0047 3F       		.byte	0x3f
+ 251 0048 4C000000 		.4byte	0x4c
+ 252 004c 02       		.uleb128 0x2
+ 253 004d 04       		.byte	0x4
+ 254 004e 05       		.byte	0x5
+ 255 004f 37020000 		.4byte	.LASF4
+ 256 0053 02       		.uleb128 0x2
+ 257 0054 04       		.byte	0x4
+ 258 0055 07       		.byte	0x7
+ 259 0056 04010000 		.4byte	.LASF5
+ 260 005a 02       		.uleb128 0x2
+ 261 005b 08       		.byte	0x8
+ 262 005c 05       		.byte	0x5
+ 263 005d 95010000 		.4byte	.LASF6
+ 264 0061 02       		.uleb128 0x2
+ 265 0062 08       		.byte	0x8
+ 266 0063 07       		.byte	0x7
+ 267 0064 6A010000 		.4byte	.LASF7
+ 268 0068 04       		.uleb128 0x4
+ 269 0069 04       		.byte	0x4
+ 270 006a 05       		.byte	0x5
+ 271 006b 696E7400 		.ascii	"int\000"
+ 272 006f 02       		.uleb128 0x2
+ 273 0070 04       		.byte	0x4
+ 274 0071 07       		.byte	0x7
+ 275 0072 53010000 		.4byte	.LASF8
+ 276 0076 03       		.uleb128 0x3
+ 277 0077 4C000000 		.4byte	.LASF10
+ 278 007b 03       		.byte	0x3
+ 279 007c 2C       		.byte	0x2c
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 7
+
+
+ 280 007d 41000000 		.4byte	0x41
+ 281 0081 05       		.uleb128 0x5
+ 282 0082 3D010000 		.4byte	.LASF11
+ 283 0086 04       		.byte	0x4
+ 284 0087 9301     		.2byte	0x193
+ 285 0089 3A000000 		.4byte	0x3a
+ 286 008d 02       		.uleb128 0x2
+ 287 008e 04       		.byte	0x4
+ 288 008f 04       		.byte	0x4
+ 289 0090 54000000 		.4byte	.LASF12
+ 290 0094 02       		.uleb128 0x2
+ 291 0095 08       		.byte	0x8
+ 292 0096 04       		.byte	0x4
+ 293 0097 36010000 		.4byte	.LASF13
+ 294 009b 02       		.uleb128 0x2
+ 295 009c 01       		.byte	0x1
+ 296 009d 08       		.byte	0x8
+ 297 009e F3010000 		.4byte	.LASF14
+ 298 00a2 02       		.uleb128 0x2
+ 299 00a3 08       		.byte	0x8
+ 300 00a4 04       		.byte	0x4
+ 301 00a5 40020000 		.4byte	.LASF15
+ 302 00a9 02       		.uleb128 0x2
+ 303 00aa 04       		.byte	0x4
+ 304 00ab 07       		.byte	0x7
+ 305 00ac 8C010000 		.4byte	.LASF16
+ 306 00b0 06       		.uleb128 0x6
+ 307 00b1 76020000 		.4byte	.LASF37
+ 308 00b5 01       		.byte	0x1
+ 309 00b6 12       		.byte	0x12
+ 310 00b7 00000000 		.4byte	.LFB64
+ 311 00bb 8C000000 		.4byte	.LFE64-.LFB64
+ 312 00bf 01       		.uleb128 0x1
+ 313 00c0 9C       		.byte	0x9c
+ 314 00c1 73010000 		.4byte	0x173
+ 315 00c5 07       		.uleb128 0x7
+ 316 00c6 08000000 		.4byte	.LVL0
+ 317 00ca 6D020000 		.4byte	0x26d
+ 318 00ce DC000000 		.4byte	0xdc
+ 319 00d2 08       		.uleb128 0x8
+ 320 00d3 01       		.uleb128 0x1
+ 321 00d4 50       		.byte	0x50
+ 322 00d5 05       		.uleb128 0x5
+ 323 00d6 03       		.byte	0x3
+ 324 00d7 00000000 		.4byte	.LC0
+ 325 00db 00       		.byte	0
+ 326 00dc 09       		.uleb128 0x9
+ 327 00dd 0C000000 		.4byte	.LVL1
+ 328 00e1 78020000 		.4byte	0x278
+ 329 00e5 09       		.uleb128 0x9
+ 330 00e6 10000000 		.4byte	.LVL2
+ 331 00ea 83020000 		.4byte	0x283
+ 332 00ee 07       		.uleb128 0x7
+ 333 00ef 20000000 		.4byte	.LVL3
+ 334 00f3 8E020000 		.4byte	0x28e
+ 335 00f7 0B010000 		.4byte	0x10b
+ 336 00fb 08       		.uleb128 0x8
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 8
+
+
+ 337 00fc 01       		.uleb128 0x1
+ 338 00fd 50       		.byte	0x50
+ 339 00fe 02       		.uleb128 0x2
+ 340 00ff 75       		.byte	0x75
+ 341 0100 00       		.sleb128 0
+ 342 0101 08       		.uleb128 0x8
+ 343 0102 01       		.uleb128 0x1
+ 344 0103 51       		.byte	0x51
+ 345 0104 05       		.uleb128 0x5
+ 346 0105 03       		.byte	0x3
+ 347 0106 0C000000 		.4byte	.LC1
+ 348 010a 00       		.byte	0
+ 349 010b 07       		.uleb128 0x7
+ 350 010c 26000000 		.4byte	.LVL4
+ 351 0110 6D020000 		.4byte	0x26d
+ 352 0114 1F010000 		.4byte	0x11f
+ 353 0118 08       		.uleb128 0x8
+ 354 0119 01       		.uleb128 0x1
+ 355 011a 50       		.byte	0x50
+ 356 011b 02       		.uleb128 0x2
+ 357 011c 75       		.byte	0x75
+ 358 011d 00       		.sleb128 0
+ 359 011e 00       		.byte	0
+ 360 011f 07       		.uleb128 0x7
+ 361 0120 4A000000 		.4byte	.LVL5
+ 362 0124 8E020000 		.4byte	0x28e
+ 363 0128 3C010000 		.4byte	0x13c
+ 364 012c 08       		.uleb128 0x8
+ 365 012d 01       		.uleb128 0x1
+ 366 012e 50       		.byte	0x50
+ 367 012f 02       		.uleb128 0x2
+ 368 0130 75       		.byte	0x75
+ 369 0131 00       		.sleb128 0
+ 370 0132 08       		.uleb128 0x8
+ 371 0133 01       		.uleb128 0x1
+ 372 0134 51       		.byte	0x51
+ 373 0135 05       		.uleb128 0x5
+ 374 0136 03       		.byte	0x3
+ 375 0137 18000000 		.4byte	.LC2
+ 376 013b 00       		.byte	0
+ 377 013c 07       		.uleb128 0x7
+ 378 013d 50000000 		.4byte	.LVL6
+ 379 0141 6D020000 		.4byte	0x26d
+ 380 0145 50010000 		.4byte	0x150
+ 381 0149 08       		.uleb128 0x8
+ 382 014a 01       		.uleb128 0x1
+ 383 014b 50       		.byte	0x50
+ 384 014c 02       		.uleb128 0x2
+ 385 014d 75       		.byte	0x75
+ 386 014e 00       		.sleb128 0
+ 387 014f 00       		.byte	0
+ 388 0150 07       		.uleb128 0x7
+ 389 0151 5C000000 		.4byte	.LVL7
+ 390 0155 99020000 		.4byte	0x299
+ 391 0159 63010000 		.4byte	0x163
+ 392 015d 08       		.uleb128 0x8
+ 393 015e 01       		.uleb128 0x1
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 9
+
+
+ 394 015f 50       		.byte	0x50
+ 395 0160 01       		.uleb128 0x1
+ 396 0161 31       		.byte	0x31
+ 397 0162 00       		.byte	0
+ 398 0163 0A       		.uleb128 0xa
+ 399 0164 68000000 		.4byte	.LVL8
+ 400 0168 99020000 		.4byte	0x299
+ 401 016c 08       		.uleb128 0x8
+ 402 016d 01       		.uleb128 0x1
+ 403 016e 50       		.byte	0x50
+ 404 016f 01       		.uleb128 0x1
+ 405 0170 30       		.byte	0x30
+ 406 0171 00       		.byte	0
+ 407 0172 00       		.byte	0
+ 408 0173 0B       		.uleb128 0xb
+ 409 0174 44010000 		.4byte	.LASF38
+ 410 0178 01       		.byte	0x1
+ 411 0179 27       		.byte	0x27
+ 412 017a 68000000 		.4byte	0x68
+ 413 017e 00000000 		.4byte	.LFB65
+ 414 0182 3C000000 		.4byte	.LFE65-.LFB65
+ 415 0186 01       		.uleb128 0x1
+ 416 0187 9C       		.byte	0x9c
+ 417 0188 08020000 		.4byte	0x208
+ 418 018c 09       		.uleb128 0x9
+ 419 018d 06000000 		.4byte	.LVL9
+ 420 0191 A4020000 		.4byte	0x2a4
+ 421 0195 09       		.uleb128 0x9
+ 422 0196 0A000000 		.4byte	.LVL10
+ 423 019a AF020000 		.4byte	0x2af
+ 424 019e 07       		.uleb128 0x7
+ 425 019f 12000000 		.4byte	.LVL11
+ 426 01a3 BA020000 		.4byte	0x2ba
+ 427 01a7 B5010000 		.4byte	0x1b5
+ 428 01ab 08       		.uleb128 0x8
+ 429 01ac 01       		.uleb128 0x1
+ 430 01ad 50       		.byte	0x50
+ 431 01ae 05       		.uleb128 0x5
+ 432 01af 03       		.byte	0x3
+ 433 01b0 00000000 		.4byte	Timer_ISR_Handler
+ 434 01b4 00       		.byte	0
+ 435 01b5 07       		.uleb128 0x7
+ 436 01b6 1A000000 		.4byte	.LVL12
+ 437 01ba C5020000 		.4byte	0x2c5
+ 438 01be C8010000 		.4byte	0x1c8
+ 439 01c2 08       		.uleb128 0x8
+ 440 01c3 01       		.uleb128 0x1
+ 441 01c4 50       		.byte	0x50
+ 442 01c5 01       		.uleb128 0x1
+ 443 01c6 31       		.byte	0x31
+ 444 01c7 00       		.byte	0
+ 445 01c8 07       		.uleb128 0x7
+ 446 01c9 20000000 		.4byte	.LVL13
+ 447 01cd D0020000 		.4byte	0x2d0
+ 448 01d1 DB010000 		.4byte	0x1db
+ 449 01d5 08       		.uleb128 0x8
+ 450 01d6 01       		.uleb128 0x1
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 10
+
+
+ 451 01d7 50       		.byte	0x50
+ 452 01d8 01       		.uleb128 0x1
+ 453 01d9 3A       		.byte	0x3a
+ 454 01da 00       		.byte	0
+ 455 01db 07       		.uleb128 0x7
+ 456 01dc 26000000 		.4byte	.LVL14
+ 457 01e0 C5020000 		.4byte	0x2c5
+ 458 01e4 EE010000 		.4byte	0x1ee
+ 459 01e8 08       		.uleb128 0x8
+ 460 01e9 01       		.uleb128 0x1
+ 461 01ea 50       		.byte	0x50
+ 462 01eb 01       		.uleb128 0x1
+ 463 01ec 30       		.byte	0x30
+ 464 01ed 00       		.byte	0
+ 465 01ee 09       		.uleb128 0x9
+ 466 01ef 2A000000 		.4byte	.LVL15
+ 467 01f3 DB020000 		.4byte	0x2db
+ 468 01f7 0A       		.uleb128 0xa
+ 469 01f8 34000000 		.4byte	.LVL16
+ 470 01fc E6020000 		.4byte	0x2e6
+ 471 0200 08       		.uleb128 0x8
+ 472 0201 01       		.uleb128 0x1
+ 473 0202 50       		.byte	0x50
+ 474 0203 02       		.uleb128 0x2
+ 475 0204 08       		.byte	0x8
+ 476 0205 64       		.byte	0x64
+ 477 0206 00       		.byte	0
+ 478 0207 00       		.byte	0
+ 479 0208 0C       		.uleb128 0xc
+ 480 0209 29010000 		.4byte	.LASF17
+ 481 020d 05       		.byte	0x5
+ 482 020e 1207     		.2byte	0x712
+ 483 0210 14020000 		.4byte	0x214
+ 484 0214 0D       		.uleb128 0xd
+ 485 0215 76000000 		.4byte	0x76
+ 486 0219 0E       		.uleb128 0xe
+ 487 021a 0C020000 		.4byte	.LASF18
+ 488 021e 01       		.byte	0x1
+ 489 021f 0E       		.byte	0xe
+ 490 0220 81000000 		.4byte	0x81
+ 491 0224 05       		.uleb128 0x5
+ 492 0225 03       		.byte	0x3
+ 493 0226 00000000 		.4byte	count
+ 494 022a 0E       		.uleb128 0xe
+ 495 022b 88020000 		.4byte	.LASF19
+ 496 022f 01       		.byte	0x1
+ 497 0230 0F       		.byte	0xf
+ 498 0231 68000000 		.4byte	0x68
+ 499 0235 05       		.uleb128 0x5
+ 500 0236 03       		.byte	0x3
+ 501 0237 00000000 		.4byte	distance_measured
+ 502 023b 0F       		.uleb128 0xf
+ 503 023c 9B000000 		.4byte	0x9b
+ 504 0240 4B020000 		.4byte	0x24b
+ 505 0244 10       		.uleb128 0x10
+ 506 0245 A9000000 		.4byte	0xa9
+ 507 0249 0F       		.byte	0xf
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 11
+
+
+ 508 024a 00       		.byte	0
+ 509 024b 0E       		.uleb128 0xe
+ 510 024c 0D000000 		.4byte	.LASF20
+ 511 0250 01       		.byte	0x1
+ 512 0251 10       		.byte	0x10
+ 513 0252 3B020000 		.4byte	0x23b
+ 514 0256 05       		.uleb128 0x5
+ 515 0257 03       		.byte	0x3
+ 516 0258 00000000 		.4byte	countString
+ 517 025c 0E       		.uleb128 0xe
+ 518 025d 81010000 		.4byte	.LASF21
+ 519 0261 01       		.byte	0x1
+ 520 0262 11       		.byte	0x11
+ 521 0263 3B020000 		.4byte	0x23b
+ 522 0267 05       		.uleb128 0x5
+ 523 0268 03       		.byte	0x3
+ 524 0269 00000000 		.4byte	distString
+ 525 026d 11       		.uleb128 0x11
+ 526 026e 23000000 		.4byte	.LASF22
+ 527 0272 23000000 		.4byte	.LASF22
+ 528 0276 06       		.byte	0x6
+ 529 0277 8B       		.byte	0x8b
+ 530 0278 11       		.uleb128 0x11
+ 531 0279 1C020000 		.4byte	.LASF23
+ 532 027d 1C020000 		.4byte	.LASF23
+ 533 0281 07       		.byte	0x7
+ 534 0282 5E       		.byte	0x5e
+ 535 0283 11       		.uleb128 0x11
+ 536 0284 F8010000 		.4byte	.LASF24
+ 537 0288 F8010000 		.4byte	.LASF24
+ 538 028c 07       		.byte	0x7
+ 539 028d 69       		.byte	0x69
+ 540 028e 11       		.uleb128 0x11
+ 541 028f 66020000 		.4byte	.LASF25
+ 542 0293 66020000 		.4byte	.LASF25
+ 543 0297 08       		.byte	0x8
+ 544 0298 E7       		.byte	0xe7
+ 545 0299 11       		.uleb128 0x11
+ 546 029a 19000000 		.4byte	.LASF26
+ 547 029e 19000000 		.4byte	.LASF26
+ 548 02a2 09       		.byte	0x9
+ 549 02a3 26       		.byte	0x26
+ 550 02a4 11       		.uleb128 0x11
+ 551 02a5 00000000 		.4byte	.LASF27
+ 552 02a9 00000000 		.4byte	.LASF27
+ 553 02ad 06       		.byte	0x6
+ 554 02ae 54       		.byte	0x54
+ 555 02af 11       		.uleb128 0x11
+ 556 02b0 5A000000 		.4byte	.LASF28
+ 557 02b4 5A000000 		.4byte	.LASF28
+ 558 02b8 07       		.byte	0x7
+ 559 02b9 5A       		.byte	0x5a
+ 560 02ba 11       		.uleb128 0x11
+ 561 02bb 58020000 		.4byte	.LASF29
+ 562 02bf 58020000 		.4byte	.LASF29
+ 563 02c3 0A       		.byte	0xa
+ 564 02c4 18       		.byte	0x18
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 12
+
+
+ 565 02c5 11       		.uleb128 0x11
+ 566 02c6 34000000 		.4byte	.LASF30
+ 567 02ca 34000000 		.4byte	.LASF30
+ 568 02ce 0B       		.byte	0xb
+ 569 02cf 26       		.byte	0x26
+ 570 02d0 11       		.uleb128 0x11
+ 571 02d1 49010000 		.4byte	.LASF31
+ 572 02d5 49010000 		.4byte	.LASF31
+ 573 02d9 0C       		.byte	0xc
+ 574 02da 77       		.byte	0x77
+ 575 02db 11       		.uleb128 0x11
+ 576 02dc 60010000 		.4byte	.LASF32
+ 577 02e0 60010000 		.4byte	.LASF32
+ 578 02e4 0D       		.byte	0xd
+ 579 02e5 29       		.byte	0x29
+ 580 02e6 11       		.uleb128 0x11
+ 581 02e7 6E020000 		.4byte	.LASF33
+ 582 02eb 6E020000 		.4byte	.LASF33
+ 583 02ef 0C       		.byte	0xc
+ 584 02f0 76       		.byte	0x76
+ 585 02f1 00       		.byte	0
+ 586              		.section	.debug_abbrev,"",%progbits
+ 587              	.Ldebug_abbrev0:
+ 588 0000 01       		.uleb128 0x1
+ 589 0001 11       		.uleb128 0x11
+ 590 0002 01       		.byte	0x1
+ 591 0003 25       		.uleb128 0x25
+ 592 0004 0E       		.uleb128 0xe
+ 593 0005 13       		.uleb128 0x13
+ 594 0006 0B       		.uleb128 0xb
+ 595 0007 03       		.uleb128 0x3
+ 596 0008 0E       		.uleb128 0xe
+ 597 0009 1B       		.uleb128 0x1b
+ 598 000a 0E       		.uleb128 0xe
+ 599 000b 55       		.uleb128 0x55
+ 600 000c 17       		.uleb128 0x17
+ 601 000d 11       		.uleb128 0x11
+ 602 000e 01       		.uleb128 0x1
+ 603 000f 10       		.uleb128 0x10
+ 604 0010 17       		.uleb128 0x17
+ 605 0011 00       		.byte	0
+ 606 0012 00       		.byte	0
+ 607 0013 02       		.uleb128 0x2
+ 608 0014 24       		.uleb128 0x24
+ 609 0015 00       		.byte	0
+ 610 0016 0B       		.uleb128 0xb
+ 611 0017 0B       		.uleb128 0xb
+ 612 0018 3E       		.uleb128 0x3e
+ 613 0019 0B       		.uleb128 0xb
+ 614 001a 03       		.uleb128 0x3
+ 615 001b 0E       		.uleb128 0xe
+ 616 001c 00       		.byte	0
+ 617 001d 00       		.byte	0
+ 618 001e 03       		.uleb128 0x3
+ 619 001f 16       		.uleb128 0x16
+ 620 0020 00       		.byte	0
+ 621 0021 03       		.uleb128 0x3
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 13
+
+
+ 622 0022 0E       		.uleb128 0xe
+ 623 0023 3A       		.uleb128 0x3a
+ 624 0024 0B       		.uleb128 0xb
+ 625 0025 3B       		.uleb128 0x3b
+ 626 0026 0B       		.uleb128 0xb
+ 627 0027 49       		.uleb128 0x49
+ 628 0028 13       		.uleb128 0x13
+ 629 0029 00       		.byte	0
+ 630 002a 00       		.byte	0
+ 631 002b 04       		.uleb128 0x4
+ 632 002c 24       		.uleb128 0x24
+ 633 002d 00       		.byte	0
+ 634 002e 0B       		.uleb128 0xb
+ 635 002f 0B       		.uleb128 0xb
+ 636 0030 3E       		.uleb128 0x3e
+ 637 0031 0B       		.uleb128 0xb
+ 638 0032 03       		.uleb128 0x3
+ 639 0033 08       		.uleb128 0x8
+ 640 0034 00       		.byte	0
+ 641 0035 00       		.byte	0
+ 642 0036 05       		.uleb128 0x5
+ 643 0037 16       		.uleb128 0x16
+ 644 0038 00       		.byte	0
+ 645 0039 03       		.uleb128 0x3
+ 646 003a 0E       		.uleb128 0xe
+ 647 003b 3A       		.uleb128 0x3a
+ 648 003c 0B       		.uleb128 0xb
+ 649 003d 3B       		.uleb128 0x3b
+ 650 003e 05       		.uleb128 0x5
+ 651 003f 49       		.uleb128 0x49
+ 652 0040 13       		.uleb128 0x13
+ 653 0041 00       		.byte	0
+ 654 0042 00       		.byte	0
+ 655 0043 06       		.uleb128 0x6
+ 656 0044 2E       		.uleb128 0x2e
+ 657 0045 01       		.byte	0x1
+ 658 0046 3F       		.uleb128 0x3f
+ 659 0047 19       		.uleb128 0x19
+ 660 0048 03       		.uleb128 0x3
+ 661 0049 0E       		.uleb128 0xe
+ 662 004a 3A       		.uleb128 0x3a
+ 663 004b 0B       		.uleb128 0xb
+ 664 004c 3B       		.uleb128 0x3b
+ 665 004d 0B       		.uleb128 0xb
+ 666 004e 27       		.uleb128 0x27
+ 667 004f 19       		.uleb128 0x19
+ 668 0050 11       		.uleb128 0x11
+ 669 0051 01       		.uleb128 0x1
+ 670 0052 12       		.uleb128 0x12
+ 671 0053 06       		.uleb128 0x6
+ 672 0054 40       		.uleb128 0x40
+ 673 0055 18       		.uleb128 0x18
+ 674 0056 9742     		.uleb128 0x2117
+ 675 0058 19       		.uleb128 0x19
+ 676 0059 01       		.uleb128 0x1
+ 677 005a 13       		.uleb128 0x13
+ 678 005b 00       		.byte	0
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 14
+
+
+ 679 005c 00       		.byte	0
+ 680 005d 07       		.uleb128 0x7
+ 681 005e 898201   		.uleb128 0x4109
+ 682 0061 01       		.byte	0x1
+ 683 0062 11       		.uleb128 0x11
+ 684 0063 01       		.uleb128 0x1
+ 685 0064 31       		.uleb128 0x31
+ 686 0065 13       		.uleb128 0x13
+ 687 0066 01       		.uleb128 0x1
+ 688 0067 13       		.uleb128 0x13
+ 689 0068 00       		.byte	0
+ 690 0069 00       		.byte	0
+ 691 006a 08       		.uleb128 0x8
+ 692 006b 8A8201   		.uleb128 0x410a
+ 693 006e 00       		.byte	0
+ 694 006f 02       		.uleb128 0x2
+ 695 0070 18       		.uleb128 0x18
+ 696 0071 9142     		.uleb128 0x2111
+ 697 0073 18       		.uleb128 0x18
+ 698 0074 00       		.byte	0
+ 699 0075 00       		.byte	0
+ 700 0076 09       		.uleb128 0x9
+ 701 0077 898201   		.uleb128 0x4109
+ 702 007a 00       		.byte	0
+ 703 007b 11       		.uleb128 0x11
+ 704 007c 01       		.uleb128 0x1
+ 705 007d 31       		.uleb128 0x31
+ 706 007e 13       		.uleb128 0x13
+ 707 007f 00       		.byte	0
+ 708 0080 00       		.byte	0
+ 709 0081 0A       		.uleb128 0xa
+ 710 0082 898201   		.uleb128 0x4109
+ 711 0085 01       		.byte	0x1
+ 712 0086 11       		.uleb128 0x11
+ 713 0087 01       		.uleb128 0x1
+ 714 0088 31       		.uleb128 0x31
+ 715 0089 13       		.uleb128 0x13
+ 716 008a 00       		.byte	0
+ 717 008b 00       		.byte	0
+ 718 008c 0B       		.uleb128 0xb
+ 719 008d 2E       		.uleb128 0x2e
+ 720 008e 01       		.byte	0x1
+ 721 008f 3F       		.uleb128 0x3f
+ 722 0090 19       		.uleb128 0x19
+ 723 0091 03       		.uleb128 0x3
+ 724 0092 0E       		.uleb128 0xe
+ 725 0093 3A       		.uleb128 0x3a
+ 726 0094 0B       		.uleb128 0xb
+ 727 0095 3B       		.uleb128 0x3b
+ 728 0096 0B       		.uleb128 0xb
+ 729 0097 27       		.uleb128 0x27
+ 730 0098 19       		.uleb128 0x19
+ 731 0099 49       		.uleb128 0x49
+ 732 009a 13       		.uleb128 0x13
+ 733 009b 8701     		.uleb128 0x87
+ 734 009d 19       		.uleb128 0x19
+ 735 009e 11       		.uleb128 0x11
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 15
+
+
+ 736 009f 01       		.uleb128 0x1
+ 737 00a0 12       		.uleb128 0x12
+ 738 00a1 06       		.uleb128 0x6
+ 739 00a2 40       		.uleb128 0x40
+ 740 00a3 18       		.uleb128 0x18
+ 741 00a4 9742     		.uleb128 0x2117
+ 742 00a6 19       		.uleb128 0x19
+ 743 00a7 01       		.uleb128 0x1
+ 744 00a8 13       		.uleb128 0x13
+ 745 00a9 00       		.byte	0
+ 746 00aa 00       		.byte	0
+ 747 00ab 0C       		.uleb128 0xc
+ 748 00ac 34       		.uleb128 0x34
+ 749 00ad 00       		.byte	0
+ 750 00ae 03       		.uleb128 0x3
+ 751 00af 0E       		.uleb128 0xe
+ 752 00b0 3A       		.uleb128 0x3a
+ 753 00b1 0B       		.uleb128 0xb
+ 754 00b2 3B       		.uleb128 0x3b
+ 755 00b3 05       		.uleb128 0x5
+ 756 00b4 49       		.uleb128 0x49
+ 757 00b5 13       		.uleb128 0x13
+ 758 00b6 3F       		.uleb128 0x3f
+ 759 00b7 19       		.uleb128 0x19
+ 760 00b8 3C       		.uleb128 0x3c
+ 761 00b9 19       		.uleb128 0x19
+ 762 00ba 00       		.byte	0
+ 763 00bb 00       		.byte	0
+ 764 00bc 0D       		.uleb128 0xd
+ 765 00bd 35       		.uleb128 0x35
+ 766 00be 00       		.byte	0
+ 767 00bf 49       		.uleb128 0x49
+ 768 00c0 13       		.uleb128 0x13
+ 769 00c1 00       		.byte	0
+ 770 00c2 00       		.byte	0
+ 771 00c3 0E       		.uleb128 0xe
+ 772 00c4 34       		.uleb128 0x34
+ 773 00c5 00       		.byte	0
+ 774 00c6 03       		.uleb128 0x3
+ 775 00c7 0E       		.uleb128 0xe
+ 776 00c8 3A       		.uleb128 0x3a
+ 777 00c9 0B       		.uleb128 0xb
+ 778 00ca 3B       		.uleb128 0x3b
+ 779 00cb 0B       		.uleb128 0xb
+ 780 00cc 49       		.uleb128 0x49
+ 781 00cd 13       		.uleb128 0x13
+ 782 00ce 3F       		.uleb128 0x3f
+ 783 00cf 19       		.uleb128 0x19
+ 784 00d0 02       		.uleb128 0x2
+ 785 00d1 18       		.uleb128 0x18
+ 786 00d2 00       		.byte	0
+ 787 00d3 00       		.byte	0
+ 788 00d4 0F       		.uleb128 0xf
+ 789 00d5 01       		.uleb128 0x1
+ 790 00d6 01       		.byte	0x1
+ 791 00d7 49       		.uleb128 0x49
+ 792 00d8 13       		.uleb128 0x13
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 16
+
+
+ 793 00d9 01       		.uleb128 0x1
+ 794 00da 13       		.uleb128 0x13
+ 795 00db 00       		.byte	0
+ 796 00dc 00       		.byte	0
+ 797 00dd 10       		.uleb128 0x10
+ 798 00de 21       		.uleb128 0x21
+ 799 00df 00       		.byte	0
+ 800 00e0 49       		.uleb128 0x49
+ 801 00e1 13       		.uleb128 0x13
+ 802 00e2 2F       		.uleb128 0x2f
+ 803 00e3 0B       		.uleb128 0xb
+ 804 00e4 00       		.byte	0
+ 805 00e5 00       		.byte	0
+ 806 00e6 11       		.uleb128 0x11
+ 807 00e7 2E       		.uleb128 0x2e
+ 808 00e8 00       		.byte	0
+ 809 00e9 3F       		.uleb128 0x3f
+ 810 00ea 19       		.uleb128 0x19
+ 811 00eb 3C       		.uleb128 0x3c
+ 812 00ec 19       		.uleb128 0x19
+ 813 00ed 6E       		.uleb128 0x6e
+ 814 00ee 0E       		.uleb128 0xe
+ 815 00ef 03       		.uleb128 0x3
+ 816 00f0 0E       		.uleb128 0xe
+ 817 00f1 3A       		.uleb128 0x3a
+ 818 00f2 0B       		.uleb128 0xb
+ 819 00f3 3B       		.uleb128 0x3b
+ 820 00f4 0B       		.uleb128 0xb
+ 821 00f5 00       		.byte	0
+ 822 00f6 00       		.byte	0
+ 823 00f7 00       		.byte	0
+ 824              		.section	.debug_aranges,"",%progbits
+ 825 0000 24000000 		.4byte	0x24
+ 826 0004 0200     		.2byte	0x2
+ 827 0006 00000000 		.4byte	.Ldebug_info0
+ 828 000a 04       		.byte	0x4
+ 829 000b 00       		.byte	0
+ 830 000c 0000     		.2byte	0
+ 831 000e 0000     		.2byte	0
+ 832 0010 00000000 		.4byte	.LFB64
+ 833 0014 8C000000 		.4byte	.LFE64-.LFB64
+ 834 0018 00000000 		.4byte	.LFB65
+ 835 001c 3C000000 		.4byte	.LFE65-.LFB65
+ 836 0020 00000000 		.4byte	0
+ 837 0024 00000000 		.4byte	0
+ 838              		.section	.debug_ranges,"",%progbits
+ 839              	.Ldebug_ranges0:
+ 840 0000 00000000 		.4byte	.LFB64
+ 841 0004 8C000000 		.4byte	.LFE64
+ 842 0008 00000000 		.4byte	.LFB65
+ 843 000c 3C000000 		.4byte	.LFE65
+ 844 0010 00000000 		.4byte	0
+ 845 0014 00000000 		.4byte	0
+ 846              		.section	.debug_line,"",%progbits
+ 847              	.Ldebug_line0:
+ 848 0000 48020000 		.section	.debug_str,"MS",%progbits,1
+ 848      02000E02 
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 17
+
+
+ 848      00000201 
+ 848      FB0E0D00 
+ 848      01010101 
+ 849              	.LASF27:
+ 850 0000 55415254 		.ascii	"UART_1_Start\000"
+ 850      5F315F53 
+ 850      74617274 
+ 850      00
+ 851              	.LASF20:
+ 852 000d 636F756E 		.ascii	"countString\000"
+ 852      74537472 
+ 852      696E6700 
+ 853              	.LASF26:
+ 854 0019 4C45445F 		.ascii	"LED_Write\000"
+ 854      57726974 
+ 854      6500
+ 855              	.LASF22:
+ 856 0023 55415254 		.ascii	"UART_1_PutString\000"
+ 856      5F315F50 
+ 856      75745374 
+ 856      72696E67 
+ 856      00
+ 857              	.LASF30:
+ 858 0034 54726967 		.ascii	"Trigger_Write\000"
+ 858      6765725F 
+ 858      57726974 
+ 858      6500
+ 859              	.LASF9:
+ 860 0042 5F5F696E 		.ascii	"__int32_t\000"
+ 860      7433325F 
+ 860      7400
+ 861              	.LASF10:
+ 862 004c 696E7433 		.ascii	"int32_t\000"
+ 862      325F7400 
+ 863              	.LASF12:
+ 864 0054 666C6F61 		.ascii	"float\000"
+ 864      7400
+ 865              	.LASF28:
+ 866 005a 54696D65 		.ascii	"Timer_1_Start\000"
+ 866      725F315F 
+ 866      53746172 
+ 866      7400
+ 867              	.LASF1:
+ 868 0068 756E7369 		.ascii	"unsigned char\000"
+ 868      676E6564 
+ 868      20636861 
+ 868      7200
+ 869              	.LASF34:
+ 870 0076 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 870      43313120 
+ 870      352E342E 
+ 870      31203230 
+ 870      31363036 
+ 871 00a9 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 871      20726576 
+ 871      6973696F 
+ 871      6E203233 
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 18
+
+
+ 871      37373135 
+ 872 00dc 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 872      66756E63 
+ 872      74696F6E 
+ 872      2D736563 
+ 872      74696F6E 
+ 873              	.LASF5:
+ 874 0104 6C6F6E67 		.ascii	"long unsigned int\000"
+ 874      20756E73 
+ 874      69676E65 
+ 874      6420696E 
+ 874      7400
+ 875              	.LASF3:
+ 876 0116 73686F72 		.ascii	"short unsigned int\000"
+ 876      7420756E 
+ 876      7369676E 
+ 876      65642069 
+ 876      6E7400
+ 877              	.LASF17:
+ 878 0129 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 878      52784275 
+ 878      66666572 
+ 878      00
+ 879              	.LASF13:
+ 880 0136 646F7562 		.ascii	"double\000"
+ 880      6C6500
+ 881              	.LASF11:
+ 882 013d 75696E74 		.ascii	"uint16\000"
+ 882      313600
+ 883              	.LASF38:
+ 884 0144 6D61696E 		.ascii	"main\000"
+ 884      00
+ 885              	.LASF31:
+ 886 0149 43794465 		.ascii	"CyDelayUs\000"
+ 886      6C617955 
+ 886      7300
+ 887              	.LASF8:
+ 888 0153 756E7369 		.ascii	"unsigned int\000"
+ 888      676E6564 
+ 888      20696E74 
+ 888      00
+ 889              	.LASF32:
+ 890 0160 4563686F 		.ascii	"Echo_Read\000"
+ 890      5F526561 
+ 890      6400
+ 891              	.LASF7:
+ 892 016a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 892      206C6F6E 
+ 892      6720756E 
+ 892      7369676E 
+ 892      65642069 
+ 893              	.LASF21:
+ 894 0181 64697374 		.ascii	"distString\000"
+ 894      53747269 
+ 894      6E6700
+ 895              	.LASF16:
+ 896 018c 73697A65 		.ascii	"sizetype\000"
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 19
+
+
+ 896      74797065 
+ 896      00
+ 897              	.LASF6:
+ 898 0195 6C6F6E67 		.ascii	"long long int\000"
+ 898      206C6F6E 
+ 898      6720696E 
+ 898      7400
+ 899              	.LASF36:
+ 900 01a3 433A5C55 		.ascii	"C:\\Users\\Angus\\Documents\\PSoC Creator\\EngDesig"
+ 900      73657273 
+ 900      5C416E67 
+ 900      75735C44 
+ 900      6F63756D 
+ 901 01d1 6E5C556C 		.ascii	"n\\Ultra-Sonic Sensor.cydsn\000"
+ 901      7472612D 
+ 901      536F6E69 
+ 901      63205365 
+ 901      6E736F72 
+ 902              	.LASF35:
+ 903 01ec 6D61696E 		.ascii	"main.c\000"
+ 903      2E6300
+ 904              	.LASF14:
+ 905 01f3 63686172 		.ascii	"char\000"
+ 905      00
+ 906              	.LASF24:
+ 907 01f8 54696D65 		.ascii	"Timer_1_ReadCounter\000"
+ 907      725F315F 
+ 907      52656164 
+ 907      436F756E 
+ 907      74657200 
+ 908              	.LASF18:
+ 909 020c 636F756E 		.ascii	"count\000"
+ 909      7400
+ 910              	.LASF2:
+ 911 0212 73686F72 		.ascii	"short int\000"
+ 911      7420696E 
+ 911      7400
+ 912              	.LASF23:
+ 913 021c 54696D65 		.ascii	"Timer_1_ReadStatusRegister\000"
+ 913      725F315F 
+ 913      52656164 
+ 913      53746174 
+ 913      75735265 
+ 914              	.LASF4:
+ 915 0237 6C6F6E67 		.ascii	"long int\000"
+ 915      20696E74 
+ 915      00
+ 916              	.LASF15:
+ 917 0240 6C6F6E67 		.ascii	"long double\000"
+ 917      20646F75 
+ 917      626C6500 
+ 918              	.LASF0:
+ 919 024c 7369676E 		.ascii	"signed char\000"
+ 919      65642063 
+ 919      68617200 
+ 920              	.LASF29:
+ 921 0258 6973725F 		.ascii	"isr_1_StartEx\000"
+ARM GAS  C:\Users\Angus\AppData\Local\Temp\ccbQSM1B.s 			page 20
+
+
+ 921      315F5374 
+ 921      61727445 
+ 921      7800
+ 922              	.LASF25:
+ 923 0266 73707269 		.ascii	"sprintf\000"
+ 923      6E746600 
+ 924              	.LASF33:
+ 925 026e 43794465 		.ascii	"CyDelay\000"
+ 925      6C617900 
+ 926              	.LASF37:
+ 927 0276 54696D65 		.ascii	"Timer_ISR_Handler\000"
+ 927      725F4953 
+ 927      525F4861 
+ 927      6E646C65 
+ 927      7200
+ 928              	.LASF19:
+ 929 0288 64697374 		.ascii	"distance_measured\000"
+ 929      616E6365 
+ 929      5F6D6561 
+ 929      73757265 
+ 929      6400
+ 930              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
